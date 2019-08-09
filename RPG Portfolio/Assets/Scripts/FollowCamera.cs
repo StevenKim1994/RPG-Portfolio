@@ -8,36 +8,83 @@ public class FollowCamera : MonoBehaviour
     GameObject Player;
 
     Transform target;
-    public float Dist;
-    public float Height;
-    public float SmoothRotate;
+    public float dist = 4f;
 
-    Transform camera;
+    public float xSpeed = 220.0f;
+    public float ySpeed = 100.0f;
 
-    public void Set_Target(GameObject _input)
+    float x = 0.0f;
+    float y = 0.0f;
+
+    float yMinLimit = -20f;
+    float yMaxLimit = 80f;
+
+    
+    float ClampAngle(float angle, float min, float max)
     {
-        target = _input.transform;
+        if(angle < -360)
+        {
+            angle += 360;
+        }
+
+        if(angle > 360)
+        {
+            angle -= 360;
+        }
+
+        return Mathf.Clamp(angle, min, max);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        target = Player.transform;
-        camera = GetComponent<Transform>();
+        target = Player.GetComponent<Transform>();
+        Cursor.lockState = CursorLockMode.None;
+        Vector3 angles = this.transform.eulerAngles;
+        x = angles.y;
+        y = angles.x;
     }
-
-    private void LateUpdate()
+    void Update()
     {
-       
-        if(target != null)
+        Quaternion rotation = Quaternion.Euler(y, x, 0);
+        Vector3 position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
+
+        this.transform.rotation = rotation;
+        target.rotation = Quaternion.Euler(0, x, 0);
+        this.transform.position = position;
+        if (Input.GetMouseButton(1))
         {
-            float curraYAngle = Mathf.LerpAngle(camera.eulerAngles.y, camera.eulerAngles.y, SmoothRotate * Time.deltaTime);
+            x += Input.GetAxis("Mouse X") * xSpeed * 0.015f;
+            y -= Input.GetAxis("Mouse Y") * ySpeed * 0.015f;
 
-            Quaternion rot = Quaternion.Euler(0, curraYAngle, 0);
+            y = ClampAngle(y, yMinLimit, yMaxLimit);
 
-            camera.transform.position = target.position - (rot * Vector3.forward * Dist) + (Vector3.up * (Height));
+           rotation = Quaternion.Euler(y, x, 0);
+           position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
 
-            camera.transform.LookAt(target);
+      
+
+        }
+
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            Debug.Log("UP");
+            dist++;
+
+            if (dist > 9)
+            {
+                dist = 9;
+            }
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            Debug.Log("DOWN");
+            dist--;
+            if (dist < 0)
+            {
+                dist = 0;
+            }
         }
     }
 }
