@@ -49,19 +49,24 @@ public class FollowCamera : MonoBehaviour
         Vector3 position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
 
         this.transform.rotation = rotation;
-        target.rotation = Quaternion.Euler(0, x, 0);
+       
         this.transform.position = position;
         if (Input.GetMouseButton(1))
         {
             x += Input.GetAxis("Mouse X") * xSpeed * 0.015f;
             y -= Input.GetAxis("Mouse Y") * ySpeed * 0.015f;
 
+            Debug.Log(x.ToString());
+            Debug.Log(y.ToString());
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
            rotation = Quaternion.Euler(y, x, 0);
            position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
 
-      
+            if (Input.GetMouseButton(0))
+            {
+                target.rotation = Quaternion.Euler(0, x, 0);
+            }
 
         }
 

@@ -6,7 +6,10 @@ public class Player : MonoBehaviour
 {
     Animator Anim;
     public float MoveSpeed;
-    public float RotSpeed;
+
+
+   
+    public float RotateSpeed = 100.0f;
     bool MoveFlag = false;
 
     int STR;
@@ -18,6 +21,18 @@ public class Player : MonoBehaviour
     float HP;
     float MP;
 
+    float Rotate = 0.0f;
+  
+
+    float x_pos =0.0f;
+    float y_pos= 0.0f;
+
+    bool DoubleKey = false;
+
+    float CountRight = 0.0f;
+    float CountLeft = 0.0f;
+
+    
     GameObject Target;
 
     [SerializeField]
@@ -103,6 +118,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 angles = this.transform.eulerAngles;
+        Rotate = this.transform.forward.x;
         Anim = this.GetComponent<Animator>();
         Target_Frame.SetActive(false);
         MoveFlag = false;
@@ -136,29 +153,64 @@ public class Player : MonoBehaviour
         MoveFlag = false;
         if(Input.GetKey(KeyCode.W))
         {
-           
-            MoveFlag = true;
-            this.transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime);
 
-            // 일정 앵글 넘어서면 카메라도 움직이게 해야함
+            if (DoubleKey == false)
+            {
+                MoveFlag = true;
+                this.transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime);
+            }
+
+                
+            
         }
      
 
         if (Input.GetKey(KeyCode.A))
         {
-        
+
+            CountRight = 0.0f;
+            CountLeft += 1.0f;
+            if (CountLeft >= 10f)
+            {
+                CountLeft = 0.0f;
+            }
+            //MoveFlag = true;
+            //this.transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime);
+
+
+            Rotate += 0.5f;
+            Rotate += CountLeft + RotateSpeed * 0.015f;
+
+            
+
+            this.transform.rotation = Quaternion.Euler(0, -Rotate, 0);
+
+            //if(count > 5.0f)
+            //{
+            //    MoveFlag = true;
+            //    this.transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime) ;
+            //}
+            // 일정 앵글 넘어서면 카메라도 움직이게 해야함
+        }
+        else if ((Input.GetKey(KeyCode.A)) && (Input.GetKey(KeyCode.W)))
+        {
+
+            DoubleKey = true;
             MoveFlag = true;
             this.transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime);
-
-            // 일정 앵글 넘어서면 카메라도 움직이게 해야함
+            this.transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            DoubleKey = false;
         }
 
 
         if (Input.GetKey(KeyCode.S))
         {
-     
+           
             MoveFlag = true;
-            this.transform.Translate(Vector3.back * MoveSpeed * Time.deltaTime);
+            this.transform.Translate(Vector3.back * MoveSpeed/2.0f * Time.deltaTime);
 
             // 일정 앵글 넘어서면 카메라도 움직이게 해야함
         }
@@ -166,11 +218,34 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
+
+            CountLeft = 0.0f;
+            CountRight += 1.0f;
+            if(CountRight >= 10f)
+            {
+                CountRight = 0.0f;
+            }
+
+            Rotate += 0.5f;
+            Rotate += CountRight + RotateSpeed * 0.015f;
+
+
+            this.transform.rotation = Quaternion.Euler(0, Rotate, 0);
+
+
           
+            // 일정 앵글 넘어서면 카메라도 움직이게 해야함
+        }
+        else if ((Input.GetKey(KeyCode.D)) && (Input.GetKey(KeyCode.W)))
+        {
+            DoubleKey = true;
             MoveFlag = true;
             this.transform.Translate(Vector3.right * MoveSpeed * Time.deltaTime);
-
-            // 일정 앵글 넘어서면 카메라도 움직이게 해야함
+            this.transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            DoubleKey = false;
         }
 
     }
