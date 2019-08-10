@@ -68,10 +68,23 @@
     <Compile Include="Assets\DownloadAsset\Medieval Voxel - Blacksmith\Assets\Scripts\BellowsAnimScript.cs" />
     <Compile Include="Assets\DownloadAsset\Medieval Voxel - Blacksmith\Assets\Scripts\FirelightWobble.cs" />
     <Compile Include="Assets\DownloadAsset\MoveMotionPack\SampleScene\Scripts\PlayManager.cs" />
+    <Compile Include="Assets\MiniMap\_Demo\PlayerT.cs" />
+    <Compile Include="Assets\MiniMap\_Scripts\MapObject.cs" />
+    <Compile Include="Assets\MiniMap\_Scripts\MiniMapComponent.cs" />
+    <Compile Include="Assets\MiniMap\_Scripts\MiniMapController.cs" />
+    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\CameraTarget.cs" />
+    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\EffectController.cs" />
+    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\EffectDemo.cs" />
+    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\EffectShaderPropertyStr.cs" />
+    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\RenderEffect.cs" />
+    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\TransformExtension.cs" />
     <Compile Include="Assets\Scripts\DataManagerScript.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
     <Compile Include="Assets\Scripts\InventoryManagerScript.cs" />
+    <Compile Include="Assets\Scripts\Network\Network.cs" />
+    <Compile Include="Assets\Scripts\Network\PacketQueue.cs" />
+    <Compile Include="Assets\Scripts\Network\TransportTCP.cs" />
     <Compile Include="Assets\Scripts\NPC.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
@@ -88,14 +101,22 @@
     <None Include="Assets\DownloadAsset\SimpleSky\ReadMe.txt" />
     <None Include="Assets\DownloadAsset\AurynSky\Dungeon Pack\READ ME.txt" />
     <None Include="Assets\DownloadAsset\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpec.shader" />
+    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\effect_distortion_mask.shader" />
     <None Include="Assets\DownloadAsset\MeshSmith\Fantasy1\Lady Pirate\readMe.txt" />
     <None Include="Assets\DownloadAsset\Fantasy Forest Environment Free Sample\StandardNoCulling.shader" />
+    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticleAddSoftEffect.shader" />
     <None Include="Assets\DownloadAsset\Idle MoCap\Idle Package Description.txt" />
+    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\Toon Blended Premmultiply.shader" />
     <None Include="Assets\DownloadAsset\BrokenVector\FreeLowPolyPack\readme.txt" />
+    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticlePremultiplyBlend.shader" />
     <None Include="Assets\DownloadAsset\FantasyHouse\06-Info\info.txt" />
+    <None Include="Assets\Particlecollection_Free samples\READ ME.txt" />
     <None Include="Assets\DownloadAsset\BrokenVector\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
     <None Include="Assets\DownloadAsset\BrokenVector\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
     <None Include="Assets\DownloadAsset\Wand and Circles\Polygon City Free Pack - Environment and Interior\Materials\Double Sided Standard Diffuse Bump.shader" />
+    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticleAddEffect.shader" />
+    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\Toon Additive.shader" />
+    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticleBlendEffect.shader" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
