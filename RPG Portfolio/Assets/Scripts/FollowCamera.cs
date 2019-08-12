@@ -56,8 +56,6 @@ public class FollowCamera : MonoBehaviour
             x += Input.GetAxis("Mouse X") * xSpeed * 0.015f;
             y -= Input.GetAxis("Mouse Y") * ySpeed * 0.015f;
 
-            Debug.Log(x.ToString());
-            Debug.Log(y.ToString());
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
            rotation = Quaternion.Euler(y, x, 0);
@@ -73,7 +71,7 @@ public class FollowCamera : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-            Debug.Log("UP");
+        
             dist++;
 
             if (dist > 9)
@@ -84,7 +82,7 @@ public class FollowCamera : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            Debug.Log("DOWN");
+          
             dist--;
             if (dist < 0)
             {

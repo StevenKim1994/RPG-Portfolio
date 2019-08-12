@@ -44,7 +44,7 @@ public class NPC : MonoBehaviour
             StartCoroutine("Wait");
         }
         float distance = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
-        if(distance >= 20)
+        if(distance >= 10)
         {
             PotionNPCMenu.SetActive(false);
             ArmorNPCMenu.SetActive(false);
