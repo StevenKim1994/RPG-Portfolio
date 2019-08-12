@@ -5,6 +5,13 @@ using UnityEngine.AI;
 public class NPC : MonoBehaviour
 {
     [SerializeField]
+    GameObject Player;
+    [SerializeField]
+    GameObject PotionNPCMenu;
+    [SerializeField]
+    GameObject ArmorNPCMenu;
+
+    [SerializeField]
     GameObject Goal;
     public float WalkSpeed;
     NavMeshAgent Nav;
@@ -12,6 +19,8 @@ public class NPC : MonoBehaviour
     Animator Anim;
     bool CouroutineCheck = false;
     bool Animcheck = false;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +31,9 @@ public class NPC : MonoBehaviour
         Nav.enabled = false; // 코루틴으로 시간이 지나면 이동하기...
         StartPos = this.GetComponent<Transform>().position;
 
+        PotionNPCMenu.SetActive(false);
+        ArmorNPCMenu.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -31,8 +43,13 @@ public class NPC : MonoBehaviour
         {
             StartCoroutine("Wait");
         }
+        float distance = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
+        if(distance >= 20)
+        {
+            PotionNPCMenu.SetActive(false);
+            ArmorNPCMenu.SetActive(false);
+        }
 
-        
     }
 
     IEnumerator Wait()
@@ -58,5 +75,38 @@ public class NPC : MonoBehaviour
         Anim.SetBool("Walk", false);
         yield return new WaitForSeconds(10f);
         CouroutineCheck = false;
+    }
+
+    void OnMouseDown()
+    {
+       
+        float distance = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
+        Debug.Log(distance.ToString());
+        if(this.gameObject.tag == "PotionNPC")
+        {
+            if (distance <= 5f)
+            {
+                PotionNPC();
+            }
+        }
+
+        else if(this.gameObject.tag == "ArmorNPC")
+        {
+            if (distance <= 5f)
+            {
+                ArmorNPC();
+            }
+        }
+    }
+
+    
+    void PotionNPC()
+    {
+        PotionNPCMenu.SetActive(true);
+    }
+
+    void ArmorNPC()
+    {
+        ArmorNPCMenu.SetActive(true);
     }
 }

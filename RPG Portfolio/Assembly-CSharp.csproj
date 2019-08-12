@@ -82,11 +82,13 @@
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
     <Compile Include="Assets\Scripts\InventoryManagerScript.cs" />
+    <Compile Include="Assets\Scripts\ItemTableScript.cs" />
     <Compile Include="Assets\Scripts\Network\Network.cs" />
     <Compile Include="Assets\Scripts\Network\PacketQueue.cs" />
     <Compile Include="Assets\Scripts\Network\TransportTCP.cs" />
     <Compile Include="Assets\Scripts\NPC.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PotionNPCMenuScript.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\SkillManagerScript.cs" />
     <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\AsteroidController.cs" />

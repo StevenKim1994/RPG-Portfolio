@@ -4,47 +4,51 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Animator Anim;
-    public float MoveSpeed;
+    private Animator Anim;
+    private bool MoveFlag = false;
 
+    private int STR;
+    private int DEX;
+    private int INT;
+    private float Armor;
+    private float Damage;
+    private string Name;
 
-   
-    public float RotateSpeed = 100.0f;
-    bool MoveFlag = false;
-
-    int STR;
-    int DEX;
-    int INT;
-
-    float Armor;
-    float Damage;
     float HP;
     float MP;
 
     float Rotate = 0.0f;
-  
-
-    float x_pos =0.0f;
-    float y_pos= 0.0f;
+    float x_pos = 0.0f;
+    float y_pos = 0.0f;
 
     bool DoubleKey = false;
-
     float CountRight = 0.0f;
     float CountLeft = 0.0f;
 
-    
     GameObject Target;
 
     [SerializeField]
     GameObject Target_Frame;
 
+    public float MoveSpeed;
+    public float RotateSpeed = 100.0f;
+ 
+    public void Set_Name(string _in)
+    {
+        Name = _in;
+    }
+
+    public string Get_Name()
+    {
+        return Name;
+    }
     public void Set_Target(GameObject _in)
     {
-        Target = _in;
+        this.Target = _in;
     }
     public GameObject Get_Target()
     {
-        return Target;
+        return this.Target;
     }
 
     public float Get_Armor()
