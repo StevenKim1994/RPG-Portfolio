@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/CampScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/InBlackSmithScene.unity
+    guid: 1894a0d70d83a964a9be8887e19c704d
+  - enabled: 1
+    path: Assets/Scenes/FirstDungeonScene.unity
+    guid: 9dacb310ba04f4f418e486ba4ded6a42
+  - enabled: 1
+    path: Assets/Scenes/InChurchScene.unity
+    guid: 432546f88db5bf34bbebe201a9cfe937
+  - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: f1754bcf8484b174c9c27c59a711560a
   m_configObjects: {}

@@ -78,8 +78,10 @@
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\EffectShaderPropertyStr.cs" />
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\RenderEffect.cs" />
     <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\TransformExtension.cs" />
+    <Compile Include="Assets\Scripts\AutoParticleDestroyer.cs" />
     <Compile Include="Assets\Scripts\BlackSmithEnterColliderScript.cs" />
     <Compile Include="Assets\Scripts\DataManagerScript.cs" />
+    <Compile Include="Assets\Scripts\DonDestroyObjectScript.cs" />
     <Compile Include="Assets\Scripts\DungeonEnterColliderScript.cs" />
     <Compile Include="Assets\Scripts\DungeonSelecterScript.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
@@ -87,11 +89,13 @@
     <Compile Include="Assets\Scripts\InterfaceManagerScript.cs" />
     <Compile Include="Assets\Scripts\InventoryManagerScript.cs" />
     <Compile Include="Assets\Scripts\ItemTableScript.cs" />
+    <Compile Include="Assets\Scripts\LoadManagersScript.cs" />
     <Compile Include="Assets\Scripts\Network\Network.cs" />
     <Compile Include="Assets\Scripts\Network\PacketQueue.cs" />
     <Compile Include="Assets\Scripts\Network\TransportTCP.cs" />
     <Compile Include="Assets\Scripts\NPC.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\PlayerManagerScripts.cs" />
     <Compile Include="Assets\Scripts\PotionNPCMenuScript.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\SkillManagerScript.cs" />
@@ -123,32 +127,33 @@
     <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticleAddEffect.shader" />
     <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\Toon Additive.shader" />
     <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticleBlendEffect.shader" />
+    <None Include="Assets\Polygonal Particles\Assets\Shaders\GradientBackgroundShader.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

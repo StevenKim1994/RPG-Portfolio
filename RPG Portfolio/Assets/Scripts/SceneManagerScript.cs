@@ -6,11 +6,11 @@ public class SceneManagerScript : MonoBehaviour
 {
    public void EnterDungeonFirst()
     {
-        SceneManager.LoadScene("FirstDungeon");
+        SceneManager.LoadScene("FirstDungeonScene");
     }
     public void EnterBlackSmith()
     {
-        SceneManager.LoadScene("BlackSmith");
+        SceneManager.LoadScene("InBlackSmithScene");
 
     }
 }

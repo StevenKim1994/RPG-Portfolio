@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private float Damage;
     private string Name;
 
+
     float HP;
     float MP;
 
@@ -29,6 +30,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     GameObject Target_Frame;
+
+    [SerializeField]
+    GameObject HitEffect;
 
     public float MoveSpeed;
     public float RotateSpeed = 100.0f;
@@ -149,7 +153,7 @@ public class Player : MonoBehaviour
             Anim.SetBool("Idle", true);
         }
      
-
+     
 
     }
     void MoveCtrl()
@@ -222,7 +226,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-
+          
             CountLeft = 0.0f;
             CountRight += 1.0f;
             if(CountRight >= 10f)
@@ -252,6 +256,22 @@ public class Player : MonoBehaviour
             DoubleKey = false;
         }
 
+      /* if((Input.GetKey(KeyCode.P)))
+        {
+            Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+            Anim.SetTrigger("Attacked");
+        } */
     }
 
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enermy_Weapon")
+        {
+            Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+            Anim.SetTrigger("Attacked");
+
+        }
+    }
 }

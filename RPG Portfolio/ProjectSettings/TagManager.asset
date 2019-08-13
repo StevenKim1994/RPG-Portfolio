@@ -9,6 +9,9 @@ TagManager:
   - PotionNPC
   - ArmorNPC
   - User
+  - FxTemporaire
+  - User_Weapon
+  - Manager
   layers:
   - Default
   - TransparentFX
