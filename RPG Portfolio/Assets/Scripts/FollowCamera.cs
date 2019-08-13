@@ -37,6 +37,7 @@ public class FollowCamera : MonoBehaviour
 
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("User");
         target = Player.GetComponent<Transform>();
         Cursor.lockState = CursorLockMode.None;
         Vector3 angles = this.transform.eulerAngles;

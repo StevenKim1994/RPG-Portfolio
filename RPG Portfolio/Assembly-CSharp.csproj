@@ -129,31 +129,31 @@
     <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticleBlendEffect.shader" />
     <None Include="Assets\Polygonal Particles\Assets\Shaders\GradientBackgroundShader.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/A08/Desktop/기러기/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class LoadManagersScript : MonoBehaviour
 {
     [SerializeField]
@@ -28,7 +28,18 @@ public class LoadManagersScript : MonoBehaviour
 
     private void Start()
     {
-        if (Manager[3].GetComponent<PlayerManagerScripts>().Load_Name() == "Pirate") // 전 씬에서 저장한 캐릭터의 이름이 Pirate이면 해적 오브젝트 생성
-          //  Instantiate(Character[0],); 19.08.13.. 여기까지 했음 학원
+      //if (Manager[3].GetComponent<PlayerManagerScripts>().Load_Name() == "Pirate") // 전 씬에서 저장한 캐릭터의 이름이 Pirate이면 해적 오브젝트 생성
+      //{
+            if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
+            {
+                GameObject LoadPOS = GameObject.FindGameObjectWithTag("Load_Point");
+                Instantiate(Character[0], LoadPOS.transform);
+                GameObject User = GameObject.Find("Player(Clone)");
+                User.gameObject.tag = "User";
+
+            }
+
+     // }
+     
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - FxTemporaire
   - User_Weapon
   - Manager
+  - Load_Point
   layers:
   - Default
   - TransparentFX
