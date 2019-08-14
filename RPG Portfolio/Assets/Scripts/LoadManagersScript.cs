@@ -33,13 +33,20 @@ public class LoadManagersScript : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
             {
                 GameObject LoadPOS = GameObject.FindGameObjectWithTag("Load_Point");
-                Instantiate(Character[0], LoadPOS.transform);
+                // 5.2 0.4883 6.12;
+                Instantiate(Character[0], LoadPOS.transform);//new Vector3(3.8f,3.0f,-3.5f));
                 GameObject User = GameObject.Find("Player(Clone)");
                 User.gameObject.tag = "User";
-
-            }
+                User.transform.position = new Vector3(5.2f, 3.4883f, 6.12f);
+                User.transform.GetComponent<Rigidbody>().isKinematic = false;
+                User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                GameObject weaponnpc = GameObject.FindWithTag("WeaponNPC");
+                weaponnpc.GetComponent<NPC>().Set_Player(User);
+                Manager[5].GetComponent<SkillManagerScript>().Set_Player(User);
+        }
 
      // }
+     
      
     }
 }

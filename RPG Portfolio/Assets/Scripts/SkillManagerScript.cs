@@ -76,4 +76,10 @@ public class SkillManagerScript : MonoBehaviour
             count = 0;
         }
     }
+
+    public void Set_Player(GameObject _in)
+    {
+        Player = _in;
+    }
+
 }

@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/CampScene.unity
+- path: Assets/Scenes/InBlackSmithScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

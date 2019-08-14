@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 public class NPC : MonoBehaviour
 {
     [SerializeField]
@@ -10,6 +11,8 @@ public class NPC : MonoBehaviour
     GameObject PotionNPCMenu;
     [SerializeField]
     GameObject ArmorNPCMenu;
+    [SerializeField]
+    GameObject WeaponNPCMenu;
 
     [SerializeField]
     GameObject Goal;
@@ -25,14 +28,26 @@ public class NPC : MonoBehaviour
     void Start()
     {
         Anim = this.GetComponent<Animator>();
-     
-        Nav = this.GetComponent<NavMeshAgent>();
-        Nav.speed = WalkSpeed;
-        Nav.enabled = false; // 코루틴으로 시간이 지나면 이동하기...
+
+
+        if (SceneManager.GetActiveScene().name == "CampScene")
+        {
+            Nav = this.GetComponent<NavMeshAgent>();
+            Nav.speed = WalkSpeed;
+            Nav.enabled = false; // 코루틴으로 시간이 지나면 이동하기...
+        }
+
+
         StartPos = this.GetComponent<Transform>().position;
 
-        PotionNPCMenu.SetActive(false);
-        ArmorNPCMenu.SetActive(false);
+        if (PotionNPCMenu != null)
+            PotionNPCMenu.SetActive(false);
+
+        if (ArmorNPCMenu != null)
+            ArmorNPCMenu.SetActive(false);
+
+        if (WeaponNPCMenu != null)
+            WeaponNPCMenu.SetActive(false);
 
     }
 
@@ -41,13 +56,20 @@ public class NPC : MonoBehaviour
     {
         if (CouroutineCheck == false)
         {
-            StartCoroutine("Wait");
+            if (SceneManager.GetActiveScene().name == "CampScene")
+                StartCoroutine("Wait");
         }
         float distance = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
         if(distance >= 10)
-        {
+        { 
+            if(PotionNPCMenu != null)
             PotionNPCMenu.SetActive(false);
+
+            if(ArmorNPCMenu != null)
             ArmorNPCMenu.SetActive(false);
+
+            if(WeaponNPCMenu != null)
+            WeaponNPCMenu.SetActive(false);
         }
 
     }
@@ -97,6 +119,14 @@ public class NPC : MonoBehaviour
                 ArmorNPC();
             }
         }
+
+        else if (this.gameObject.tag == "WeaponNPC")
+        {
+            if (distance <= 5f)
+            {
+                WeaponNPC();
+            }
+        }
     }
 
     
@@ -108,5 +138,15 @@ public class NPC : MonoBehaviour
     void ArmorNPC()
     {
         ArmorNPCMenu.SetActive(true);
+    }
+
+    void WeaponNPC()
+    {
+        WeaponNPCMenu.SetActive(true);
+    }
+
+    public void Set_Player(GameObject _in)
+    {
+        Player = _in;
     }
 }

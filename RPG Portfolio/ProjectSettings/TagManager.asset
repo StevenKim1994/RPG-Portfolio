@@ -13,6 +13,7 @@ TagManager:
   - User_Weapon
   - Manager
   - Load_Point
+  - WeaponNPC
   layers:
   - Default
   - TransparentFX
