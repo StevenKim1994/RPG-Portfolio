@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class SkillManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -30,7 +30,12 @@ public class SkillManagerScript : MonoBehaviour
     
     void Start()
     {
-       
+        if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
+        {
+            if (Player == null)
+                Player = GameObject.Find("Player(Clone)");
+        }
+
     }
 
     // Update is called once per frame

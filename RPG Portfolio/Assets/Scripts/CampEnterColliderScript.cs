@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CampEnterColliderScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    GameObject Managers;
 
-    // Update is called once per frame
-    void Update()
+    GameObject SceneMgr;
+
+    private void Start()
     {
-        
+        SceneMgr = Managers.GetComponent<LoadManagersScript>().Get_Managers(0);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "User")
+        {
+            SceneMgr.GetComponent<SceneManagerScript>().EnterCamp();
+        }
+
+
+
+
     }
 }

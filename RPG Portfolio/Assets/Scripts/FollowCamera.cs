@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
@@ -37,15 +38,25 @@ public class FollowCamera : MonoBehaviour
 
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("User");
+        if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
+            Player = GameObject.Find("Player(Clone)");
+
         target = Player.GetComponent<Transform>();
         Cursor.lockState = CursorLockMode.None;
         Vector3 angles = this.transform.eulerAngles;
         x = angles.y;
         y = angles.x;
+
+  
+        
+        angles = this.transform.eulerAngles;
+        x = angles.y;
+        y = angles.x;
+
     }
     void Update()
     {
+        
         Quaternion rotation = Quaternion.Euler(y, x, 0);
         Vector3 position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
 
@@ -90,5 +101,10 @@ public class FollowCamera : MonoBehaviour
                 dist = 0;
             }
         }
+    }
+
+    public void Set_Camera(GameObject _in)
+    {
+        Player = GameObject.Find("Plyer(Clone)");
     }
 }

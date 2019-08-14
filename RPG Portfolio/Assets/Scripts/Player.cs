@@ -36,7 +36,8 @@ public class Player : MonoBehaviour
 
     public float MoveSpeed;
     public float RotateSpeed = 100.0f;
- 
+
+    bool Jump = false;
     public void Set_Name(string _in)
     {
         Name = _in;
@@ -129,7 +130,10 @@ public class Player : MonoBehaviour
         Vector3 angles = this.transform.eulerAngles;
         Rotate = this.transform.forward.x;
         Anim = this.GetComponent<Animator>();
+
+        if(Target_Frame != null)
         Target_Frame.SetActive(false);
+
         MoveFlag = false;
     }
 
@@ -256,11 +260,20 @@ public class Player : MonoBehaviour
             DoubleKey = false;
         }
 
-      /* if((Input.GetKey(KeyCode.P)))
+        if(Input.GetKey(KeyCode.Space)) // User 캐릭터 점프...
         {
-            Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
-            Anim.SetTrigger("Attacked");
-        } */
+            this.transform.Translate(Vector3.up * (MoveSpeed+1) * Time.deltaTime);
+            Jump = true;
+            if(this.transform.position.y <= 25f)
+            {
+                return;
+            }
+
+            if(this.transform.position.y == 0.5)
+            {
+                Jump = false;
+            }
+        }
     }
 
 

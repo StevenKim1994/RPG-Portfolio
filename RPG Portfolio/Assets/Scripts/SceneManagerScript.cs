@@ -13,4 +13,9 @@ public class SceneManagerScript : MonoBehaviour
         SceneManager.LoadScene("InBlackSmithScene");
 
     }
+
+    public void EnterCamp()
+    {
+        SceneManager.LoadScene("CampScene");
+    }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoadManagersScript : MonoBehaviour
 {
+    
+   
     [SerializeField]
     GameObject[] Character = new GameObject[10];
     [SerializeField]
@@ -28,25 +30,31 @@ public class LoadManagersScript : MonoBehaviour
 
     private void Start()
     {
+        
       //if (Manager[3].GetComponent<PlayerManagerScripts>().Load_Name() == "Pirate") // 전 씬에서 저장한 캐릭터의 이름이 Pirate이면 해적 오브젝트 생성
       //{
             if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
             {
-                GameObject LoadPOS = GameObject.FindGameObjectWithTag("Load_Point");
-                // 5.2 0.4883 6.12;
-                Instantiate(Character[0], LoadPOS.transform);//new Vector3(3.8f,3.0f,-3.5f));
+                
+                Instantiate(Character[0]);//new Vector3(3.8f,3.0f,-3.5f));
                 GameObject User = GameObject.Find("Player(Clone)");
+       
                 User.gameObject.tag = "User";
-                User.transform.position = new Vector3(5.2f, 3.4883f, 6.12f);
+                User.transform.position = new Vector3(8.35f, 3.858f, 1.76f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 GameObject weaponnpc = GameObject.FindWithTag("WeaponNPC");
                 weaponnpc.GetComponent<NPC>().Set_Player(User);
                 Manager[5].GetComponent<SkillManagerScript>().Set_Player(User);
-        }
+            }
 
      // }
      
      
+    }
+
+    public GameObject Get_Managers(int _in)
+    {
+        return Manager[_in];
     }
 }
