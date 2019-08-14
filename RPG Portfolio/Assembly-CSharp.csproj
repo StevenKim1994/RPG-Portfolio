@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\InventoryManagerScript.cs" />
     <Compile Include="Assets\Scripts\ItemTableScript.cs" />
     <Compile Include="Assets\Scripts\LoadManagersScript.cs" />
+    <Compile Include="Assets\Scripts\ManagerSingleton.cs" />
     <Compile Include="Assets\Scripts\Network\Network.cs" />
     <Compile Include="Assets\Scripts\Network\PacketQueue.cs" />
     <Compile Include="Assets\Scripts\Network\TransportTCP.cs" />
@@ -83,8 +84,8 @@
     <Compile Include="Assets\Scripts\PlayerManagerScripts.cs" />
     <Compile Include="Assets\Scripts\PotionNPCMenuScript.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
-    <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\SkillManagerScript.cs" />
+    <Compile Include="Assets\Scripts\UISingleton.cs" />
     <Compile Include="Assets\Scripts\WeaponNPCMenuScript.cs" />
     <Compile Include="Assets\UsedAsset\DownloadAsset\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
     <Compile Include="Assets\UsedAsset\DownloadAsset\AurynSky\Dungeon Pack\Scripts\TrapDoorDemo.cs" />

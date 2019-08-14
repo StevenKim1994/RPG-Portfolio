@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SimpleHealthBar_SpaceshipExample;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BlackSmithEnterColliderScript : MonoBehaviour
 {
@@ -8,13 +10,34 @@ public class BlackSmithEnterColliderScript : MonoBehaviour
     GameObject SceneMgr;
     [SerializeField]
     GameObject PlayerMgr;
-    
+
+    [SerializeField] private GameObject GameMgr;
+
+    private GameObject[] Managers;
+
+    void Start()
+    {
+        Managers  = GameObject.FindGameObjectsWithTag("Manager");
+        foreach (var VARIABLE in Managers)
+        {
+            if (VARIABLE.gameObject.transform.name == "SceneManager")
+                SceneMgr = VARIABLE;
+
+
+            if (VARIABLE.gameObject.transform.name == "PlayerManager")
+                PlayerMgr = VARIABLE;
+
+            if (VARIABLE.gameObject.transform.name == "GameManager")
+                GameMgr = VARIABLE;
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "User")
         {
             Debug.Log("대장간 입장");
+           GameMgr.GetComponent<GameManagerScript>().Set_OldPosition(new Vector3(-19.839f,0.57050f,-18.615f));
            
             PlayerMgr.GetComponent<PlayerManagerScripts>().Save_DEX(collision.gameObject.GetComponent<Player>().Get_DEX());
             PlayerMgr.GetComponent<PlayerManagerScripts>().Save_INT(collision.gameObject.GetComponent<Player>().Get_INT());

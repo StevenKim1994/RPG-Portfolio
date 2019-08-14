@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
+    
     struct Skill // Pirate 스킬 정보 구조체
     {
         Sprite SkillSprite;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Sprite[] SkillSprite = new Sprite[10]; // 나중에 캐릭터 추가되면 리소스로드로 불러올 예정 19.08.15
 
+    private GameObject GameMgr;
     private List<Skill> Buff = new List<Skill>();
     private Animator Anim;
     private bool MoveFlag = false;
@@ -154,6 +156,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameMgr = GameObject.Find("GameManager");
+
+        if (GameMgr.GetComponent<GameManagerScript>().Get_OldScene() != null)
+        {
+            if((GameMgr.GetComponent<GameManagerScript>().Get_OldScene() != SceneManager.GetActiveScene().ToString()) || (GameMgr.GetComponent<GameManagerScript>().Get_OldScene() != null))
+              this.transform.position = GameMgr.GetComponent<GameManagerScript>().Get_OldPosition();
+        }
+
         Vector3 angles = this.transform.eulerAngles;
         Rotate = this.transform.forward.x;
         Anim = this.GetComponent<Animator>();
