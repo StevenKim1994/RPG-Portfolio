@@ -62,22 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DownloadAsset\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
-    <Compile Include="Assets\DownloadAsset\AurynSky\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
-    <Compile Include="Assets\DownloadAsset\Idle MoCap\DemoScene\idle_mocap_follow_player.cs" />
-    <Compile Include="Assets\DownloadAsset\Medieval Voxel - Blacksmith\Assets\Scripts\BellowsAnimScript.cs" />
-    <Compile Include="Assets\DownloadAsset\Medieval Voxel - Blacksmith\Assets\Scripts\FirelightWobble.cs" />
-    <Compile Include="Assets\DownloadAsset\MoveMotionPack\SampleScene\Scripts\PlayManager.cs" />
-    <Compile Include="Assets\MiniMap\_Demo\PlayerT.cs" />
-    <Compile Include="Assets\MiniMap\_Scripts\MapObject.cs" />
-    <Compile Include="Assets\MiniMap\_Scripts\MiniMapComponent.cs" />
-    <Compile Include="Assets\MiniMap\_Scripts\MiniMapController.cs" />
-    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\CameraTarget.cs" />
-    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\EffectController.cs" />
-    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\EffectDemo.cs" />
-    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\EffectShaderPropertyStr.cs" />
-    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\RenderEffect.cs" />
-    <Compile Include="Assets\Particlecollection_Free samples\Plugins\Effect\Script\TransformExtension.cs" />
     <Compile Include="Assets\Scripts\AutoParticleDestroyer.cs" />
     <Compile Include="Assets\Scripts\BlackSmithEnterColliderScript.cs" />
     <Compile Include="Assets\Scripts\CampEnterColliderScript.cs" />
@@ -102,61 +86,63 @@
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\SkillManagerScript.cs" />
     <Compile Include="Assets\Scripts\WeaponNPCMenuScript.cs" />
-    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\AsteroidController.cs" />
-    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\HealthPickupController.cs" />
-    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Simple Health Bar\_Asteroids Example\Scripts\PlayerHealth.cs" />
-    <Compile Include="Assets\Simple Health Bar\Scripts\SimpleHealthBar.cs" />
-    <None Include="Assets\Simple Health Bar\README.txt" />
-    <None Include="Assets\DownloadAsset\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpecTransp.shader" />
-    <None Include="Assets\DownloadAsset\MoveMotionPack\SampleScene\Shaders\DiffuseReflectiveShader.shader" />
-    <None Include="Assets\DownloadAsset\SimpleSky\ReadMe.txt" />
-    <None Include="Assets\DownloadAsset\AurynSky\Dungeon Pack\READ ME.txt" />
-    <None Include="Assets\DownloadAsset\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpec.shader" />
-    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\effect_distortion_mask.shader" />
-    <None Include="Assets\DownloadAsset\MeshSmith\Fantasy1\Lady Pirate\readMe.txt" />
-    <None Include="Assets\DownloadAsset\Fantasy Forest Environment Free Sample\StandardNoCulling.shader" />
-    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticleAddSoftEffect.shader" />
-    <None Include="Assets\DownloadAsset\Idle MoCap\Idle Package Description.txt" />
-    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\Toon Blended Premmultiply.shader" />
-    <None Include="Assets\DownloadAsset\BrokenVector\FreeLowPolyPack\readme.txt" />
-    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticlePremultiplyBlend.shader" />
-    <None Include="Assets\DownloadAsset\FantasyHouse\06-Info\info.txt" />
-    <None Include="Assets\Particlecollection_Free samples\READ ME.txt" />
-    <None Include="Assets\DownloadAsset\BrokenVector\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
-    <None Include="Assets\DownloadAsset\BrokenVector\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
-    <None Include="Assets\DownloadAsset\Wand and Circles\Polygon City Free Pack - Environment and Interior\Materials\Double Sided Standard Diffuse Bump.shader" />
-    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticleAddEffect.shader" />
-    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\Toon Additive.shader" />
-    <None Include="Assets\Particlecollection_Free samples\Plugins\Effect\Shader\ParticleBlendEffect.shader" />
-    <None Include="Assets\Polygonal Particles\Assets\Shaders\GradientBackgroundShader.shader" />
+    <Compile Include="Assets\UsedAsset\DownloadAsset\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
+    <Compile Include="Assets\UsedAsset\DownloadAsset\AurynSky\Dungeon Pack\Scripts\TrapDoorDemo.cs" />
+    <Compile Include="Assets\UsedAsset\DownloadAsset\Idle MoCap\DemoScene\idle_mocap_follow_player.cs" />
+    <Compile Include="Assets\UsedAsset\DownloadAsset\Medieval Voxel - Blacksmith\Assets\Scripts\BellowsAnimScript.cs" />
+    <Compile Include="Assets\UsedAsset\DownloadAsset\Medieval Voxel - Blacksmith\Assets\Scripts\FirelightWobble.cs" />
+    <Compile Include="Assets\UsedAsset\DownloadAsset\MoveMotionPack\SampleScene\Scripts\PlayManager.cs" />
+    <Compile Include="Assets\UsedAsset\MiniMap\_Demo\PlayerT.cs" />
+    <Compile Include="Assets\UsedAsset\MiniMap\_Scripts\MapObject.cs" />
+    <Compile Include="Assets\UsedAsset\MiniMap\_Scripts\MiniMapComponent.cs" />
+    <Compile Include="Assets\UsedAsset\MiniMap\_Scripts\MiniMapController.cs" />
+    <Compile Include="Assets\UsedAsset\Simple Health Bar\_Asteroids Example\Scripts\AsteroidController.cs" />
+    <Compile Include="Assets\UsedAsset\Simple Health Bar\_Asteroids Example\Scripts\GameManager.cs" />
+    <Compile Include="Assets\UsedAsset\Simple Health Bar\_Asteroids Example\Scripts\HealthPickupController.cs" />
+    <Compile Include="Assets\UsedAsset\Simple Health Bar\_Asteroids Example\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\UsedAsset\Simple Health Bar\_Asteroids Example\Scripts\PlayerHealth.cs" />
+    <Compile Include="Assets\UsedAsset\Simple Health Bar\Scripts\SimpleHealthBar.cs" />
+    <None Include="Assets\UsedAsset\Simple Health Bar\README.txt" />
+    <None Include="Assets\UsedAsset\DownloadAsset\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpecTransp.shader" />
+    <None Include="Assets\UsedAsset\DownloadAsset\MoveMotionPack\SampleScene\Shaders\DiffuseReflectiveShader.shader" />
+    <None Include="Assets\UsedAsset\DownloadAsset\SimpleSky\ReadMe.txt" />
+    <None Include="Assets\UsedAsset\DownloadAsset\AurynSky\Dungeon Pack\READ ME.txt" />
+    <None Include="Assets\UsedAsset\DownloadAsset\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpec.shader" />
+    <None Include="Assets\UsedAsset\DownloadAsset\MeshSmith\Fantasy1\Lady Pirate\readMe.txt" />
+    <None Include="Assets\UsedAsset\DownloadAsset\Fantasy Forest Environment Free Sample\StandardNoCulling.shader" />
+    <None Include="Assets\UsedAsset\DownloadAsset\Idle MoCap\Idle Package Description.txt" />
+    <None Include="Assets\UsedAsset\DownloadAsset\BrokenVector\FreeLowPolyPack\readme.txt" />
+    <None Include="Assets\UsedAsset\DownloadAsset\FantasyHouse\06-Info\info.txt" />
+    <None Include="Assets\UsedAsset\DownloadAsset\BrokenVector\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
+    <None Include="Assets\UsedAsset\DownloadAsset\BrokenVector\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
+    <None Include="Assets\UsedAsset\DownloadAsset\Wand and Circles\Polygon City Free Pack - Environment and Interior\Materials\Double Sided Standard Diffuse Bump.shader" />
+    <None Include="Assets\UsedAsset\Shaders\GradientBackgroundShader.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -336,7 +322,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="LitJson">
-      <HintPath>C:/Users/A08/Desktop/Github/RPG-Portfolio/RPG Portfolio/Assets/Plugins/LitJson.dll</HintPath>
+      <HintPath>C:/Users/XPS/Desktop/GitHub/RPG-Portfolio/RPG Portfolio/Assets/Plugins/LitJson.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -692,6 +678,12 @@
     <Reference Include="Boo.Lang">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{34F438AD-B833-B155-D2A1-4D1579C0C1D9}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

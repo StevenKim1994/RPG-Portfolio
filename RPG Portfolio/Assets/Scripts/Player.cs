@@ -4,6 +4,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    struct Skill // Pirate 스킬 정보 구조체
+    {
+        Sprite SkillSprite;
+        int Num;
+        string SkillName;
+        float Damage;
+        float Speed;
+        int Duration;
+
+        public Skill(Sprite _sprite,int _num, string _skillName, float _damage, float _speed, int _duration)
+        {
+            this.SkillSprite = _sprite;
+            this.Num = _num;
+            this.SkillName = _skillName;
+            this.Damage = _damage;
+            this.Speed = _speed;
+            this.Duration = _duration;
+        }
+
+    }
+
+    [SerializeField] private Sprite[] SkillSprite = new Sprite[10]; // 나중에 캐릭터 추가되면 리소스로드로 불러올 예정 19.08.15
+
+    private List<Skill> Buff = new List<Skill>();
     private Animator Anim;
     private bool MoveFlag = false;
 
@@ -14,6 +38,9 @@ public class Player : MonoBehaviour
     private float Damage;
     private string Name;
 
+    private bool Jump = false;
+    private bool isAttack = false;
+    private int count = 0;
 
     float HP;
     float MP;
@@ -31,13 +58,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject Target_Frame;
 
-    [SerializeField]
-    GameObject HitEffect;
+    [SerializeField] private GameObject HitEffect;
+
+    [SerializeField] private GameObject PowerUpSkillEffect;
 
     public float MoveSpeed;
     public float RotateSpeed = 100.0f;
 
-    bool Jump = false;
     public void Set_Name(string _in)
     {
         Name = _in;
@@ -135,6 +162,11 @@ public class Player : MonoBehaviour
         Target_Frame.SetActive(false);
 
         MoveFlag = false;
+
+        if (this.gameObject.transform.name == "Pirate") // 나중에 다른 캐릭터 추가되면 리소스로드로 Sprite 바꾸는거 추가... 19.08.15
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -144,7 +176,7 @@ public class Player : MonoBehaviour
         {
             Target_Frame.SetActive(true);
         }
-        MoveCtrl();
+        MoveCtrl(); // 이동처리
         if(MoveFlag == true)
         {
             Anim.SetBool("Walking", true);
@@ -156,8 +188,10 @@ public class Player : MonoBehaviour
             Anim.SetBool("Walking", false);
             Anim.SetBool("Idle", true);
         }
-     
-     
+
+        InputKey(); // 스킬처리
+
+
 
     }
     void MoveCtrl()
@@ -285,6 +319,50 @@ public class Player : MonoBehaviour
             Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
             Anim.SetTrigger("Attacked");
 
+        }
+    }
+
+    void InputKey() // 스킬처리 부분
+    {
+        if (this.gameObject.transform.name == "Pirate") // 캐릭터가 해적일 경우...
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", false);
+                this.gameObject.transform.GetComponent<Animator>().SetTrigger("MeleeAttackStart");
+                Attack();
+                // Player.gameObject.transform.GetComponent<Animator>().SetBool("MeleeAttack", true);
+            }
+
+            else if (!(Input.GetKey(KeyCode.Alpha1)))
+            {
+                this.gameObject.transform.GetComponent<Animator>().SetBool("MeleeAttack", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+
+                Buff.Add(new Skill(SkillSprite[1], 1, "StrongBuffSkill", 0, 0, 10));
+                this.gameObject.transform.GetComponent<Animator>().SetTrigger("StrongBuffSkill");
+                Instantiate(PowerUpSkillEffect, this.gameObject.transform);
+                
+            }
+        }
+
+        void Attack()
+        {
+            if (isAttack == false)
+            {
+
+                this.gameObject.transform.GetComponent<Animator>().SetBool("MeleeAttack", true);
+                count++;
+            }
+            else if (count == 3)
+            {
+                this.gameObject.transform.GetComponent<Animator>().SetBool("MeleeAttack", false);
+                this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", true);
+                count = 0;
+            }
         }
     }
 }
