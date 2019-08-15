@@ -38,7 +38,7 @@ public class FollowCamera : MonoBehaviour
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
+        if(Player == null)
             Player = GameObject.Find("Player(Clone)");
 
         target = Player.GetComponent<Transform>();

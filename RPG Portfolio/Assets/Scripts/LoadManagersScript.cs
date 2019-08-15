@@ -48,6 +48,18 @@ public class LoadManagersScript : MonoBehaviour
                 Manager[5].GetComponent<SkillManagerScript>().Set_Player(User);
             }
 
+            else if (SceneManager.GetActiveScene().name == "FirstDungeonScene")
+            {
+                Instantiate(Character[0]);
+                GameObject User = GameObject.Find("Player(Clone)");
+
+                User.gameObject.tag = "User";
+                User.transform.position = new Vector3(0.07f,0.43f,11.65f);
+                User.transform.GetComponent<Rigidbody>().isKinematic = false;
+                User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                
+            
+            }
      // }
      
      

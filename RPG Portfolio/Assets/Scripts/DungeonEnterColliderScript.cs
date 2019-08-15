@@ -48,7 +48,10 @@ public class DungeonEnterColliderScript : MonoBehaviour
         }
     }
 
-
+    public void EnterFirstDungeon()
+    {
+        SceneMgr.GetComponent<SceneManagerScript>().EnterDungeonFirst();
+    }
 
     public void ExitBtn()
     {
