@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\InterfaceManagerScript.cs" />
     <Compile Include="Assets\Scripts\InventoryManagerScript.cs" />
     <Compile Include="Assets\Scripts\ItemTableScript.cs" />
+    <Compile Include="Assets\Scripts\LoadingSceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\LoadManagersScript.cs" />
     <Compile Include="Assets\Scripts\ManagerSingleton.cs" />
     <Compile Include="Assets\Scripts\Network\Network.cs" />
