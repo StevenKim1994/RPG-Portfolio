@@ -17,6 +17,8 @@ public class PlayerManagerScripts : MonoBehaviour
     private float MoveSpeed;
     private float RotateSpeed;
 
+    private string job;
+
     public void Save_Name(string _in)
     {
         name = _in;
@@ -97,4 +99,13 @@ public class PlayerManagerScripts : MonoBehaviour
         return iNT;
     }
 
+    public void Save_Job(string _in)
+    {
+        job = _in;
+    }
+
+    public string Load_Job()
+    {
+        return job;
+    }
 }

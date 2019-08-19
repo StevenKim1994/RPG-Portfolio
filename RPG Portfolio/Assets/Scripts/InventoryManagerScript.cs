@@ -14,10 +14,10 @@ public class InventoryManagerScript : MonoBehaviour
     
     void Start()
     {
-        if(Player.GetComponent<Player>().Get_Name() == "Steven")
-        {
+        //if(Player.GetComponent<Player>().Get_Name() == "Steven")
+        //{
             
-        }
+        //}
         
     }
 
