@@ -54,7 +54,7 @@ public class LoadManagersScript : MonoBehaviour
                 GameObject User = GameObject.Find("Player(Clone)");
 
                 User.gameObject.tag = "User";
-                User.transform.position = new Vector3(0.07f,0.43f,11.65f);
+                User.transform.position = new Vector3(41.8f,1.0f,-10.3f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 

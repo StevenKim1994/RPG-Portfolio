@@ -618,13 +618,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Managers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1056420601}
+  - {fileID: 740752065}
+  - {fileID: 125599627}
+  - {fileID: 1939894174}
+  - {fileID: 790258247}
+  - {fileID: 719803916}
+  - {fileID: 1436914386}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1610,10 +1610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e776e4d4cf9da4793266621ea35771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  count: 0
-  initPosition: {x: 0, y: 0, z: 0}
-  previous: {fileID: 1567644492}
-  next: {fileID: 524092275}
 --- !u!1 &1056420601
 GameObject:
   m_ObjectHideFlags: 0
