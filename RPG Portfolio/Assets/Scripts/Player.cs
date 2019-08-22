@@ -195,7 +195,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            Anim.SetBool("Walking", false);
+            Anim.SetBool("Walking", false); 
             Anim.SetBool("Idle", true);
         }
 

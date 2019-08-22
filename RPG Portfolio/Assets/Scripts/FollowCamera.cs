@@ -8,6 +8,9 @@ public class FollowCamera : MonoBehaviour
     [SerializeField]
     GameObject Player;
 
+    [SerializeField]
+    GameObject PlayerMgr;
+
     Transform target;
     public float dist = 4f;
 
@@ -38,8 +41,10 @@ public class FollowCamera : MonoBehaviour
 
     void Start()
     {
+        PlayerMgr = GameObject.Find("PlayerManager");    
+
         if(Player == null)
-            Player = GameObject.Find("Player(Clone)");
+            Player = GameObject.Find("Player("+PlayerMgr.GetComponent<PlayerManagerScripts>().Load_Job() + ")(Clone)");
 
         target = Player.GetComponent<Transform>();
         Cursor.lockState = CursorLockMode.None;

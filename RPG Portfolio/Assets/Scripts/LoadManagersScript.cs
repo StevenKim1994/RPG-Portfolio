@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class LoadManagersScript : MonoBehaviour
 {
-    
-   
+    private GameObject Player;
+    private string Job;
+
     [SerializeField]
     GameObject[] Character = new GameObject[10];
     [SerializeField]
@@ -30,16 +31,25 @@ public class LoadManagersScript : MonoBehaviour
 
     private void Start()
     {
-        
-      //if (Manager[3].GetComponent<PlayerManagerScripts>().Load_Name() == "Pirate") // 전 씬에서 저장한 캐릭터의 이름이 Pirate이면 해적 오브젝트 생성
-      //{
+            Job = Manager[3].GetComponent<PlayerManagerScripts>().Load_Job();
+
+            if (Job == "Pirate")
+                Player = Character[0];
+
+            else if (Job == "Barbarian")
+                Player = Character[1];
+
+            else if (Job == "Mage")
+                Player = Character[2];
+
+
             if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
             {
                 
-                Instantiate(Character[0]);//new Vector3(3.8f,3.0f,-3.5f));
-                GameObject User = GameObject.Find("Player(Clone)");
-       
-                User.gameObject.tag = "User";
+                Instantiate(Player);
+                GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
+
+                User.gameObject.tag = "Player";
                 User.transform.position = new Vector3(8.35f, 3.858f, 1.76f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
@@ -50,19 +60,36 @@ public class LoadManagersScript : MonoBehaviour
 
             else if (SceneManager.GetActiveScene().name == "FirstDungeonScene")
             {
-                Instantiate(Character[0]);
-                GameObject User = GameObject.Find("Player(Clone)");
+                Instantiate(Player);
+                 GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
 
-                User.gameObject.tag = "User";
+                User.gameObject.tag = "Player";
                 User.transform.position = new Vector3(41.8f,1.0f,-10.3f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-                
-            
             }
-     // }
-     
-     
+
+            else if (SceneManager.GetActiveScene().name == "InChurchScene")
+            {
+                Instantiate(Player);
+                GameObject User = GameObject.Find("Player("+Job + ")(Clone)");
+
+                User.gameObject.tag = "Player";
+                User.transform.position = new Vector3(0.6f, 1.68f, 7.88f);
+                User.transform.GetComponent<Rigidbody>().isKinematic = false;
+                User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            }
+
+            else if (SceneManager.GetActiveScene().name == "CampScene")
+            {
+                Instantiate(Player);
+                GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
+
+                User.gameObject.tag = "Player";
+                User.transform.position = new Vector3(14.04f, 0.5f, 10.15f);
+                User.transform.GetComponent<Rigidbody>().isKinematic = false;
+                User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        }
     }
 
     public GameObject Get_Managers(int _in)

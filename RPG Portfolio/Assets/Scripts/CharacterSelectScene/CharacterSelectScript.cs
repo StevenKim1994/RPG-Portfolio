@@ -126,7 +126,7 @@ public class CharacterSelectScript : MonoBehaviour
 
             case 1:
                 //Managers[6].GetComponent<PlayerManagerScripts>().Save_Name(nickname.GetComponent<Text>().text.ToString());
-                Managers[6].GetComponent<PlayerManagerScripts>().Save_Job("Babarian");
+                Managers[6].GetComponent<PlayerManagerScripts>().Save_Job("Barbarian");
                 break;
 
             case 2:
@@ -136,7 +136,7 @@ public class CharacterSelectScript : MonoBehaviour
         }
 
 
-        Managers[2].GetComponent<SceneManagerScript>().EnterCamp();
-        // FadeIn 후 씬이동...
+        Managers[2].GetComponent<SceneManagerScript>().EnterStartChurch();
+        // FadeIn 후 씬이동... 추가하기...
     }
 }
