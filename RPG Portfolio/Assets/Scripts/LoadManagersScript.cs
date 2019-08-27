@@ -1,46 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class LoadManagersScript : MonoBehaviour
 {
+
     private GameObject Player;
     private string Job;
-
+    private ManagerSingleton Mgrs = new ManagerSingleton();
     [SerializeField]
     GameObject[] Character = new GameObject[10];
-    [SerializeField]
-    GameObject[] Manager = new GameObject[10]; // 0 : Scene 
-                                               // 1 : Inventory
-                                               // 2 : Data
-                                               // 3 : Player
-                                               // 4 : Interface
-                                               // 5 : Skill
-                                               // 6 : Game
+
+    private GameObject Manager;
+ 
 
     private void Awake()
     {
-        Manager[0] = GameObject.Find("SceneManager");
-        Manager[1] = GameObject.Find("InventoryManager");
-        Manager[2] = GameObject.Find("DataManager");
-        Manager[3] = GameObject.Find("PlayerManager");
-        Manager[4] = GameObject.Find("InterfaceManager");
-        Manager[5] = GameObject.Find("SkillManager");
-        Manager[6] = GameObject.Find("GameManager");
+        // 싱글톤 으로 각 매니저 할당받기 추가해야함..
+
     }
 
     private void Start()
     {
-            Job = Manager[3].GetComponent<PlayerManagerScripts>().Load_Job();
+
+        Job = Manager[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>().Load_Job();
 
             if (Job == "Pirate")
-                Player = Character[0];
+                Player = Character[(int)Enum.Playerlist.Pirate];
 
             else if (Job == "Barbarian")
-                Player = Character[1];
+                Player = Character[(int)Enum.Playerlist.Barbarian];
 
-            else if (Job == "Mage")
-                Player = Character[2];
+            else if (Job == "Wizard")
+                Player = Character[(int)Enum.Playerlist.Wizard];
 
 
             if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
@@ -55,7 +50,7 @@ public class LoadManagersScript : MonoBehaviour
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 GameObject weaponnpc = GameObject.FindWithTag("WeaponNPC");
                 weaponnpc.GetComponent<NPC>().Set_Player(User);
-                Manager[5].GetComponent<SkillManagerScript>().Set_Player(User);
+                Manager[(int)Enum.Managerlist.Skill].GetComponent<SkillManagerScript>().Set_Player(User);
             }
 
             else if (SceneManager.GetActiveScene().name == "FirstDungeonScene")

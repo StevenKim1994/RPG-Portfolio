@@ -18,7 +18,7 @@ public class CampEnterColliderScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "User")
+        if(collision.gameObject.tag == "Player")
         {
             GameMgr.GetComponent<GameManagerScript>().Set_OldScene(SceneManager.GetActiveScene().ToString());
            

@@ -8,8 +8,12 @@ public class FollowCamera : MonoBehaviour
     [SerializeField]
     GameObject Player;
 
-    [SerializeField]
-    GameObject PlayerMgr;
+    delegate string LoadJob();
+
+    delegate void SetJob();
+
+    private LoadJob l_j;
+    private SetJob s_j;
 
     Transform target;
     public float dist = 4f;
@@ -41,12 +45,15 @@ public class FollowCamera : MonoBehaviour
 
     void Start()
     {
-        PlayerMgr = GameObject.Find("PlayerManager");    
+        l_j = GameObject.Find("PlayerManager").GetComponent<PlayerManagerScripts>().Load_Job;
+
+      
 
         if(Player == null)
-            Player = GameObject.Find("Player("+PlayerMgr.GetComponent<PlayerManagerScripts>().Load_Job() + ")(Clone)");
+            Player = GameObject.Find("Player("+ l_j() + ")(Clone)");
 
         target = Player.GetComponent<Transform>();
+
         Cursor.lockState = CursorLockMode.None;
         Vector3 angles = this.transform.eulerAngles;
         x = angles.y;
@@ -61,7 +68,9 @@ public class FollowCamera : MonoBehaviour
     }
     void Update()
     {
+
         
+
         Quaternion rotation = Quaternion.Euler(y, x, 0);
         Vector3 position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
 
@@ -85,7 +94,6 @@ public class FollowCamera : MonoBehaviour
 
         }
 
-
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
         
@@ -108,8 +116,4 @@ public class FollowCamera : MonoBehaviour
         }
     }
 
-    public void Set_Camera(GameObject _in)
-    {
-        Player = GameObject.Find("Plyer(Clone)");
-    }
 }

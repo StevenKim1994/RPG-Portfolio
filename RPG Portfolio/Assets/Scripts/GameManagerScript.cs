@@ -24,14 +24,5 @@ public class GameManagerScript : MonoBehaviour
         return oldscene;
     }
 
-    public void Set_OldPosition(Vector3 _in)
-    { 
-        oldposition = _in;
-    }
-
-    public Vector3 Get_OldPosition()
-    {
-        return oldposition;
-    }
     
 }

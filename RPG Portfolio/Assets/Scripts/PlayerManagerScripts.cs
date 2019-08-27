@@ -18,6 +18,7 @@ public class PlayerManagerScripts : MonoBehaviour
     private float RotateSpeed;
 
     private string job;
+    private Vector3 oldposition;
 
     public void Save_Name(string _in)
     {
@@ -107,5 +108,15 @@ public class PlayerManagerScripts : MonoBehaviour
     public string Load_Job()
     {
         return job;
+    }
+
+    public void Set_OldPosition(Vector3 _in)
+    {
+        oldposition = _in;
+    }
+
+    public Vector3 Get_OldPosition()
+    {
+        return oldposition;
     }
 }

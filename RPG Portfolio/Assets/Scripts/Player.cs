@@ -1,10 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
+    delegate Vector3 ReturnOldPosition();
+    delegate String ReturnOldScene();
+
+    private ReturnOldPosition ReOldP;
     
+   
     struct Skill // Pirate 스킬 정보 구조체
     {
         Sprite SkillSprite;
@@ -33,12 +39,12 @@ public class Player : MonoBehaviour
     private Animator Anim;
     private bool MoveFlag = false;
 
-    private int STR;
-    private int DEX;
-    private int INT;
-    private float Armor;
-    private float Damage;
-    private string Name;
+    private int STR =0;
+    private int DEX = 0;
+    private int INT =0;
+    private float Armor =0;
+    private float Damage = 0;
+    private string Name = "0";
 
     private bool Jump = false;
     private bool isAttack = false;
@@ -156,12 +162,19 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameMgr = GameObject.Find("GameManager");
+        ReturnOldScene d_s = new GameManagerScript().Get_OldScene;
+        ReturnOldPosition d_p = new PlayerManagerScripts().Get_OldPosition;
+       
 
-        if (GameMgr.GetComponent<GameManagerScript>().Get_OldScene() != null)
+        if (d_s() != null)
         {
-            if((GameMgr.GetComponent<GameManagerScript>().Get_OldScene() != SceneManager.GetActiveScene().ToString()) || (GameMgr.GetComponent<GameManagerScript>().Get_OldScene() != null))
-              this.transform.position = GameMgr.GetComponent<GameManagerScript>().Get_OldPosition();
+            if (d_s() != null)
+            {
+                if (d_s() != SceneManager.GetActiveScene().ToString() || d_s() != null)
+                {
+                    this.transform.position = d_p();
+                }
+            }
         }
 
         Vector3 angles = this.transform.eulerAngles;

@@ -1665,8 +1665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character:
   - {fileID: 7544395167979352622, guid: c0e4ab9f185fc9348aa9b21fb4c72eca, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 353416857448911769, guid: 548277ff6e9b0b143804a1def8a22626, type: 3}
+  - {fileID: 7714734444333948159, guid: f825ded9b9e570d48940e8ec6a438099, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -4448,6 +4448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  PlayerMgr: {fileID: 0}
   dist: 4
   xSpeed: 220
   ySpeed: 100

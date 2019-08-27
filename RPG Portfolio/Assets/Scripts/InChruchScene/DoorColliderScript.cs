@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class DoorColliderScript : MonoBehaviour
 {
-    [SerializeField] private GameObject SceneMgr;
+    delegate void EnterCamp();
+
+    private EnterCamp e_c;
+
     // Start is called before the first frame update
     void Start()
     {
-        SceneMgr = GameObject.Find("SceneManager");
+      e_c = new SceneManagerScript().EnterCamp;
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
-            SceneMgr.GetComponent<SceneManagerScript>().EnterCamp();
+        if (collision.gameObject.tag == "Player")
+            e_c();
     }
 }

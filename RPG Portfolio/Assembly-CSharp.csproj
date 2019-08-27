@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\FirstDungeonLoadManager.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
+    <Compile Include="Assets\Scripts\Global\Enum.cs" />
     <Compile Include="Assets\Scripts\InChruchScene\DoorColliderScript.cs" />
     <Compile Include="Assets\Scripts\InterfaceManagerScript.cs" />
     <Compile Include="Assets\Scripts\InventoryManagerScript.cs" />

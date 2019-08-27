@@ -18,21 +18,25 @@ public class DungeonEnterColliderScript : MonoBehaviour
     {
         Managers = GameObject.FindGameObjectsWithTag("Manager");
         UI = GameObject.FindGameObjectsWithTag("UI");
-        foreach (var VARIABLE in Managers)
-        {
-            if (VARIABLE.gameObject.transform.name == "SceneManager")
-            {
-                SceneMgr = VARIABLE;
-            }
-        }
+        //foreach (var VARIABLE in Managers)
+        //{
+        //    if (VARIABLE.gameObject.transform.name == "SceneManager")
+        //    {
+        //        SceneMgr = VARIABLE;
+        //    }
+        //}
 
-        foreach (var VARIABLE in UI)
-        {
-            if (VARIABLE.gameObject.transform.name == "DungeonSelecter")
-            {
-                DungeonSelecter = VARIABLE;
-            }
-        }
+        //foreach (var VARIABLE in UI)
+        //{
+        //    if (VARIABLE.gameObject.transform.name == "DungeonSelecter")
+        //    {
+        //        DungeonSelecter = VARIABLE;
+        //    }
+        //}
+
+        SceneMgr = GameObject.Find("SceneManager");
+        DungeonSelecter = GameObject.Find("DungeonSelecter");
+
         if(DungeonSelecter != null)
          DungeonSelecter.SetActive(false);
     }
@@ -41,7 +45,7 @@ public class DungeonEnterColliderScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
        
-        if (collision.gameObject.tag == "User")
+        if (collision.gameObject.tag == "Player")
         {
             Debug.Log("던전입장");
             DungeonSelecter.SetActive(true);

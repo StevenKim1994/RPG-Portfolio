@@ -6,7 +6,17 @@ using UnityEngine.UI;
 public class CharacterSelectScript : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] Managers = new GameObject[10]; // 0: Game  1: Data  2: Scene   3:Inventory  4: Skill   5:Interface   6:Player
+    GameObject[] Managers = new GameObject[10]; // 0: Scene ,1 : Inventory ,2 : Data ,3: Player ,4 : Interface ,5 : Skill , 6: Game
+
+    delegate void SaveJob(string _in);
+    delegate string LoadJob();
+    delegate void ChangeScene();
+
+    private SaveJob sj;
+    private LoadJob lj;
+    private PlayerManagerScripts PM;
+    private SceneManagerScript SM;
+
     [SerializeField]
     Camera camera;
 
@@ -14,7 +24,7 @@ public class CharacterSelectScript : MonoBehaviour
     GameObject job;
 
     [SerializeField]
-    GameObject[] skill = new GameObject[3]; // 0 : 1번스킬  1 : 2번 스킬 2 : 3번 스킬
+    GameObject[] skill = new GameObject[3]; // 0 : 1번스킬  1 : 2번 스킬 2 : 3번 스킬 버튼들 ...
 
     [SerializeField]
     GameObject skill_description;
@@ -35,6 +45,9 @@ public class CharacterSelectScript : MonoBehaviour
 
     void Start()
     {
+        PM = Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>();
+        SM = Managers[(int) Enum.Managerlist.Scene].GetComponent<SceneManagerScript>();
+
         initPosition.x = -9.16f; // 카메라의 초기값 ( 캐릭터를 바라보는 위치 )
         initPosition.y = 2.33f;
         initPosition.z = 0.58f;
@@ -119,24 +132,25 @@ public class CharacterSelectScript : MonoBehaviour
     {
         switch (count)
         {
-            case 0:
-                //Managers[6].GetComponent<PlayerManagerScripts>().Save_Name(nickname.GetComponent<Text>().text.ToString());
-                Managers[6].GetComponent<PlayerManagerScripts>().Save_Job("Pirate");
+            case 0 :
+                sj = PM.Save_Job;
+                sj("Pirate");
                 break;
 
             case 1:
-                //Managers[6].GetComponent<PlayerManagerScripts>().Save_Name(nickname.GetComponent<Text>().text.ToString());
-                Managers[6].GetComponent<PlayerManagerScripts>().Save_Job("Barbarian");
+                sj = PM.Save_Job;
+                sj("Barbarian");
                 break;
 
             case 2:
-                //Managers[6].GetComponent<PlayerManagerScripts>().Save_Name(nickname.GetComponent<Text>().text.ToString());
-                Managers[6].GetComponent<PlayerManagerScripts>().Save_Job("Mage");
+                sj = PM.Save_Job;
+                sj("Wizard");
                 break;
         }
+        
 
-
-        Managers[2].GetComponent<SceneManagerScript>().EnterStartChurch();
+        SM.EnterStartChurch();
+   
         // FadeIn 후 씬이동... 추가하기...
     }
 }

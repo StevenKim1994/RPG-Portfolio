@@ -3559,10 +3559,9 @@ GameObject:
   m_Component:
   - component: {fileID: 902711634}
   - component: {fileID: 902711633}
-  - component: {fileID: 902711635}
   m_Layer: 0
   m_Name: Managers
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3582,7 +3581,7 @@ MonoBehaviour:
   Character:
   - {fileID: 7544395167979352622, guid: c0e4ab9f185fc9348aa9b21fb4c72eca, type: 3}
   - {fileID: 353416857448911769, guid: 548277ff6e9b0b143804a1def8a22626, type: 3}
-  - {fileID: 5641581229487510557, guid: cfa17a6595247f04caf48b642b0f1bbf, type: 3}
+  - {fileID: 7714734444333948159, guid: f825ded9b9e570d48940e8ec6a438099, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -3622,18 +3621,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &902711635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902711632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7ba64452855eb49a1cefc5fc27ee26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &908151194
 GameObject:
   m_ObjectHideFlags: 0
