@@ -8,6 +8,7 @@ public class ManagerSingleton : MonoBehaviour
 
     public ManagerSingleton Get_instance()
     {
+        
         return managerinstance;
     }
 

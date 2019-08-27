@@ -8,8 +8,9 @@ public class FollowCamera : MonoBehaviour
     [SerializeField]
     GameObject Player;
 
-    delegate string LoadJob();
+    private ManagerSingleton MGR = new ManagerSingleton();
 
+    delegate string LoadJob();
     delegate void SetJob();
 
     private LoadJob l_j;
@@ -45,9 +46,7 @@ public class FollowCamera : MonoBehaviour
 
     void Start()
     {
-        l_j = GameObject.Find("PlayerManager").GetComponent<PlayerManagerScripts>().Load_Job;
-
-      
+        l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
 
         if(Player == null)
             Player = GameObject.Find("Player("+ l_j() + ")(Clone)");

@@ -7,26 +7,35 @@ using UnityEngine.UI;
 
 public class LoadManagersScript : MonoBehaviour
 {
-
-    private GameObject Player;
-    private string Job;
-    private ManagerSingleton Mgrs = new ManagerSingleton();
     [SerializeField]
     GameObject[] Character = new GameObject[10];
 
-    private GameObject Manager;
+    delegate void SavePosition(Vector3 _in);
+    delegate string LoadJob();
+    delegate void SetPlayer(GameObject _in);
+
+    private SetPlayer s_u;
+    private LoadJob l_j;
+    private SavePosition s_p;
+    private GameObject Player;
+    private string Job;
+    private ManagerSingleton MGR = new ManagerSingleton();
+    
  
 
     private void Awake()
     {
-        // 싱글톤 으로 각 매니저 할당받기 추가해야함..
+
+        l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
+        s_u = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Skill).GetComponent<SkillManagerScript>().Set_Player;
+        s_p = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Set_OldPosition;
 
     }
 
     private void Start()
     {
 
-        Job = Manager[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>().Load_Job();
+            Job = l_j();
 
             if (Job == "Pirate")
                 Player = Character[(int)Enum.Playerlist.Pirate];
@@ -50,7 +59,7 @@ public class LoadManagersScript : MonoBehaviour
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 GameObject weaponnpc = GameObject.FindWithTag("WeaponNPC");
                 weaponnpc.GetComponent<NPC>().Set_Player(User);
-                Manager[(int)Enum.Managerlist.Skill].GetComponent<SkillManagerScript>().Set_Player(User);
+                s_u(User);
             }
 
             else if (SceneManager.GetActiveScene().name == "FirstDungeonScene")
@@ -87,8 +96,4 @@ public class LoadManagersScript : MonoBehaviour
         }
     }
 
-    public GameObject Get_Managers(int _in)
-    {
-        return Manager[_in];
-    }
 }
