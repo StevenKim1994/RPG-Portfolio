@@ -78,6 +78,7 @@
     <Compile Include="Assets\BattleDragon\Dragons\Scripts\player_movement.cs" />
     <Compile Include="Assets\BattleDragon\Scripts\CameraController.cs" />
     <Compile Include="Assets\LevelDesignSet1_WoodenWalls\Scripts\WallSelector.cs" />
+    <Compile Include="Assets\Scripts\ArmorNPCMenuScript.cs" />
     <Compile Include="Assets\Scripts\AutoParticleDestroyer.cs" />
     <Compile Include="Assets\Scripts\BlackSmithEnterColliderScript.cs" />
     <Compile Include="Assets\Scripts\CampEnterColliderScript.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\Scripts\PotionNPCMenuScript.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\SkillManagerScript.cs" />
+    <Compile Include="Assets\Scripts\UILoad.cs" />
     <Compile Include="Assets\Scripts\UISingleton.cs" />
     <Compile Include="Assets\Scripts\WeaponNPCMenuScript.cs" />
     <Compile Include="Assets\UsedAsset\DownloadAsset\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />

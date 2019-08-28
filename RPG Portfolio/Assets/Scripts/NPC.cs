@@ -7,11 +7,8 @@ public class NPC : MonoBehaviour
 {
     [SerializeField]
     GameObject Player;
-    [SerializeField]
     GameObject PotionNPCMenu;
-    [SerializeField]
     GameObject ArmorNPCMenu;
-    [SerializeField]
     GameObject WeaponNPCMenu;
 
     [SerializeField]
@@ -22,13 +19,25 @@ public class NPC : MonoBehaviour
     Animator Anim;
     bool CouroutineCheck = false;
     bool Animcheck = false;
+    private ManagerSingleton MGR = new ManagerSingleton();
+    private UISingleton UI = new UISingleton();
 
+    delegate string LoadJob();
+
+    private LoadJob l_j;
     
     // Start is called before the first frame update
+
+    void Awake()
+    {
+        //ArmorNPCMenu = UI.Get_Instance().transform.GetChild() 여기부터 .. 2019 08 28
+    }
     void Start()
     {
+        l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
+
         if (Player == null)
-            Player = GameObject.Find("Player(Clone)");
+            Player = GameObject.Find("Player("+l_j()+")(Clone)");
 
         Anim = this.GetComponent<Animator>();
 
@@ -106,12 +115,12 @@ public class NPC : MonoBehaviour
     {
        
         float distance = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
-        Debug.Log(distance.ToString());
+       
         if(this.gameObject.tag == "PotionNPC")
         {
             if (distance <= 5f)
             {
-                PotionNPC();
+               // PotionNPC();
             }
         }
 
@@ -119,7 +128,7 @@ public class NPC : MonoBehaviour
         {
             if (distance <= 5f)
             {
-                ArmorNPC();
+               // ArmorNPC();
             }
         }
 
@@ -127,26 +136,26 @@ public class NPC : MonoBehaviour
         {
             if (distance <= 5f)
             {
-                WeaponNPC();
+               // WeaponNPC();
             }
         }
     }
 
     
-    void PotionNPC()
-    {
-        PotionNPCMenu.SetActive(true);
-    }
+    //void PotionNPC()
+    //{
+    //    PotionNPCMenu.SetActive(true);
+    //}
 
-    void ArmorNPC()
-    {
-        ArmorNPCMenu.SetActive(true);
-    }
+    //void ArmorNPC()
+    //{
+    //    ArmorNPCMenu.SetActive(true);
+    //}
 
-    void WeaponNPC()
-    {
-        WeaponNPCMenu.SetActive(true);
-    }
+    //void WeaponNPC()
+    //{
+    //    WeaponNPCMenu.SetActive(true);
+    //}
 
     public void Set_Player(GameObject _in)
     {
