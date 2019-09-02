@@ -1,0 +1,31 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class UIInitialize : MonoBehaviour
+{
+    [SerializeField]
+    GameObject UI;
+
+    int UIcount;
+    // Start is called before the first frame update
+    void Start()
+    {
+        UIcount = UI.gameObject.transform.childCount;
+        UISetOff();
+     }
+
+
+    public void UISetOff()
+    {
+            for (int i = 0; i < UIcount; i++)
+                UI.gameObject.transform.GetChild(i).gameObject.SetActive(false);
+     }
+
+    public void UISetOn()
+    {
+            for (int i = 0; i < UIcount; i++)
+                UI.gameObject.transform.GetChild(i).gameObject.SetActive(true);
+    }
+}

@@ -6,17 +6,22 @@ using UnityEngine.UI;
 public class CharacterSelectScript : MonoBehaviour
 {
     [SerializeField]
+    GameObject UIinitiliazer;
+
+    [SerializeField]
     GameObject[] Managers = new GameObject[10]; // 0: Scene ,1 : Inventory ,2 : Data ,3: Player ,4 : Interface ,5 : Skill , 6: Game
 
     delegate void SaveJob(string _in);
     delegate string LoadJob();
     delegate void ChangeScene();
+    delegate void ui_setting();
+
 
     private SaveJob sj;
     private LoadJob lj;
     private PlayerManagerScripts PM;
     private SceneManagerScript SM;
-
+   
     [SerializeField]
     Camera camera;
 
@@ -45,6 +50,8 @@ public class CharacterSelectScript : MonoBehaviour
 
     void Start()
     {
+
+  
         PM = Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>();
         SM = Managers[(int) Enum.Managerlist.Scene].GetComponent<SceneManagerScript>();
 
@@ -55,6 +62,8 @@ public class CharacterSelectScript : MonoBehaviour
         camera.transform.position = initPosition;
 
         previous.gameObject.SetActive(false);
+
+     
     }
 
 
@@ -130,10 +139,13 @@ public class CharacterSelectScript : MonoBehaviour
 
     public void selectbtn()
     {
+
+        UIinitiliazer.GetComponent<UIInitialize>().UISetOn();
         switch (count)
         {
             case 0 :
                 sj = PM.Save_Job;
+
                 sj("Pirate");
                 break;
 
