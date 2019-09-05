@@ -58,7 +58,7 @@ public class LoadManagersScript : MonoBehaviour
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 GameObject weaponnpc = GameObject.FindWithTag("WeaponNPC");
-                weaponnpc.GetComponent<NPC>().Set_Player(User);
+                //weaponnpc.GetComponent<NPC>().Set_Player(User);
                 s_u(User);
             }
 

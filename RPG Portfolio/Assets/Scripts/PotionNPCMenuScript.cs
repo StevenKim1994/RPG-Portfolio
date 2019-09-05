@@ -5,46 +5,37 @@ using UnityEngine.UI;
 
 public class PotionNPCMenuScript : MonoBehaviour
 {
-    GameObject Player;
-    GameObject[] Managers = new GameObject[10];
+   [SerializeField] private GameObject itemblock_prefeb;
+    [SerializeField] private GameObject itemblock;
+    [SerializeField] private GameObject itemblock_parents;
 
-    void Awake()
-    {
-        Managers[0] = GameObject.Find("SceneManager");
-        Managers[1] = GameObject.Find("InventoryManager");
-        Managers[2] = GameObject.Find("DataManager");
-        Managers[3] = GameObject.Find("PlayerManager");
-        Managers[4] = GameObject.Find("InterfaceManager");
-        Managers[5] = GameObject.Find("SkillManager");
-        Managers[6] = GameObject.Find("GameManager");
-    }
+    private GameObject input_temp;
+    private List<GameObject> itemlist = new List<GameObject>();
+
+
     void Start()
     {
-        Player=  GameObject.Find("Player(" + Managers[3].GetComponent<PlayerManagerScripts>().Load_Job() +")(Clone)");
-        this.gameObject.SetActive(false);
-    }
-    public void SellMPPotion()
-    {
+        List<Dictionary<string, object>> data = CSVReaderScript.Read("potion_table");
+        
+        for (var i = 0; i < data.Count; i++)
+        {          
+            if(data[i]["Name"] != null)
+            {
+                Debug.Log("생성");
+                input_temp = Instantiate(itemblock_prefeb,itemblock_parents.transform);
+                input_temp.transform.GetChild(1).GetComponent<Text>().text = data[i]["Name"].ToString() + "\n 가치 :" + data[i]["Value"].ToString();
+                input_temp.transform.GetChild(2).GetComponent<Text>().text = "종류: " + data[i]["Kind"].ToString() + "\n" + "회복량: " + data[i]["Increase"].ToString();
+                itemlist.Add(input_temp);    
+            }
+        }
 
-    }
     
-    public void SellHPPotion()
-    {
-
     }
 
-    public void BuyMPPotion()
-    {
-
-    }
-
-    public void BuyHPPotion()
-    {
-
-    }
-
-    public void ExitBtn()
-    {
+    public void ExtBtn()
+    { 
         this.gameObject.SetActive(false);
     }
+
+    
 }

@@ -7,9 +7,9 @@ public class NPC : MonoBehaviour
 {
     [SerializeField]
     GameObject Player;
-    GameObject PotionNPCMenu;
-    GameObject ArmorNPCMenu;
-    GameObject WeaponNPCMenu;
+    //GameObject PotionNPCMenu;
+    //GameObject ArmorNPCMenu;
+    GameObject NPCMenu;
 
     [SerializeField]
     GameObject Goal;
@@ -26,12 +26,9 @@ public class NPC : MonoBehaviour
 
     private LoadJob l_j;
     
-    // Start is called before the first frame update
 
-    void Awake()
-    {
-        //ArmorNPCMenu = UI.Get_Instance().transform.GetChild() 여기부터 .. 2019 08 28
-    }
+
+  
     void Start()
     {
         l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
@@ -52,18 +49,15 @@ public class NPC : MonoBehaviour
 
         StartPos = this.GetComponent<Transform>().position;
 
-        if (PotionNPCMenu != null)
-            PotionNPCMenu.SetActive(false);
 
-        if (ArmorNPCMenu != null)
-            ArmorNPCMenu.SetActive(false);
+        NPCMenu = GameObject.Find(this.gameObject.transform.name.ToString() + "Menu");
+        NPCMenu.SetActive(false);
 
-        if (WeaponNPCMenu != null)
-            WeaponNPCMenu.SetActive(false);
-
+        if (NPCMenu != null)
+            NPCMenu.SetActive(false);
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         if (CouroutineCheck == false)
@@ -74,14 +68,10 @@ public class NPC : MonoBehaviour
         float distance = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
         if(distance >= 10)
         { 
-            if(PotionNPCMenu != null)
-            PotionNPCMenu.SetActive(false);
+           
 
-            if(ArmorNPCMenu != null)
-            ArmorNPCMenu.SetActive(false);
-
-            if(WeaponNPCMenu != null)
-            WeaponNPCMenu.SetActive(false);
+            if(NPCMenu != null)
+            NPCMenu.SetActive(false);
         }
 
     }
@@ -118,9 +108,10 @@ public class NPC : MonoBehaviour
        
         if(this.gameObject.tag == "PotionNPC")
         {
+           
             if (distance <= 5f)
             {
-               // PotionNPC();
+                OnMenu();
             }
         }
 
@@ -128,7 +119,7 @@ public class NPC : MonoBehaviour
         {
             if (distance <= 5f)
             {
-               // ArmorNPC();
+                OnMenu();
             }
         }
 
@@ -136,29 +127,22 @@ public class NPC : MonoBehaviour
         {
             if (distance <= 5f)
             {
-               // WeaponNPC();
+                OnMenu();
             }
         }
     }
 
-    
-    //void PotionNPC()
-    //{
-    //    PotionNPCMenu.SetActive(true);
-    //}
 
-    //void ArmorNPC()
-    //{
-    //    ArmorNPCMenu.SetActive(true);
-    //}
 
-    //void WeaponNPC()
-    //{
-    //    WeaponNPCMenu.SetActive(true);
-    //}
+    void OnMenu()
+    {
+        NPCMenu.SetActive(true);
+    }
 
     public void Set_Player(GameObject _in)
     {
         Player = _in;
     }
+
+
 }
