@@ -1,30 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArmorNPCMenuScript : MonoBehaviour
 {
-    GameObject Player;
+    [SerializeField] private GameObject itemblock_prefeb;
+    [SerializeField] private GameObject itemblock;
+    [SerializeField] private GameObject itemblock_parents;
 
-    private ManagerSingleton MGR = new ManagerSingleton();
+    private GameObject input_temp;
+    private List<GameObject> itemlist = new List<GameObject>();
 
-    delegate string LoadJob();
 
-    private LoadJob l_j;
-
-    void Awake()
-    {
-        l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
-    }
     void Start()
-    { 
-             Player = GameObject.Find("Player("+ l_j() +")(Clone)");
-            this.gameObject.SetActive(false);
+    {
+        List<Dictionary<string, object>> data = CSVReaderScript.Read("armor_table");
+
+        for (var i = 0; i < data.Count; i++)
+        {
+            if (data[i]["Name"] != null)
+            {
+                Debug.Log("생성");
+                input_temp = Instantiate(itemblock_prefeb, itemblock_parents.transform);
+                input_temp.transform.GetChild(1).GetComponent<Text>().text = data[i]["Name"].ToString() + "\n 가치 :" + data[i]["Value"].ToString();
+                input_temp.transform.GetChild(2).GetComponent<Text>().text = "방어력: " + data[i]["Defense"].ToString() + "\n" + "무게: " + data[i]["Weight"].ToString();
+                itemlist.Add(input_temp);
+            }
+        }
+
+
     }
-        
-    public void ExitBtn()
+
+    public void ExtBtn()
     {
         this.gameObject.SetActive(false);
     }
-    
+
 }
