@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
 
         InputKey(); // 스킬처리
 
-
+       
 
     }
     void MoveCtrl()
@@ -347,7 +347,7 @@ public class Player : MonoBehaviour
 
     void InputKey() // 스킬처리 부분
     {
-        if (this.gameObject.transform.name == "Pirate") // 캐릭터가 해적일 경우...
+        if (this.gameObject.transform.name == "Player(Pirate)(Clone)") // 캐릭터가 해적일 경우...
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -367,7 +367,8 @@ public class Player : MonoBehaviour
 
                 Buff.Add(new Skill(SkillSprite[1], 1, "StrongBuffSkill", 0, 0, 10));
                 this.gameObject.transform.GetComponent<Animator>().SetTrigger("StrongBuffSkill");
-                Instantiate(PowerUpSkillEffect, this.gameObject.transform);
+                //Instantiate(PowerUpSkillEffect, this.gameObject.transform);
+                Instantiate(PowerUpSkillEffect, this.gameObject.transform.localPosition, this.gameObject.transform.rotation);
                 
             }
         }

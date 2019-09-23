@@ -1292,7 +1292,7 @@ GameObject:
   - component: {fileID: 7254251382718693017}
   - component: {fileID: 7544395167979352657}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player(Pirate)
   m_TagString: User
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1360,9 +1360,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c0e289c0e36834a939dc11f4160ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillSprite:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Target_Frame: {fileID: 0}
   HitEffect: {fileID: 7319909386411553109, guid: 7563ed301dbe8f748ac2c0ff19f89b0a,
     type: 3}
+  PowerUpSkillEffect: {fileID: 173814, guid: 810eb771809ba56409dd29eab937ddb2, type: 3}
   MoveSpeed: 3
   RotateSpeed: 100
 --- !u!136 &7544395167979352657
