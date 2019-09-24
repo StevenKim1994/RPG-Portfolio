@@ -5,25 +5,15 @@ using UnityEngine;
 public class InventoryManagerScript : MonoBehaviour
 {
     [SerializeField]
-    GameObject Player;
-
-    int HPPotion;
-    int MPPotion;
-
-    // Start is called before the first frame update
-    
-    void Start()
+    GameObject Inventory;
+    public void ExitInventory()
     {
-        //if(Player.GetComponent<Player>().Get_Name() == "Steven")
-        //{
-            
-        //}
-        
+        Debug.Log("Inventory Close");
+        Inventory.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenInventory()
     {
-        
+        Inventory.gameObject.SetActive(true);
     }
 }

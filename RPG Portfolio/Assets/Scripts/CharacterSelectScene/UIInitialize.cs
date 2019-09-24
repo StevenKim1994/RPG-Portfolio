@@ -25,7 +25,18 @@ public class UIInitialize : MonoBehaviour
 
     public void UISetOn()
     {
-            for (int i = 0; i < UIcount; i++)
+        for (int i = 0; i < UIcount; i++)
+        {
+            if (UI.gameObject.transform.GetChild(i).gameObject.name.ToString() == "Inventory")
+            {
+                continue;
+            }
+            else
+            {
                 UI.gameObject.transform.GetChild(i).gameObject.SetActive(true);
+
+
+            }
+        }
     }
 }
