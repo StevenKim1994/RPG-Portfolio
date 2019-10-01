@@ -34,6 +34,12 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Sprite[] SkillSprite = new Sprite[10]; // 나중에 캐릭터 추가되면 리소스로드로 불러올 예정 19.08.15
 
+    delegate void RL();
+    delegate void RR();
+    FollowCamera FC = new FollowCamera();
+    RL rl;
+    RR rr;
+
     private GameObject GameMgr;
     private List<Skill> Buff = new List<Skill>();
     private Animator Anim;
@@ -162,6 +168,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         ReturnOldScene d_s = new GameManagerScript().Get_OldScene;
         ReturnOldPosition d_p = new PlayerManagerScripts().Get_OldPosition;
        
@@ -245,8 +252,8 @@ public class Player : MonoBehaviour
             }
             //MoveFlag = true;
             //this.transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime);
-
-
+            rl();
+            
             Rotate += 0.5f;
             Rotate += CountLeft + RotateSpeed * 0.015f;
 
@@ -287,7 +294,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-          
+            rr();
             CountLeft = 0.0f;
             CountRight += 1.0f;
             if(CountRight >= 10f)

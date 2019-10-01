@@ -28,7 +28,7 @@ public class FollowCamera : MonoBehaviour
     float yMinLimit = -20f;
     float yMaxLimit = 80f;
 
-    
+   
     float ClampAngle(float angle, float min, float max)
     {
         if(angle < -360)
@@ -67,8 +67,17 @@ public class FollowCamera : MonoBehaviour
     }
     void Update()
     {
-
+        if(Input.GetKey(KeyCode.A))
+        {
+            x -= 1.5f * xSpeed * 0.015f;
+            target.rotation = Quaternion.Euler(0, x, 0);
+        }
         
+        if(Input.GetKey(KeyCode.D))
+        {
+            x += 1.5f * xSpeed * 0.015f;
+            target.rotation = Quaternion.Euler(0, x, 0);
+        }
 
         Quaternion rotation = Quaternion.Euler(y, x, 0);
         Vector3 position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
