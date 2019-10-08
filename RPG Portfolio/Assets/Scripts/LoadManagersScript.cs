@@ -13,14 +13,14 @@ public class LoadManagersScript : MonoBehaviour
     delegate void SavePosition(Vector3 _in);
     delegate string LoadJob();
     delegate void SetPlayer(GameObject _in);
-
+    delegate void ReturnName();
     private SetPlayer s_u;
     private LoadJob l_j;
     private SavePosition s_p;
     private GameObject Player;
     private string Job;
     private ManagerSingleton MGR = new ManagerSingleton();
-    
+    private ReturnName r_n;    
  
 
     private void Awake()
@@ -29,12 +29,12 @@ public class LoadManagersScript : MonoBehaviour
        l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
         s_u = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Skill).GetComponent<SkillManagerScript>().Set_Player;
         s_p = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Set_OldPosition;
-        
+     
     }
 
     private void Start()
     {
-
+        
             Job = l_j();
 
             if (Job == "Pirate")
@@ -94,6 +94,10 @@ public class LoadManagersScript : MonoBehaviour
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         }
+
+
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().SetTitleName(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Name());
+        Debug.Log(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Name());
     }
 
 }

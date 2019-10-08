@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class DragonBoss : MonoBehaviour
+public class FirstBoss : MonoBehaviour
 {
 
     [SerializeField] float hP;
@@ -18,6 +18,7 @@ public class DragonBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = this.gameObject.transform.GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         nav = this.gameObject.transform.GetComponent<NavMeshAgent>();
         state = 0;
@@ -32,6 +33,7 @@ public class DragonBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Vector3.Distance(this.gameObject.transform.position, target.transform.position).ToString());
         if (hP <= hP / 2)
             state = 1;
 
@@ -42,17 +44,29 @@ public class DragonBoss : MonoBehaviour
             this.transform.LookAt(target);
             count++;
 
-            if (count >= 5) // 만약 머물러있는 시간이 5초 이상이면 
+
+            anim.SetBool("Running", true);
+            nav.SetDestination(target.transform.position); // 따라가기...
+            
+            if(Vector3.Distance(this.gameObject.transform.position, target.transform.position) <6f)
             {
-                nav.SetDestination(target.transform.position); // 따라가기...
+                nav.enabled = false;
+                
+                anim.SetTrigger("Skill1");
             }
+
+            
 
         }
         else
         {
             count = 0; // 거리가 멀어지면 시간은 0으로 초기화시킨다.
             nav.SetDestination(original_position); // 다시 원래 위치로 돌아간다.
-
+            if ((Vector3.Distance(this.gameObject.transform.position, original_position) < 3f))
+            {
+                Debug.Log("아이들상태로");
+                anim.SetBool("Running", false);
+            }
 
         }
     }
@@ -91,4 +105,7 @@ public class DragonBoss : MonoBehaviour
     {
 
     }
+
+   
+ 
 }

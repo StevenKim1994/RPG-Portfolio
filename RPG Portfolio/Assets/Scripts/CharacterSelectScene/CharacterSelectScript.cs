@@ -35,7 +35,7 @@ public class CharacterSelectScript : MonoBehaviour
     GameObject skill_description;
 
     [SerializeField]
-    GameObject nickname;
+    InputField nickname;
 
     
 
@@ -159,8 +159,9 @@ public class CharacterSelectScript : MonoBehaviour
                 sj("Wizard");
                 break;
         }
-        
 
+        Managers[3].transform.GetComponent<PlayerManagerScripts>().Save_Name(nickname.text);
+       
         SM.EnterStartChurch();
    
         // FadeIn 후 씬이동... 추가하기...
