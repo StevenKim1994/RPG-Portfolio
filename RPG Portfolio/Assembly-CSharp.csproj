@@ -78,6 +78,7 @@
     <Compile Include="Assets\BattleDragon\Dragons\Scripts\player_attack.cs" />
     <Compile Include="Assets\BattleDragon\Dragons\Scripts\player_movement.cs" />
     <Compile Include="Assets\BattleDragon\Scripts\CameraController.cs" />
+    <Compile Include="Assets\EasyMainMenu\Scripts\Main Menu Scripts\MainMenuController.cs" />
     <Compile Include="Assets\LevelDesignSet1_WoodenWalls\Scripts\WallSelector.cs" />
     <Compile Include="Assets\Scripts\ArmorNPCMenuScript.cs" />
     <Compile Include="Assets\Scripts\AutoParticleDestroyer.cs" />

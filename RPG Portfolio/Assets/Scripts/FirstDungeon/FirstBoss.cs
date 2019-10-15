@@ -52,7 +52,13 @@ public class FirstBoss : MonoBehaviour
             {
                 nav.enabled = false;
                 
+                // 공격 트리거가 실행될때는 이게 호출이 되면 안됨.
                 anim.SetTrigger("Skill1");
+            }
+
+            else
+            {
+                // 거리가 멀어지면 트리거종료...
             }
 
             

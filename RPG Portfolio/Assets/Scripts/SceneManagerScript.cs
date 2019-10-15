@@ -20,4 +20,9 @@ public class SceneManagerScript : MonoBehaviour
     {
         LoadingSceneManagerScript.LoadScene("CampScene");
     }
+
+    public void EnterNewGame()
+    {
+        LoadingSceneManagerScript.LoadScene("CharacterSelectScene");
+    }
 }

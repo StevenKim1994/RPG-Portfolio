@@ -63,6 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EasyMainMenu\Scripts\Editor\EMM_AddCanvases.cs" />
+    <Compile Include="Assets\EasyMainMenu\Scripts\Main Menu Scripts\Editor\MainMenuControllerEditor.cs" />
     <Compile Include="Assets\LevelDesignSet1_WoodenWalls\Editor\WallSelectorEditor.cs" />
     <Compile Include="Assets\UsedAsset\Simple Health Bar\Editor\SimpleHealthBarEditor.cs" />
     <Compile Include="Assets\UsedAsset\Simple Health Bar\Editor\SimpleHealthBarWindow.cs" />
