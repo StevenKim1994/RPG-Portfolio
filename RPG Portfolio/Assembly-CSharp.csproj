@@ -103,6 +103,7 @@
     <Compile Include="Assets\Scripts\DonDestroyObjectScript.cs" />
     <Compile Include="Assets\Scripts\DungeonEnterColliderScript.cs" />
     <Compile Include="Assets\Scripts\DungeonSelecterScript.cs" />
+    <Compile Include="Assets\Scripts\EnterCampScript.cs" />
     <Compile Include="Assets\Scripts\FirstDungeon\FirstBoss.cs" />
     <Compile Include="Assets\Scripts\FirstDungeonLoadManager.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />

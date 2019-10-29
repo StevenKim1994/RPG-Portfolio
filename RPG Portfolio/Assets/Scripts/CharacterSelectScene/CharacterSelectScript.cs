@@ -147,6 +147,7 @@ public class CharacterSelectScript : MonoBehaviour
                 sj = PM.Save_Job;
 
                 sj("Pirate");
+                Managers[4].GetComponent<InterfaceManagerScript>().SetUnitPortrait("Pirate");
                 break;
 
             case 1:
@@ -161,6 +162,7 @@ public class CharacterSelectScript : MonoBehaviour
         }
 
         Managers[3].transform.GetComponent<PlayerManagerScripts>().Save_Name(nickname.text);
+      
        
         SM.EnterStartChurch();
    
