@@ -12,6 +12,16 @@ public class SceneManagerScript : MonoBehaviour
     {
         LoadingSceneManagerScript.LoadScene("FirstDungeonScene");
     }
+
+   public void EnterDungeonThird()
+   {
+       LoadingSceneManagerScript.LoadScene("ThirdDungeonScene");
+   }
+
+   public void EnterDungeonSecond()
+   {
+       LoadingSceneManagerScript.LoadScene("SecondDungeonScene");
+   }
     public void EnterBlackSmith()
     { 
         LoadingSceneManagerScript.LoadScene("InBlackSmithScene");
@@ -20,9 +30,10 @@ public class SceneManagerScript : MonoBehaviour
     {
         LoadingSceneManagerScript.LoadScene("CampScene");
     }
-
+    
     public void EnterNewGame()
     {
         LoadingSceneManagerScript.LoadScene("CharacterSelectScene");
     }
+
 }

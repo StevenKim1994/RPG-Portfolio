@@ -7,7 +7,7 @@ public class MainMenuController : MonoBehaviour {
 
     Animator anim;
 
-    public string newGameSceneName;
+  
     public int quickSaveSlotID;
     private SceneManagerScript SM;
     [Header("Options Panel")]
@@ -164,6 +164,7 @@ public class MainMenuController : MonoBehaviour {
 
     public void Quit()
     {
+        Debug.Log("종료"); 
         Application.Quit();
     }
     #endregion

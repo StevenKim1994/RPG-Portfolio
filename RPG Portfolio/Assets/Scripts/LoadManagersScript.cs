@@ -72,6 +72,17 @@ public class LoadManagersScript : MonoBehaviour
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
+            else if (SceneManager.GetActiveScene().name == "SecondDungeonScene")
+            {
+                Instantiate(Player);
+                GameObject User = GameObject.Find("Player(" + Job+")(Clone)");
+
+                User.gameObject.tag = "Player";
+                User.transform.position = new Vector3(6.1f, 1f, 152.7f);
+                User.transform.GetComponent<Rigidbody>().isKinematic = false;
+                User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
+            }
 
             else if (SceneManager.GetActiveScene().name == "InChurchScene")
             {
@@ -83,7 +94,10 @@ public class LoadManagersScript : MonoBehaviour
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
+            else if (SceneManager.GetActiveScene().name == "ThirdDungeonScene")
+            {
 
+            }
             else if (SceneManager.GetActiveScene().name == "CampScene")
             {
                 Instantiate(Player);

@@ -68,7 +68,7 @@ public class FirstBoss : MonoBehaviour
         {
             count = 0; // 거리가 멀어지면 시간은 0으로 초기화시킨다.
             nav.SetDestination(original_position); // 다시 원래 위치로 돌아간다.
-            if ((Vector3.Distance(this.gameObject.transform.position, original_position) < 3f))
+            if ((Vector3.Distance(this.gameObject.transform.position, original_position) < 3f)) // 다시 원래 위치이면??...
             {
                 Debug.Log("아이들상태로");
                 anim.SetBool("Running", false);
@@ -112,6 +112,10 @@ public class FirstBoss : MonoBehaviour
 
     }
 
-   
- 
+    private void OnMouseDown() // 마우스 클릭시 대상의 초상화 정보 이 보스로 변경...
+    {
+        
+    }
+
+
 }

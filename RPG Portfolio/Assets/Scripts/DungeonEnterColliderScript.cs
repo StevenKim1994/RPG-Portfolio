@@ -57,6 +57,10 @@ public class DungeonEnterColliderScript : MonoBehaviour
         SceneMgr.GetComponent<SceneManagerScript>().EnterDungeonFirst();
     }
 
+    public void EnterSecondDungeon()
+    {
+        SceneMgr.GetComponent<SceneManagerScript>().EnterDungeonSecond();
+    }
     public void ExitBtn()
     {
         DungeonSelecter.SetActive(false);
