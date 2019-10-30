@@ -68,6 +68,7 @@
     <Compile Include="Assets\LevelDesignSet1_WoodenWalls\Editor\WallSelectorEditor.cs" />
     <Compile Include="Assets\Particle Dissolve Shader by Moonflower Carnivore\Shaders\unity5\Editor\CustomMaterialEditor.cs" />
     <Compile Include="Assets\Particle Dissolve Shader by Moonflower Carnivore\Shaders\unity5\Editor\Shader_softrim_dissolve.cs" />
+    <Compile Include="Assets\PyroParticles\Prefab\Editor\PyroParticlesEditor.cs" />
     <Compile Include="Assets\UsedAsset\Simple Health Bar\Editor\SimpleHealthBarEditor.cs" />
     <Compile Include="Assets\UsedAsset\Simple Health Bar\Editor\SimpleHealthBarWindow.cs" />
     <Reference Include="UnityEditor.TestRunner">

@@ -344,16 +344,15 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Enermy_Weapon")
-        {
-            Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
-            Anim.SetTrigger("Attacked");
+        
 
-        }
-
-        if (collision.gameObject.tag == "Monster")
+        if (collision.gameObject.tag == "Monster") // Monster대신에 Monster_Weapon으로 나중에 수정해야함 지금은 테스트중이라 Moster사용 19.10.30...
         {
             Debug.Log("몬스터 충돌!");
+            //데미지연산해서 Player의 체력계산 추가하기
+            Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
+            Anim.SetTrigger("Attacked");//Player의 타격 애니메이션 재생
+            
         }
     }
 

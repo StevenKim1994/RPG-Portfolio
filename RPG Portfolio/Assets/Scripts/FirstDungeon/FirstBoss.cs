@@ -14,7 +14,8 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] private Animator anim;
     Vector3 original_position;
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
-
+    
+    ManagerSingleton MGR = new ManagerSingleton();
     // Start is called before the first frame update
     void Start()
     {
@@ -114,7 +115,8 @@ public class FirstBoss : MonoBehaviour
 
     private void OnMouseDown() // 마우스 클릭시 대상의 초상화 정보 이 보스로 변경...
     {
-        
+        Debug.Log("보스 마우스클릭됨");
+        // 이때 Delegate로 InterfaceManager 내에 있는 TargetFrame 설정 세팅하기 19.10.30...
     }
 
     private void OnCollisionEnter(Collision collision)
