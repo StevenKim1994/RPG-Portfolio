@@ -350,6 +350,11 @@ public class Player : MonoBehaviour
             Anim.SetTrigger("Attacked");
 
         }
+
+        if (collision.gameObject.tag == "Monster")
+        {
+            Debug.Log("몬스터 충돌!");
+        }
     }
 
     void InputKey() // 스킬처리 부분
@@ -396,4 +401,6 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    
 }

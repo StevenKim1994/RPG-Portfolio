@@ -15,6 +15,7 @@ TagManager:
   - Load_Point
   - WeaponNPC
   - UI
+  - Monster
   layers:
   - Default
   - TransparentFX

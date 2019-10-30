@@ -22708,6 +22708,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirstBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 144852, guid: 0854521c94d51af44a9aef251c42b5a9, type: 3}
+      propertyPath: m_TagString
+      value: Monster
+      objectReference: {fileID: 0}
     - target: {fileID: 415344, guid: 0854521c94d51af44a9aef251c42b5a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.37254

@@ -33,7 +33,7 @@ public class FirstBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Vector3.Distance(this.gameObject.transform.position, target.transform.position).ToString());
+       // Debug.Log(Vector3.Distance(this.gameObject.transform.position, target.transform.position).ToString());
         if (hP <= hP / 2)
             state = 1;
 
@@ -117,5 +117,12 @@ public class FirstBoss : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "User_Weapon")
+        {
+            Debug.Log("타격타격!");
+        }
+    }
 
 }
