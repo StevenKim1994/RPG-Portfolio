@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,8 @@ public class NPC : MonoBehaviour
     //GameObject PotionNPCMenu;
     //GameObject ArmorNPCMenu;
     GameObject NPCMenu;
+    [SerializeField]
+    private GameObject PlayerInventory;
 
     [SerializeField]
     GameObject Goal;
@@ -137,6 +140,7 @@ public class NPC : MonoBehaviour
     void OnMenu()
     {
         NPCMenu.SetActive(true);
+        UI.Get_Instance().transform.GetChild(5).transform.gameObject.SetActive(true);
     }
 
     public void Set_Player(GameObject _in)
