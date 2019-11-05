@@ -346,7 +346,7 @@ public class Player : MonoBehaviour
     {
         
 
-        if (collision.gameObject.tag == "Monster") // Monster대신에 Monster_Weapon으로 나중에 수정해야함 지금은 테스트중이라 Moster사용 19.10.30...
+        if (collision.gameObject.tag == "Monster_Attack") // Monster대신에 Monster_Weapon으로 나중에 수정해야함 지금은 테스트중이라 Moster사용 19.10.30...
         {
             Debug.Log("몬스터 충돌!");
             //데미지연산해서 Player의 체력계산 추가하기

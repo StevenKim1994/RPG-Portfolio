@@ -7,6 +7,8 @@ public class FirstBoss : MonoBehaviour
 
     [SerializeField] float hP;
     [SerializeField] float mP;
+    [SerializeField] float damage;
+
     private int state; // 보스의 현재 상태 0 이면 초기 페이지 1이면 화남 페이지 2면 광폭화 페이지... 
     
     [SerializeField] private NavMeshAgent nav;
@@ -23,8 +25,7 @@ public class FirstBoss : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").transform;
         nav = this.gameObject.transform.GetComponent<NavMeshAgent>();
         state = 0;
-        hP = 10000f;
-        mP = 10000f;
+      
 
         original_position = this.gameObject.transform.position;
 
@@ -34,9 +35,18 @@ public class FirstBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log(Vector3.Distance(this.gameObject.transform.position, target.transform.position).ToString());
+        if (hP <= 0)
+        {
+            //사망 이펙트 화염 분출 ... 추가하기
+            Destroy(this.gameObject);
+        }
+       /* // Debug.Log(Vector3.Distance(this.gameObject.transform.position, target.transform.position).ToString());
         if (hP <= hP / 2)
-            state = 1;
+        {
+            state = 1; // 화남페이지
+            damage += 20f; // 화가 나면 데미지 20상승
+
+        }
 
         if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f)
         {
@@ -76,6 +86,8 @@ public class FirstBoss : MonoBehaviour
             }
 
         }
+        */  // 19.11.05  현시점 수정...
+       
     }
 
     public void Set_HP(float _in)
@@ -124,6 +136,17 @@ public class FirstBoss : MonoBehaviour
         if(collision.gameObject.tag == "User_Weapon")
         {
             Debug.Log("타격타격!");
+        }
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "User_Weapon")
+        {
+            Debug.Log("타격타격@");
+            anim.SetTrigger("Hurt");
+            Set_HP(Get_HP() - 10f);
+            Debug.Log(Get_HP());
         }
     }
 

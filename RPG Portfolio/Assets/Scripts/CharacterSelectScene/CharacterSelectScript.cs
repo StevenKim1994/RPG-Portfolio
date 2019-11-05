@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CharacterSelectScript : MonoBehaviour
 {
+    [SerializeField] Sprite[] PirateSKILL = new Sprite[3]; // 해적스킬 아이콘들
+    [SerializeField] GameObject[] BabarianSKILL = new GameObject[3];
+    [SerializeField] GameObject[] WizardSKILL = new GameObject[3];
     [SerializeField]
     GameObject UIinitiliazer;
 
@@ -16,12 +19,10 @@ public class CharacterSelectScript : MonoBehaviour
     delegate void ChangeScene();
     delegate void ui_setting();
 
-
     private SaveJob sj;
     private LoadJob lj;
     private PlayerManagerScripts PM;
     private SceneManagerScript SM;
-   
     [SerializeField]
     Camera camera;
 
@@ -59,6 +60,12 @@ public class CharacterSelectScript : MonoBehaviour
         initPosition.y = 2.33f;
         initPosition.z = 0.58f;
         job.GetComponent<Text>().text = "해적";
+
+        for (int i = 0; i < 3; i++)
+            skill[i].transform.GetComponent<Image>().sprite = PirateSKILL[i];
+
+        skill_description.transform.GetComponent<Text>().text = "기본적인 해적의 근접공격 스킬, 연속으로 사용시 연타모션을 취한다.";
+        
         camera.transform.position = initPosition;
 
         previous.gameObject.SetActive(false);
@@ -167,5 +174,48 @@ public class CharacterSelectScript : MonoBehaviour
         SM.EnterStartChurch();
    
         // FadeIn 후 씬이동... 추가하기...
+    }
+
+    public void SKILL1INFO()
+    {
+       switch(count)
+        {
+            case 0:
+                skill_description.transform.GetComponent<Text>().text = "기본적인 해적의 근접공격 스킬, 연속으로 사용시 연타모션을 취한다.";
+                break;
+
+            case 1:
+                skill_description.transform.GetComponent<Text>().text = "기본적인 바바리안의 근접공격 스킬";
+                break;
+
+            case 2:
+                skill_description.transform.GetComponent<Text>().text = "마법사의 기본 공격 스킬";
+                break;
+                
+        }
+    }
+
+    public void SKILL2INFO()
+    {
+        switch (count)
+        {
+            case 0:
+                skill_description.transform.GetComponent<Text>().text = "해적의 버프스킬";
+                break;
+
+            case 1:
+                skill_description.transform.GetComponent<Text>().text = "바바리안의 버프스킬";
+                break;
+
+            case 2:
+                skill_description.transform.GetComponent<Text>().text = "마법사의 버프스킬";
+                break;
+
+        }
+    }
+
+    public void SKILL3INFO()
+    {
+
     }
 }

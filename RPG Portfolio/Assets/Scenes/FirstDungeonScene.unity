@@ -12574,8 +12574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de9a451cd3c57c4f9a2658af8bd7e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hP: 1000
+  hP: 100
   mP: 200
+  damage: 50
   nav: {fileID: 931213186}
   target: {fileID: 0}
   anim: {fileID: 0}
@@ -12587,12 +12588,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931213185}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2.0153701
+  m_Radius: 1.4631499
   m_Height: 4.0307403
   m_Direction: 1
-  m_Center: {x: 0, y: 0.96829194, z: -0.26056132}
+  m_Center: {x: 0.0044608116, y: 0.96829194, z: 0.2961197}
 --- !u!54 &931213189
 Rigidbody:
   m_ObjectHideFlags: 0
