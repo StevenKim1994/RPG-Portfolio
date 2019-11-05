@@ -19,7 +19,16 @@ public class PlayerManagerScripts : MonoBehaviour
 
     private string job;
     private Vector3 oldposition;
+    private GameObject target;
 
+    public GameObject Get_Target()
+    {
+        return target;
+    }
+    public void Set_Target(GameObject _in)
+    {
+        target = _in;
+    }
     public void Save_Name(string _in)
     {
         name = _in;

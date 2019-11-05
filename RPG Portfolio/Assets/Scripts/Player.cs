@@ -356,6 +356,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Monster")
+        {
+            Debug.Log("몬스터 충돌!");
+            //데미지연산해서 Player의 체력계산 추가하기
+            Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
+            Anim.SetTrigger("Attacked");//Player의 타격 애니메이션 재생
+        }
+    }
+
     void InputKey() // 스킬처리 부분
     {
         if (this.gameObject.transform.name == "Player(Pirate)(Clone)") // 캐릭터가 해적일 경우...

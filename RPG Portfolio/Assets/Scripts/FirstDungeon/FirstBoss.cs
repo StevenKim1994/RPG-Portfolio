@@ -8,9 +8,12 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] float hP;
     [SerializeField] float mP;
     [SerializeField] float damage;
-
+    [SerializeField] private GameObject HitParticle;
+    [SerializeField] GameObject DeadParticle;
     private int state; // 보스의 현재 상태 0 이면 초기 페이지 1이면 화남 페이지 2면 광폭화 페이지... 
-    
+
+    private float timer = 0.0f;
+    private int waitTime;
     [SerializeField] private NavMeshAgent nav;
     [SerializeField] private Transform target; // 유저의 좌표 값이 타겟이 됨...
     [SerializeField] private Animator anim;
@@ -21,6 +24,7 @@ public class FirstBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        waitTime = 1;
         anim = this.gameObject.transform.GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         nav = this.gameObject.transform.GetComponent<NavMeshAgent>();
@@ -35,12 +39,16 @@ public class FirstBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (hP <= 0)
         {
-            //사망 이펙트 화염 분출 ... 추가하기
+            timer += Time.deltaTime;
+            Instantiate(DeadParticle, this.gameObject.transform);//사망 이펙트 화염 분출 ... 추가하기
+          
+            if(timer > waitTime)
             Destroy(this.gameObject);
         }
-       /* // Debug.Log(Vector3.Distance(this.gameObject.transform.position, target.transform.position).ToString());
+       // Debug.Log(Vector3.Distance(this.gameObject.transform.position, target.transform.position).ToString());
         if (hP <= hP / 2)
         {
             state = 1; // 화남페이지
@@ -86,7 +94,7 @@ public class FirstBoss : MonoBehaviour
             }
 
         }
-        */  // 19.11.05  현시점 수정...
+          // 19.11.05  현시점 수정...
        
     }
 
@@ -129,6 +137,7 @@ public class FirstBoss : MonoBehaviour
     {
         Debug.Log("보스 마우스클릭됨");
         // 이때 Delegate로 InterfaceManager 내에 있는 TargetFrame 설정 세팅하기 19.10.30...
+       MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Set_Target(this.gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -143,6 +152,7 @@ public class FirstBoss : MonoBehaviour
     {
         if (col.gameObject.tag == "User_Weapon")
         {
+            Instantiate(HitParticle,col.transform);
             Debug.Log("타격타격@");
             anim.SetTrigger("Hurt");
             Set_HP(Get_HP() - 10f);
