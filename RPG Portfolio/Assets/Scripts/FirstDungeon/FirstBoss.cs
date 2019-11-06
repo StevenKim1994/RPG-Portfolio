@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 public class FirstBoss : MonoBehaviour
@@ -10,6 +11,8 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] private GameObject HitParticle;
     [SerializeField] GameObject DeadParticle;
+    [SerializeField] private GameObject Fireball;
+    [SerializeField] private GameObject Fireball_initPosition;
     private int state; // 보스의 현재 상태 0 이면 초기 페이지 1이면 화남 페이지 2면 광폭화 페이지... 
 
     private float timer = 0.0f;
@@ -19,7 +22,7 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] private Animator anim;
     Vector3 original_position;
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
-    
+    private int ballcount = 0;
     ManagerSingleton MGR = new ManagerSingleton();
     // Start is called before the first frame update
     void Start()
@@ -33,22 +36,23 @@ public class FirstBoss : MonoBehaviour
 
         original_position = this.gameObject.transform.position;
 
-
+        InvokeRepeating("ShotFireball",2.5f,2.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
+       
 
         if (hP <= 0)
         {
             timer += Time.deltaTime;
-            Instantiate(DeadParticle, this.gameObject.transform);//사망 이펙트 화염 분출 ... 추가하기
-          
+            Instantiate(DeadParticle, this.gameObject.transform);// 사망 이펙트
+            //MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>()
             if(timer > waitTime)
             Destroy(this.gameObject);
         }
-       // Debug.Log(Vector3.Distance(this.gameObject.transform.position, target.transform.position).ToString());
+      
         if (hP <= hP / 2)
         {
             state = 1; // 화남페이지
@@ -58,6 +62,7 @@ public class FirstBoss : MonoBehaviour
 
         if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f)
         {
+            CancelInvoke("ShotFireball");
             nav.enabled = true;
             Debug.Log("가까움");
             this.transform.LookAt(target);
@@ -75,26 +80,18 @@ public class FirstBoss : MonoBehaviour
                 anim.SetTrigger("Skill1");
             }
 
-            else
-            {
-                // 거리가 멀어지면 트리거종료...
-            }
 
+
+        }
+        else /// 근접공격 범위가 아니라면 원거리 파이버볼 시전
+        {
+            
+            
+               
             
 
         }
-        else
-        {
-            count = 0; // 거리가 멀어지면 시간은 0으로 초기화시킨다.
-            nav.SetDestination(original_position); // 다시 원래 위치로 돌아간다.
-            if ((Vector3.Distance(this.gameObject.transform.position, original_position) < 3f)) // 다시 원래 위치이면??...
-            {
-                Debug.Log("아이들상태로");
-                anim.SetBool("Running", false);
-            }
-
-        }
-          // 19.11.05  현시점 수정...
+        
        
     }
 
@@ -158,6 +155,15 @@ public class FirstBoss : MonoBehaviour
             Set_HP(Get_HP() - 10f);
             Debug.Log(Get_HP());
         }
+    }
+
+    private void ShotFireball()
+    {
+
+        this.transform.LookAt(target);
+        anim.SetTrigger("Skill1");
+        Instantiate(Fireball, Fireball_initPosition.transform);
+        ballcount++;
     }
 
 }

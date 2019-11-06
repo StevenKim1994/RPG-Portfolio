@@ -22,22 +22,6 @@ public class InterfaceManagerScript : MonoBehaviour
         
     }
 
-    public void SetUnitPortrait(string _in)
-    {
-        if (_in == "Pirate")
-            UnitPortrait.transform.GetComponent<Image>().sprite = UnitPortaitImage[0];
-    }
-
-    public void SetEnermyPortrait(string _in)
-    {
-       // if(_in == "First") 
-            //첫던전 보스 초상화설정
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 
 }

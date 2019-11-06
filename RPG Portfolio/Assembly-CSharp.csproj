@@ -111,12 +111,15 @@
     <Compile Include="Assets\Scripts\CharacterSelectScene\CharacterSelectScript.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectScene\SelectSkillinfoScript.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectScene\UIInitialize.cs" />
+    <Compile Include="Assets\Scripts\ChatScripts.cs" />
+    <Compile Include="Assets\Scripts\ClockScript.cs" />
     <Compile Include="Assets\Scripts\CSVReaderScript.cs" />
     <Compile Include="Assets\Scripts\DataManagerScript.cs" />
     <Compile Include="Assets\Scripts\DonDestroyObjectScript.cs" />
     <Compile Include="Assets\Scripts\DungeonEnterColliderScript.cs" />
     <Compile Include="Assets\Scripts\DungeonSelecterScript.cs" />
     <Compile Include="Assets\Scripts\EnterCampScript.cs" />
+    <Compile Include="Assets\Scripts\FirstDungeon\Fireball.cs" />
     <Compile Include="Assets\Scripts\FirstDungeon\FirstBoss.cs" />
     <Compile Include="Assets\Scripts\FirstDungeonLoadManager.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />

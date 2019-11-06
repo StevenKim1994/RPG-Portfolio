@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
     private bool isAttack = false;
     private int count = 0;
 
-    float HP;
-    float MP;
+    float HP = 1000000f;
+    float MP = 50000f;
 
     float Rotate = 0.0f;
     float x_pos = 0.0f;
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
     GameObject Target_Frame;
 
     [SerializeField] private GameObject HitEffect;
-
+    [SerializeField] private GameObject FireballHitEffect;
     [SerializeField] private GameObject PowerUpSkillEffect;
 
     public float MoveSpeed;
@@ -341,7 +341,7 @@ public class Player : MonoBehaviour
     }
 
 
-
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         
@@ -354,7 +354,7 @@ public class Player : MonoBehaviour
             Anim.SetTrigger("Attacked");//Player의 타격 애니메이션 재생
             
         }
-    }
+    }*/
 
     void OnTriggerEnter(Collider col)
     {
@@ -364,6 +364,15 @@ public class Player : MonoBehaviour
             //데미지연산해서 Player의 체력계산 추가하기
             Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
             Anim.SetTrigger("Attacked");//Player의 타격 애니메이션 재생
+        }
+
+        if (col.gameObject.tag == "Enermy_Fireball")
+        {
+            Debug.Log("보스의 파이어볼 충돌감지!");
+            Anim.SetTrigger("Attacked");
+            Instantiate(FireballHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+
+            Destroy(col.gameObject); // 충돌됬으므로 해당 객체 파괴
         }
     }
 

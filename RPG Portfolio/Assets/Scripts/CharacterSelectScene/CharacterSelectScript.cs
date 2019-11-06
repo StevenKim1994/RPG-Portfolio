@@ -85,11 +85,14 @@ public class CharacterSelectScript : MonoBehaviour
         {
             case 0:
                 job.GetComponent<Text>().text = "해적";
-                
+                skill_description.transform.GetComponent<Text>().text = "기본적인 해적의 근접공격 스킬, 연속으로 사용시 연타모션을 취한다.";
+        
                 break;
 
             case 1:
                 job.GetComponent<Text>().text = "바바리안";
+                skill_description.transform.GetComponent<Text>().text = "기본적인 해적의 근접공격 스킬, 연속으로 사용시 연타모션을 취한다.";
+        
                 break;
 
             case 2:
@@ -154,7 +157,7 @@ public class CharacterSelectScript : MonoBehaviour
                 sj = PM.Save_Job;
 
                 sj("Pirate");
-                Managers[4].GetComponent<InterfaceManagerScript>().SetUnitPortrait("Pirate");
+               
                 break;
 
             case 1:

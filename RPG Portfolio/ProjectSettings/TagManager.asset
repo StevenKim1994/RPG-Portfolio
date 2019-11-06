@@ -16,6 +16,7 @@ TagManager:
   - WeaponNPC
   - UI
   - Monster
+  - Enermy_Fireball
   layers:
   - Default
   - TransparentFX

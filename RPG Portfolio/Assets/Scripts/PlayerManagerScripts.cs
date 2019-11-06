@@ -11,8 +11,8 @@ public class PlayerManagerScripts : MonoBehaviour
     private float damage;
     private string name;
 
-    private float HP;
-    private float MP;
+    private float HP = 100f;
+    private float MP = 100f;
 
     private float MoveSpeed;
     private float RotateSpeed;
