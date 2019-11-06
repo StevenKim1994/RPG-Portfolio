@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.XR;
 using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
@@ -364,6 +365,7 @@ public class Player : MonoBehaviour
             //데미지연산해서 Player의 체력계산 추가하기
             Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
             Anim.SetTrigger("Attacked");//Player의 타격 애니메이션 재생
+            
         }
 
         if (col.gameObject.tag == "Enermy_Fireball")
