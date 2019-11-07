@@ -342,21 +342,6 @@ public class Player : MonoBehaviour
     }
 
 
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-
-        if (collision.gameObject.tag == "Monster_Attack") // Monster대신에 Monster_Weapon으로 나중에 수정해야함 지금은 테스트중이라 Moster사용 19.10.30...
-        {
-            Debug.Log("몬스터 충돌!");
-            //데미지연산해서 Player의 체력계산 추가하기
-            Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
-            Anim.SetTrigger("Attacked");//Player의 타격 애니메이션 재생
-            
-        }
-    }*/
-
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Monster")
@@ -372,8 +357,8 @@ public class Player : MonoBehaviour
         {
             Debug.Log("보스의 파이어볼 충돌감지!");
             Anim.SetTrigger("Attacked");
-            Instantiate(FireballHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
-
+            //Instantiate(FireballHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+            StartCoroutine(FireBallHit());
             Destroy(col.gameObject); // 충돌됬으므로 해당 객체 파괴
         }
     }
@@ -422,6 +407,15 @@ public class Player : MonoBehaviour
             }
         }
     }
-
+    IEnumerator FireBallHit()
+    {
+     
+        GameObject temp;
+        temp = Instantiate(FireballHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+        yield return new WaitForSeconds(2f);
+        Destroy(temp);
+        yield break;
+    }
+    
     
 }

@@ -12473,8 +12473,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 7.4412355e+28, y: 1.2057166e+13, z: 7.9316175e+34,
-    w: 7.3964775e+31}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -12613,6 +12612,8 @@ MonoBehaviour:
     type: 3}
   Fireball: {fileID: 1884747205189362, guid: 1b85934f3ab9f88409e04178ece71a05, type: 3}
   Fireball_initPosition: {fileID: 507702199}
+  CurseWall: {fileID: 119818, guid: 01f1e1f1177f76d499251acb5b14b63a, type: 3}
+  position: {fileID: 1263075804}
   nav: {fileID: 931213186}
   target: {fileID: 0}
   anim: {fileID: 0}

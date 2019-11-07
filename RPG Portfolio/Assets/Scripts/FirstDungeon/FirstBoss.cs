@@ -13,10 +13,12 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] GameObject DeadParticle;
     [SerializeField] private GameObject Fireball;
     [SerializeField] private GameObject Fireball_initPosition;
+    [SerializeField] private GameObject CurseWall;
     private int state; // 보스의 현재 상태 0 이면 초기 페이지 1이면 화남 페이지 2면 광폭화 페이지... 
 
     private float timer = 0.0f;
     private int waitTime;
+    [SerializeField] Transform position;
     [SerializeField] private NavMeshAgent nav;
     [SerializeField] private Transform target; // 유저의 좌표 값이 타겟이 됨...
     [SerializeField] private Animator anim;
@@ -24,7 +26,10 @@ public class FirstBoss : MonoBehaviour
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
     private int ballcount = 0;
     ManagerSingleton MGR = new ManagerSingleton();
-    // Start is called before the first frame update
+
+    private float TimeLeft = 1.0f;
+    private float nextTime = 0.0f;
+
     void Start()
     {
         waitTime = 1;
@@ -42,8 +47,10 @@ public class FirstBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
        
 
+        
         if (hP <= 0)
         {
             timer += Time.deltaTime;
@@ -62,13 +69,25 @@ public class FirstBoss : MonoBehaviour
 
         if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f)
         {
+            if (Time.time > nextTime)
+            {
+                //Debug.Log(count);
+                count++;
+                nextTime = Time.time + TimeLeft;
+
+            }
+
+            if (count >= 10) //보스와 플레이어와 거리가 가까운채로 10초이상일때 보스의 특별한 스킬발동...
+            {
+                count = 0;
+                Debug.Log("발동!!!");
+                StartCoroutine(SpellCurseWall());//Instantiate(CurseWall, position.transform.localPosition, position.transform.rotation); //보스의 특정 광역스킬 발동
+            }
             CancelInvoke("ShotFireball");
             nav.enabled = true;
-            Debug.Log("가까움");
+            //Debug.Log("가까움");
             this.transform.LookAt(target);
-            count++;
-
-
+           
             anim.SetBool("Running", true);
             nav.SetDestination(target.transform.position); // 따라가기...
             
@@ -83,16 +102,19 @@ public class FirstBoss : MonoBehaviour
 
 
         }
-        else /// 근접공격 범위가 아니라면 원거리 파이버볼 시전
-        {
-            
-            
-               
-            
-
-        }
+        
         
        
+    }
+    IEnumerator SpellCurseWall()
+    {
+        
+        GameObject temp = Instantiate(CurseWall, position.transform.localPosition, position.transform.rotation); //보스의 특정 광역스킬 발동
+        temp.transform.rotation = Quaternion.Euler(-90, 0, 0);
+        
+        yield return new WaitForSeconds(5f);
+        Destroy(temp);
+        yield break;
     }
 
     public void Set_HP(float _in)
@@ -130,12 +152,6 @@ public class FirstBoss : MonoBehaviour
 
     }
 
-    private void OnMouseDown() // 마우스 클릭시 대상의 초상화 정보 이 보스로 변경...
-    {
-        Debug.Log("보스 마우스클릭됨");
-        // 이때 Delegate로 InterfaceManager 내에 있는 TargetFrame 설정 세팅하기 19.10.30...
-       MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Set_Target(this.gameObject);
-    }
 
     private void OnCollisionEnter(Collision collision)
     {

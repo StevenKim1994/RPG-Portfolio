@@ -17,7 +17,7 @@ public class Fireball : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
         
