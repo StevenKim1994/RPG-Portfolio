@@ -122,6 +122,7 @@
     <Compile Include="Assets\Scripts\FirstDungeon\Fireball.cs" />
     <Compile Include="Assets\Scripts\FirstDungeon\FirstBoss.cs" />
     <Compile Include="Assets\Scripts\FirstDungeonLoadManager.cs" />
+    <Compile Include="Assets\Scripts\FloatingText.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\FrameScript.cs" />
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
@@ -131,9 +132,12 @@
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\InventoryManagerScript.cs" />
     <Compile Include="Assets\Scripts\ItemTableScript.cs" />
+    <Compile Include="Assets\Scripts\JSONManagerScript.cs" />
     <Compile Include="Assets\Scripts\LoadingSceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\LoadManagersScript.cs" />
+    <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\ManagerSingleton.cs" />
+    <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\Network\Network.cs" />
     <Compile Include="Assets\Scripts\Network\PacketQueue.cs" />
     <Compile Include="Assets\Scripts\Network\TransportTCP.cs" />

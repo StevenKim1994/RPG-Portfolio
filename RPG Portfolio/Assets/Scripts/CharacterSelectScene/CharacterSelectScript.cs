@@ -73,8 +73,6 @@ public class CharacterSelectScript : MonoBehaviour
      
     }
 
-
-
     public void nextPosition()
     {
         previous.gameObject.SetActive(true);
@@ -157,7 +155,13 @@ public class CharacterSelectScript : MonoBehaviour
                 sj = PM.Save_Job;
 
                 sj("Pirate");
-               
+                Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>().Save_HP(100);//PlayerManager 에서 기본 데이터 설정하는 함수 추가해야함!!! 19.11.07
+                Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>().Save_MP(100);
+                Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>().Save_Damage(15);
+                Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>().Save_Armor(10);
+                Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>().Save_DEX(1);
+                Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>().Save_INT(2);
+                Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>().Save_STR(3);
                 break;
 
             case 1:
