@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
     }
 
-    [SerializeField] private Sprite[] SkillSprite = new Sprite[10]; // 나중에 캐릭터 추가되면 리소스로드로 불러올 예정 19.08.15
+    [SerializeField] private Sprite[] SkillSprite = new Sprite[10]; 
 
     delegate void RL();
     delegate void RR();
@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
     float y_pos = 0.0f;
 
     bool DoubleKey = false;
+    int state = 0; // 0 : idle 1 : attack 2 : hurt
     float CountRight = 0.0f;
     float CountLeft = 0.0f;
 
@@ -74,8 +75,9 @@ public class Player : MonoBehaviour
     GameObject Target_Frame;
 
     [SerializeField] private GameObject HitEffect;
-    [SerializeField] private GameObject FireballHitEffect;
     [SerializeField] private GameObject PowerUpSkillEffect;
+
+    [SerializeField] private GameObject FireballHitEffect;
 
     public float MoveSpeed;
     public float RotateSpeed = 100.0f;
@@ -203,6 +205,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(Target != null)
         {
             Target_Frame.SetActive(true);
@@ -262,12 +265,7 @@ public class Player : MonoBehaviour
 
             this.transform.rotation = Quaternion.Euler(0, -Rotate, 0);
 
-            //if(count > 5.0f)
-            //{
-            //    MoveFlag = true;
-            //    this.transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime) ;
-            //}
-            // 일정 앵글 넘어서면 카메라도 움직이게 해야함
+            
         }
         else if ((Input.GetKey(KeyCode.A)) && (Input.GetKey(KeyCode.W)))
         {
@@ -289,7 +287,7 @@ public class Player : MonoBehaviour
             MoveFlag = true;
             this.transform.Translate(Vector3.back * MoveSpeed/2.0f * Time.deltaTime);
 
-            // 일정 앵글 넘어서면 카메라도 움직이게 해야함
+     
         }
 
 
@@ -344,10 +342,12 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Monster")
+        if (col.gameObject.tag == "Monster_Weapon")
         {
-            Debug.Log("몬스터 충돌!");
+            Debug.Log("몬스터의 공격감지!");
+           
             //데미지연산해서 Player의 체력계산 추가하기
+            Destroy(col.gameObject);
             Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
             Anim.SetTrigger("Attacked");//Player의 타격 애니메이션 재생
             
@@ -357,16 +357,20 @@ public class Player : MonoBehaviour
         {
             Debug.Log("보스의 파이어볼 충돌감지!");
             Anim.SetTrigger("Attacked");
-            //Instantiate(FireballHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
             StartCoroutine(FireBallHit());
-            Destroy(col.gameObject); // 충돌됬으므로 해당 객체 파괴
+            Destroy(col.gameObject);
+            
         }
+
+        
     }
 
+   
     void InputKey() // 스킬처리 부분
     {
         if (this.gameObject.transform.name == "Player(Pirate)(Clone)") // 캐릭터가 해적일 경우...
         {
+            
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", false);
@@ -405,17 +409,22 @@ public class Player : MonoBehaviour
                 this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", true);
                 count = 0;
             }
+            state = 0;
         }
+    }
+
+    public Animator get_state()
+    {
+        return Anim;
     }
     IEnumerator FireBallHit()
     {
-     
-        GameObject temp;
-        temp = Instantiate(FireballHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
-        yield return new WaitForSeconds(2f);
+        GameObject temp = Instantiate(FireballHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
+        yield return new WaitForSeconds(1f);
         Destroy(temp);
         yield break;
     }
-    
-    
+
+
+
 }

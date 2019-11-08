@@ -47,7 +47,7 @@ public class DungeonEnterColliderScript : MonoBehaviour
        
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("던전입장");
+         
             DungeonSelecter.SetActive(true);
         }
     }

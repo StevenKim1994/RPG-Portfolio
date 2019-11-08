@@ -8,7 +8,6 @@ public class Fireball : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float RotationSpeed;
     [SerializeField] private float MoveSpeed;
-  
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -30,6 +29,5 @@ public class Fireball : MonoBehaviour
     }
 
   
-
 
 }

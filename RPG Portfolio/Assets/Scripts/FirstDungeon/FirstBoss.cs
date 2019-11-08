@@ -14,34 +14,37 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] private GameObject Fireball;
     [SerializeField] private GameObject Fireball_initPosition;
     [SerializeField] private GameObject CurseWall;
-    private int state; // 보스의 현재 상태 0 이면 초기 페이지 1이면 화남 페이지 2면 광폭화 페이지... 
-
-    private float timer = 0.0f;
-    private int waitTime;
+    [SerializeField] private GameObject Hiteffect_initPosition;
     [SerializeField] Transform position;
     [SerializeField] private NavMeshAgent nav;
     [SerializeField] private Transform target; // 유저의 좌표 값이 타겟이 됨...
     [SerializeField] private Animator anim;
+    [SerializeField] GameObject Range;
+    [SerializeField] GameObject Attack;
+    bool cocheck = false;
     Vector3 original_position;
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
+    private int state; // 보스의 현재 상태 0 이면 초기 페이지 1이면 화남 페이지 2면 광폭화 페이지... 
+    private float timer = 0.0f;
+    private int waitTime;
+
     private int ballcount = 0;
     ManagerSingleton MGR = new ManagerSingleton();
 
     private float TimeLeft = 1.0f;
     private float nextTime = 0.0f;
-
+    Transform temp;
     void Start()
     {
-   
+        temp = Hiteffect_initPosition.transform;
+        temp.transform.Translate(0, -10, 0);
         waitTime = 1;
         anim = this.gameObject.transform.GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         nav = this.gameObject.transform.GetComponent<NavMeshAgent>();
         state = 0;
-      
 
         original_position = this.gameObject.transform.position;
-
         InvokeRepeating("ShotFireball",2.5f,2.5f);
     }
 
@@ -49,9 +52,6 @@ public class FirstBoss : MonoBehaviour
     void Update()
     {
 
-       
-
-        
         if (hP <= 0)
         {
             timer += Time.deltaTime;
@@ -102,6 +102,12 @@ public class FirstBoss : MonoBehaviour
             {
                 nav.enabled = false;
                 anim.SetTrigger("Skill1");
+                if (cocheck == false)
+                {
+                    cocheck = true;
+                    StartCoroutine(AttackCall());
+                }
+               
             }
         }
         else
@@ -162,10 +168,13 @@ public class FirstBoss : MonoBehaviour
     {
         if (col.gameObject.tag == "User_Weapon")
         {
-            Instantiate(HitParticle,col.transform);
-            anim.SetTrigger("Hurt");
-            Set_HP(Get_HP() - 10f);
-            Debug.Log(Get_HP());
+            if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
+            {
+                Instantiate(HitParticle, temp);
+                anim.SetTrigger("Hurt");
+                Set_HP(Get_HP() - 10f);
+                Debug.Log(Get_HP());
+            }
         }
     }
 
@@ -178,4 +187,14 @@ public class FirstBoss : MonoBehaviour
         ballcount++;
     }
 
+    IEnumerator AttackCall()
+    {
+        GameObject temp = Instantiate(Attack, Range.transform);
+
+        yield return new WaitForSeconds(2f);
+        cocheck = false;
+        Destroy(temp);
+        yield break;
+        
+    }
 }

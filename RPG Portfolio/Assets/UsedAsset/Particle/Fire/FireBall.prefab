@@ -4679,6 +4679,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  RotationSpeed: 0
+  MoveSpeed: 0
+  FireballHitEffect: {fileID: 123640, guid: 9242b15a276bc5a4babd09239e5fa709, type: 3}
 --- !u!136 &8653576772595942845
 CapsuleCollider:
   m_ObjectHideFlags: 0
