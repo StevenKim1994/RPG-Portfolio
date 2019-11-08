@@ -6383,7 +6383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1206079243
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6424,7 +6424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b3707131798b34296b14784aa916eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoldIndicator: {fileID: 0}
 --- !u!114 &1206079245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6520,7 +6519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b3707131798b34296b14784aa916eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoldIndicator: {fileID: 1824787272}
 --- !u!1 &1233672460
 GameObject:
   m_ObjectHideFlags: 0
@@ -12201,7 +12199,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 2.3509886e-38}
+  m_BoundingSphereOverride: {x: 1.06e-43, y: 0.19140625, z: 0.046875, w: 0.03125}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

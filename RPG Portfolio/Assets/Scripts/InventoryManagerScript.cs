@@ -31,8 +31,9 @@ public class InventoryManagerScript : MonoBehaviour
     public void OpenInventory()
     {
         Inventory.gameObject.SetActive(true);
+        Inventory.transform.GetComponent<Inventory>().GoldSet();
 
-        //골드 현상황 변경하는 Delegate 함수 추가하기 ... 19.11.06
+      
     }
 
     public void SetTitleName(string _in)
@@ -53,6 +54,7 @@ public class InventoryManagerScript : MonoBehaviour
     public void SetGold(int _in)
     {
         this.Gold = _in;
+      
     }
 
     public int GetGold()

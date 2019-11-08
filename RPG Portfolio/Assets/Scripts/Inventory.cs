@@ -8,8 +8,8 @@ using UnityEngine.XR.WSA.Persistence;
 public class Inventory : MonoBehaviour
 {
     float distance = 10f;
-    [SerializeField]
-    private Text GoldIndicator;
+  
+    
     private ManagerSingleton MGR;
     public void OnMouseDrag()
     {
@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
 
     public void GoldSet()
     {
-        GoldIndicator.text = "Gold : " + MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().GetGold().ToString();
+        this.transform.GetChild(8).transform.GetChild(0).GetComponent<Text>().text = MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().GetGold().ToString();
     }
 
 }

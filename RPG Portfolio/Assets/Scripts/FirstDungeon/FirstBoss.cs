@@ -32,6 +32,7 @@ public class FirstBoss : MonoBehaviour
 
     void Start()
     {
+   
         waitTime = 1;
         anim = this.gameObject.transform.GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -55,9 +56,13 @@ public class FirstBoss : MonoBehaviour
         {
             timer += Time.deltaTime;
             Instantiate(DeadParticle, this.gameObject.transform);// 사망 이펙트
-            //MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>()
-            if(timer > waitTime)
-            Destroy(this.gameObject);
+
+
+            if (timer > waitTime)
+            {
+                MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().SetGold(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().GetGold() + 100); // 보스 킬시 유저의 인벤토리에 골드가 100+
+                Destroy(this.gameObject);
+            }
         }
       
         if (hP <= hP / 2)
@@ -69,7 +74,9 @@ public class FirstBoss : MonoBehaviour
 
         if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f)
         {
-            if (Time.time > nextTime)
+            CancelInvoke("ShotFireball"); // 가까이 도달하면 보스는 더이상 원거리 공격을 하지 않음.
+
+            if (Time.time > nextTime) // 보스 가까이에 있는 시간 카운트...
             {
                 //Debug.Log(count);
                 count++;
@@ -83,7 +90,7 @@ public class FirstBoss : MonoBehaviour
                 Debug.Log("발동!!!");
                 StartCoroutine(SpellCurseWall());//Instantiate(CurseWall, position.transform.localPosition, position.transform.rotation); //보스의 특정 광역스킬 발동
             }
-            CancelInvoke("ShotFireball");
+            
             nav.enabled = true;
             //Debug.Log("가까움");
             this.transform.LookAt(target);
@@ -94,19 +101,18 @@ public class FirstBoss : MonoBehaviour
             if(Vector3.Distance(this.gameObject.transform.position, target.transform.position) <6f)
             {
                 nav.enabled = false;
-                
-                // 공격 트리거가 실행될때는 이게 호출이 되면 안됨.
                 anim.SetTrigger("Skill1");
             }
-
-
-
+        }
+        else
+        {
+            count = 0; // 거리가 멀어지면 근접해 있는 시간 0으로 초기화함.
         }
         
         
        
     }
-    IEnumerator SpellCurseWall()
+    IEnumerator SpellCurseWall() // 근접해 있을때 특정시간마다 광역 스킬 사용 코루틴
     {
         
         GameObject temp = Instantiate(CurseWall, position.transform.localPosition, position.transform.rotation); //보스의 특정 광역스킬 발동
@@ -152,28 +158,18 @@ public class FirstBoss : MonoBehaviour
 
     }
 
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "User_Weapon")
-        {
-            Debug.Log("타격타격!");
-        }
-    }
-
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "User_Weapon")
         {
             Instantiate(HitParticle,col.transform);
-            Debug.Log("타격타격@");
             anim.SetTrigger("Hurt");
             Set_HP(Get_HP() - 10f);
             Debug.Log(Get_HP());
         }
     }
 
-    private void ShotFireball()
+    private void ShotFireball() // 원거리 공격
     {
 
         this.transform.LookAt(target);

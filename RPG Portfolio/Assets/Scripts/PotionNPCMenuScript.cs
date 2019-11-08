@@ -21,7 +21,7 @@ public class PotionNPCMenuScript : MonoBehaviour
         {          
             if(data[i]["Name"] != null)
             {
-                Debug.Log("생성");
+
                 input_temp = Instantiate(itemblock_prefeb,itemblock_parents.transform);
                 input_temp.transform.GetChild(1).GetComponent<Text>().text = data[i]["Name"].ToString() + "\n 가치 :" + data[i]["Value"].ToString();
                 input_temp.transform.GetChild(2).GetComponent<Text>().text = "종류: " + data[i]["Kind"].ToString() + "\n" + "회복량: " + data[i]["Increase"].ToString();
