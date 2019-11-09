@@ -33,8 +33,8 @@ public class Player : MonoBehaviour
 
     }
 
-    [SerializeField] private Sprite[] SkillSprite = new Sprite[10]; 
-
+    [SerializeField] private Sprite[] SkillSprite = new Sprite[10];
+    [SerializeField] GameObject Hitcanvas;
     delegate void RL();
     delegate void RR();
     FollowCamera FC = new FollowCamera();
@@ -359,6 +359,7 @@ public class Player : MonoBehaviour
             Anim.SetTrigger("Attacked");
             StartCoroutine(FireBallHit());
             Destroy(col.gameObject);
+            Instantiate(Hitcanvas);
             
         }
 
@@ -376,7 +377,7 @@ public class Player : MonoBehaviour
                 this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", false);
                 this.gameObject.transform.GetComponent<Animator>().SetTrigger("MeleeAttackStart");
                 Attack();
-                // Player.gameObject.transform.GetComponent<Animator>().SetBool("MeleeAttack", true);
+                
             }
 
             else if (!(Input.GetKey(KeyCode.Alpha1)))
@@ -387,11 +388,11 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
 
+                
                 Buff.Add(new Skill(SkillSprite[1], 1, "StrongBuffSkill", 0, 0, 10));
                 this.gameObject.transform.GetComponent<Animator>().SetTrigger("StrongBuffSkill");
-                //Instantiate(PowerUpSkillEffect, this.gameObject.transform);
-                Instantiate(PowerUpSkillEffect, this.gameObject.transform.localPosition, this.gameObject.transform.rotation);
-                
+
+                StartCoroutine(Skill2());
             }
         }
 
@@ -426,5 +427,14 @@ public class Player : MonoBehaviour
     }
 
 
+    IEnumerator Skill2()
+    {
+        GameObject temp = Instantiate(PowerUpSkillEffect, this.gameObject.transform.localPosition, this.gameObject.transform.rotation);
+        temp.transform.rotation = Quaternion.Euler(-90, 0, 0);
+
+        yield return new WaitForSeconds(2f);
+        Destroy(temp);
+        yield break;
+    }
 
 }

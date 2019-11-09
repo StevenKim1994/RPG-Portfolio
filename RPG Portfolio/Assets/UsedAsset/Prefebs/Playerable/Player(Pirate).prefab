@@ -1371,11 +1371,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Hitcanvas: {fileID: 339024576739363314, guid: 0696c7be2e7a5084da52ef7d2ea8a97c,
+    type: 3}
   Target_Frame: {fileID: 0}
   HitEffect: {fileID: 7319909386411553109, guid: 7563ed301dbe8f748ac2c0ff19f89b0a,
     type: 3}
-  FireballHitEffect: {fileID: 123640, guid: 9242b15a276bc5a4babd09239e5fa709, type: 3}
   PowerUpSkillEffect: {fileID: 173814, guid: 810eb771809ba56409dd29eab937ddb2, type: 3}
+  FireballHitEffect: {fileID: 123640, guid: 9242b15a276bc5a4babd09239e5fa709, type: 3}
   MoveSpeed: 3
   RotateSpeed: 100
 --- !u!136 &7544395167979352657

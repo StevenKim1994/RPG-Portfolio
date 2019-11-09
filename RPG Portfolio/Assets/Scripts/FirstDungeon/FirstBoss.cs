@@ -168,12 +168,14 @@ public class FirstBoss : MonoBehaviour
     {
         if (col.gameObject.tag == "User_Weapon")
         {
+          
             if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
             {
                 Instantiate(HitParticle, temp);
                 anim.SetTrigger("Hurt");
                 Set_HP(Get_HP() - 10f);
                 Debug.Log(Get_HP());
+                
             }
         }
     }
