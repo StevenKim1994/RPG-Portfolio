@@ -6,7 +6,7 @@ public class DungeonSelecterScript : MonoBehaviour
 {
     [SerializeField]
     GameObject DungeonSelecter;
-
+    
     public void ExitBtn()
     {
 

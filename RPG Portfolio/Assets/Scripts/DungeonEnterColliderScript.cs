@@ -48,7 +48,7 @@ public class DungeonEnterColliderScript : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
          
-            DungeonSelecter.SetActive(true);
+            DungeonSelecter.SetActive(true); // 여기서 부터 GameManager에서 각던전 클리어정보 보고 버튼 활성화 하는 기능 추가하기. 일어나면 여기부터!!! 19.11.09
         }
     }
 

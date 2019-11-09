@@ -7,9 +7,12 @@ public class GameManagerScript : MonoBehaviour
     string oldscene = null;
     private int state = 0;
     private Vector3 oldposition;
-
+    bool First;
+    bool Second;
+    bool Third;
     // Start is called before the first frame update
 
+   
     public void set_state()
     {
         state++;
@@ -33,5 +36,43 @@ public class GameManagerScript : MonoBehaviour
         return oldscene;
     }
 
+    public void Init_ClearInfo()
+    {
+        First = false;
+        Second = false;
+        Third = false;
+    }
     
+    public void Set_ClearInfo(int _num)
+    {
+        switch(_num) 
+        {
+            case 1:
+                First = true;
+                break;
+
+            case 2:
+                Second = true;
+                break;
+
+            case 3:
+                Third = true;
+                break;
+        }
+    }
+
+    public bool Get_FirstClearInfo()
+    {
+        return First;
+    }
+
+    public bool Get_SecondClearInfo()
+    {
+        return Second;
+    }
+
+    public bool Get_ThirdClearInf()
+    {
+        return Third;
+    }
 }
