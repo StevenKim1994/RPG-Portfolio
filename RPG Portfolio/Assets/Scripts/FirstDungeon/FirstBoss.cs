@@ -178,11 +178,11 @@ public class FirstBoss : MonoBehaviour
                 anim.SetTrigger("Hurt");
                 Set_HP(Get_HP() - 10f);
                 Debug.Log(Get_HP());
-                GameObject txtclone = Instantiate(floatingtext, this.gameObject.transform.position, Quaternion.Euler(Vector3.zero));
+                GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
                 txtclone.GetComponent<FloatingText>().text.text = "-10";
                 txtclone.transform.SetParent(GameObject.Find("UI").transform);
 
-                txtclone.transform.position = this.gameObject.transform.position;
+           
                 
                 
             }
