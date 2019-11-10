@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 public class FirstBoss : MonoBehaviour
 {
 
@@ -21,6 +22,8 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] GameObject Range;
     [SerializeField] GameObject Attack;
+    [SerializeField] GameObject floatingtext;
+    [SerializeField] GameObject floatingcanvas;
     bool cocheck = false;
     Vector3 original_position;
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
@@ -175,6 +178,12 @@ public class FirstBoss : MonoBehaviour
                 anim.SetTrigger("Hurt");
                 Set_HP(Get_HP() - 10f);
                 Debug.Log(Get_HP());
+                GameObject txtclone = Instantiate(floatingtext, this.gameObject.transform.position, Quaternion.Euler(Vector3.zero));
+                txtclone.GetComponent<FloatingText>().text.text = "-10";
+                txtclone.transform.SetParent(GameObject.Find("UI").transform);
+
+                txtclone.transform.position = this.gameObject.transform.position;
+                
                 
             }
         }
@@ -193,7 +202,7 @@ public class FirstBoss : MonoBehaviour
     {
         GameObject temp = Instantiate(Attack, Range.transform);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         cocheck = false;
         Destroy(temp);
         yield break;

@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     float y_pos = 0.0f;
 
     bool DoubleKey = false;
-    int state = 0; // 0 : idle 1 : attack 2 : hurt
+    public int state = 0; // 0 : idle 1 : attack 2 : hurt
     float CountRight = 0.0f;
     float CountLeft = 0.0f;
 
@@ -374,6 +374,7 @@ public class Player : MonoBehaviour
             
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
+              
                 this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", false);
                 this.gameObject.transform.GetComponent<Animator>().SetTrigger("MeleeAttackStart");
                 Attack();
@@ -382,6 +383,7 @@ public class Player : MonoBehaviour
 
             else if (!(Input.GetKey(KeyCode.Alpha1)))
             {
+               
                 this.gameObject.transform.GetComponent<Animator>().SetBool("MeleeAttack", false);
             }
 

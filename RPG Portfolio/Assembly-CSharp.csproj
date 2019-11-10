@@ -107,7 +107,6 @@
     <Compile Include="Assets\Scripts\ArmorNPCMenuScript.cs" />
     <Compile Include="Assets\Scripts\AutoParticleDestroyer.cs" />
     <Compile Include="Assets\Scripts\BlackSmithEnterColliderScript.cs" />
-    <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\CampEnterColliderScript.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectScene\CharacterSelectScript.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectScene\SelectSkillinfoScript.cs" />

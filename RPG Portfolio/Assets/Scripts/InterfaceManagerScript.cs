@@ -16,11 +16,14 @@ public class InterfaceManagerScript : MonoBehaviour
     GameObject SkillMgr;
     [SerializeField]
     GameObject InvenMgr;
+    [SerializeField]
+    GameObject FloatingTXT;
 
     void Start()
     {
         
     }
+
 
  
 
