@@ -12,7 +12,9 @@ public class Enum
         Player,
         Interface,
         Skill,
-        Game
+        Game,
+        JSON,
+        Audio
     }
 
     public enum Playerlist

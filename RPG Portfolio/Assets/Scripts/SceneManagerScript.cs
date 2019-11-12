@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneManagerScript : MonoBehaviour
 {
+    [SerializeField]
+    GameObject bgmPlayer;
+    ManagerSingleton MGR = new ManagerSingleton();
     public void EnterStartChurch()
     {
         LoadingSceneManagerScript.LoadScene("InChurchScene");
+            
     }
    public void EnterDungeonFirst()
     {
@@ -29,6 +33,8 @@ public class SceneManagerScript : MonoBehaviour
     public void EnterCamp()
     {
         LoadingSceneManagerScript.LoadScene("CampScene");
+            
+       
     }
     
     public void EnterNewGame()

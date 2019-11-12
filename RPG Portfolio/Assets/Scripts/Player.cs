@@ -350,7 +350,8 @@ public class Player : MonoBehaviour
             Destroy(col.gameObject);
             Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
             Anim.SetTrigger("Attacked");//Player의 타격 애니메이션 재생
-            
+            Instantiate(Hitcanvas);
+
         }
 
         if (col.gameObject.tag == "Enermy_Fireball")
