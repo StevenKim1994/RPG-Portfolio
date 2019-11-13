@@ -134,6 +134,7 @@
     <Compile Include="Assets\Scripts\Global\Enum.cs" />
     <Compile Include="Assets\Scripts\InChruchScene\DoorColliderScript.cs" />
     <Compile Include="Assets\Scripts\InterfaceManagerScript.cs" />
+    <Compile Include="Assets\Scripts\InvenItemUse.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\InventoryManagerScript.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />

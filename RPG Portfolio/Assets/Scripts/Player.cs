@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     delegate String ReturnOldScene();
 
     private ReturnOldPosition ReOldP;
-    
-   
+
+    [SerializeField] GameObject floatingtext; // 닉네임 직업 출력할 플로팅 텍스트 
     struct Skill // Pirate 스킬 정보 구조체
     {
         Sprite SkillSprite;

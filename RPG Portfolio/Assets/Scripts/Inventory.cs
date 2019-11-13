@@ -9,7 +9,7 @@ using UnityEngine.XR.WSA.Persistence;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] GameObject[] Block = new GameObject[6]; // 0 1 부터 맨위칸
-    private Item[] invenitem = new Item[6];
+    private List<Item> InvenItem = new List<Item>();
     
     private ManagerSingleton MGR;
     int count = 6; // 가방에 남은 공간
@@ -25,30 +25,43 @@ public class Inventory : MonoBehaviour
         this.transform.GetChild(8).transform.GetChild(0).GetComponent<Text>().text = MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().GetGold().ToString();
     }
 
-    public void Set_Block(int num, Item input)
+    public void Set_Block(Item input)
     {
-        if (count > 0)
-        {
-            Block[num].GetComponent<Image>().sprite = input.image; // 인벤토리 아이템칸 아이콘 변경
-            invenitem[6 - count] = input; // 해당 아이템 스크립트 내 저장
+        
+           
+
+            if (InvenItem.Count < 6) 
+            {
+                InvenItem.Add(input);
+                count = count - InvenItem.Count;
+
+             for(int i =0; i<6; i++)
+             {
+                Block[i].transform.GetComponent<Image>().sprite = null; // 사라진거 있을수 있으니 먼저 모든 이미지 삭제
+             }
+
+             for(int i =0; i<InvenItem.Count; i++)
+            {
+                Block[i].transform.GetComponent<Image>().sprite = InvenItem[i].image; // 다시 불러오기
+            }
+            }
 
 
-        }
+            else // 가방이 가득찼을 경우
+            {
+                Debug.Log("Inventory is Full");
 
-        else // 가방이 가득찼을 경우
-        {
-            Debug.Log("Inventory is Full");
-
-        }
+            }
         
 
     }
 
     public Item Get_Block(int num)
     {
-        return invenitem[num];
+        return InvenItem[num];
     }
 
+   
    
 
 
