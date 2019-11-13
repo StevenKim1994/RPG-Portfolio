@@ -31,48 +31,31 @@ public class SecondBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Vector3.Distance(this.gameObject.transform.position, target.transform.position).ToString());
-        if (hP <= hP / 2)
-            state = 1;
+        this.gameObject.transform.LookAt(target.transform);
+        nav.SetDestination(target.transform.position); // 플레이어의 위치로 nav의 목적지를 지정함.
+    
+       
+        anim.SetBool("Running", true);
+        nav.enabled = true;
 
-        if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f)
+        if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 15f) // 보스와 플레이어의 거리가 일정 거리이면
         {
-            nav.enabled = true;
             Debug.Log("가까움");
-            this.transform.LookAt(target);
-            count++;
-
-
-            anim.SetBool("Running", true);
-            nav.SetDestination(target.transform.position); // 따라가기...
-
-            if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) < 6f)
-            {
-                nav.enabled = false;
-
-                // 공격 트리거가 실행될때는 이게 호출이 되면 안됨.
-                anim.SetTrigger("Skill1");
-            }
-
-            else
-            {
-                // 거리가 멀어지면 트리거종료...
-            }
-
-
+          
+            
+             nav.enabled = false;
+             anim.SetTrigger("Skill1");
+                
+                 
+            
 
         }
+        
         else
         {
-            count = 0; // 거리가 멀어지면 시간은 0으로 초기화시킨다.
-            nav.SetDestination(original_position); // 다시 원래 위치로 돌아간다.
-            if ((Vector3.Distance(this.gameObject.transform.position, original_position) < 3f)) // 다시 원래 위치이면??...
-            {
-                Debug.Log("아이들상태로");
-                anim.SetBool("Running", false);
-            }
-
+            
         }
+      
     }
 
     public void Set_HP(float _in)
@@ -110,9 +93,12 @@ public class SecondBoss : MonoBehaviour
 
     }
 
-    private void OnMouseDown() // 마우스 클릭시 대상의 초상화 정보 이 보스로 변경...
+    private void OnCollisionEnter(Collision collision)
     {
-
+        if(collision.transform.tag == "Damage_Obstacle") // 만약 충돌한 대상이 장애물이라면!
+        {
+            // 지속 데미지 및 이동속도 느리게 하는 부분
+        }
     }
 
 }

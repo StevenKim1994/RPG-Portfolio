@@ -136,6 +136,7 @@
     <Compile Include="Assets\Scripts\InterfaceManagerScript.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\InventoryManagerScript.cs" />
+    <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\ItemTableScript.cs" />
     <Compile Include="Assets\Scripts\JSONManagerScript.cs" />
     <Compile Include="Assets\Scripts\LoadingSceneManagerScript.cs" />

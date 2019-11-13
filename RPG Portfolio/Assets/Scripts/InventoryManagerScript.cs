@@ -62,4 +62,9 @@ public class InventoryManagerScript : MonoBehaviour
         return this.Gold;
     }
 
+    public GameObject GetInven()
+    {
+        return Inventory;
+    }
+    
 }

@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     float HP = 1000000f;
     float MP = 50000f;
 
+    public int HPPo = 0;
+    public int MPPo = 0;
     float Rotate = 0.0f;
     float x_pos = 0.0f;
     float y_pos = 0.0f;

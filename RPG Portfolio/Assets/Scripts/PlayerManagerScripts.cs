@@ -21,6 +21,8 @@ public class PlayerManagerScripts : MonoBehaviour
     private Vector3 oldposition;
     private GameObject target;
 
+    private int HPPo = 0;
+    private int MPPo = 0;
     public GameObject Get_Target()
     {
         return target;
@@ -127,5 +129,27 @@ public class PlayerManagerScripts : MonoBehaviour
     public Vector3 Get_OldPosition()
     {
         return oldposition;
+    }
+
+    public int Get_HPPo()
+    {
+        return HPPo;
+    }
+
+    public void Set_HPPo(int _in)
+    {
+        HPPo = _in;
+        // UI부분에도 갯수 업데이트시키기...
+    }
+
+    public int Get_MPPo()
+    {
+        return MPPo;
+        // UI부분에도 갯수 업데이트 시키기.
+    }
+
+    public void Set_MPPo(int _in)
+    {
+        MPPo = _in;
     }
 }
