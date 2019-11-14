@@ -88,7 +88,6 @@
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\ReverseNormals.cs" />
     <Compile Include="Assets\Particle Ribbon by Moonflower Carnivore\Scripts\rotation.cs" />
     <Compile Include="Assets\PyroParticles\Demo\DemoScript.cs" />
-    <Compile Include="Assets\PyroParticles\Demo\DemoScriptEditor.cs" />
     <Compile Include="Assets\PyroParticles\Prefab\Script\FireBaseScript.cs" />
     <Compile Include="Assets\PyroParticles\Prefab\Script\FireCollisionForwardScript.cs" />
     <Compile Include="Assets\PyroParticles\Prefab\Script\FireConstantBaseScript.cs" />
@@ -108,7 +107,9 @@
     <Compile Include="Assets\Scripts\AudioManagerScript.cs" />
     <Compile Include="Assets\Scripts\AutoParticleDestroyer.cs" />
     <Compile Include="Assets\Scripts\BlackSmithEnterColliderScript.cs" />
+    <Compile Include="Assets\Scripts\Buffbar.cs" />
     <Compile Include="Assets\Scripts\CampEnterColliderScript.cs" />
+    <Compile Include="Assets\Scripts\CharacterInfo.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectScene\CharacterSelectScript.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectScene\SelectSkillinfoScript.cs" />
     <Compile Include="Assets\Scripts\CharacterSelectScene\UIInitialize.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Assets\Scripts\FrameScript.cs" />
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
     <Compile Include="Assets\Scripts\Global\Enum.cs" />
+    <Compile Include="Assets\Scripts\GrandMasterNPCScript.cs" />
     <Compile Include="Assets\Scripts\InChruchScene\DoorColliderScript.cs" />
     <Compile Include="Assets\Scripts\InterfaceManagerScript.cs" />
     <Compile Include="Assets\Scripts\InvenItemUse.cs" />

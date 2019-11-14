@@ -27,6 +27,14 @@ public class UIInitialize : MonoBehaviour
     {
         for (int i = 0; i < UIcount; i++)
         {
+            if(UI.gameObject.transform.GetChild(i).gameObject.name.ToString() == "Bank")
+            {
+                continue;
+            }
+            if(UI.gameObject.transform.GetChild(i).gameObject.name.ToString() == "Tooltip")
+            {
+                continue;
+            }
             if (UI.gameObject.transform.GetChild(i).gameObject.name.ToString() == "Inventory")
             {
                 continue;

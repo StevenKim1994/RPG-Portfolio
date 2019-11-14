@@ -75,4 +75,9 @@ public class GameManagerScript : MonoBehaviour
     {
         return Third;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

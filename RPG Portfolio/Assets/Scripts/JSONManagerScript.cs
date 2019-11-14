@@ -61,7 +61,9 @@ public class JSONManagerScript : MonoBehaviour
         JsonData SaveJson = JsonMapper.ToJson(SaveDataList);
  
         File.WriteAllText(Application.dataPath + "/Resources/PlayerData.json",SaveJson.ToString());
-        Debug.Log("Success");    
+        Debug.Log("Success");
+
+        MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Game).transform.GetComponent<GameManagerScript>().QuitGame(); // 게임종료
     }
 
     public void Load()

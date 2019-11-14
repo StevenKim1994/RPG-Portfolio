@@ -10,6 +10,10 @@ public class InventoryManagerScript : MonoBehaviour
     GameObject Inventory;
     [SerializeField]
     GameObject InvenName;
+    [SerializeField]
+    GameObject Tooltip;
+    [SerializeField]
+    GameObject Bank;
 
     [SerializeField] private GameObject Root;
 
@@ -19,6 +23,7 @@ public class InventoryManagerScript : MonoBehaviour
     
     private void Start()
     {
+        Tooltip.SetActive(false);
         Gold = 0;
 
     }
@@ -67,4 +72,13 @@ public class InventoryManagerScript : MonoBehaviour
         return Inventory;
     }
     
+    public void OpenBank()
+    {
+        Bank.SetActive(true);
+    }
+
+    public void CloseBank()
+    {
+        Bank.SetActive(false);
+    }
 }
