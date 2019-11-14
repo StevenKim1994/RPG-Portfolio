@@ -7,14 +7,17 @@ public class SecondBoss : MonoBehaviour
 {
     [SerializeField] private float hP;
     [SerializeField] private float mP;
-    private int state;
-
+    [SerializeField] private GameObject HitParticle;
+    [SerializeField] private GameObject floatingtext;
+    [SerializeField] private GameObject floatingcanvas;
     [SerializeField] private NavMeshAgent nav;
     [SerializeField] private Transform target; // 유저의 좌표 값이 타겟이 됨...
     [SerializeField] private Animator anim;
-    Vector3 original_position;
+    [SerializeField] private GameObject Skill1Range; // 스킬1 사용시 나올 BoxCollider
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
-
+    bool cocheck = false;
+    Vector3 original_position;
+    int state;
     void Start()
     {
         anim = this.gameObject.transform.GetComponent<Animator>();
@@ -38,14 +41,19 @@ public class SecondBoss : MonoBehaviour
         anim.SetBool("Running", true);
         nav.enabled = true;
 
-        if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 15f) // 보스와 플레이어의 거리가 일정 거리이면
+        if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 9f) // 보스와 플레이어의 거리가 일정 거리이면
         {
             Debug.Log("가까움");
           
             
              nav.enabled = false;
              anim.SetTrigger("Skill1");
-                
+
+            if (cocheck == false)
+            {
+                cocheck = true;
+                StartCoroutine(Skill1Attack()); // 공격 범위 생성 코루틴 .. ( 범위 콜라이더 생성 1초후 Destroy )
+            }
                  
             
 
@@ -98,6 +106,37 @@ public class SecondBoss : MonoBehaviour
         if(collision.transform.tag == "Damage_Obstacle") // 만약 충돌한 대상이 장애물이라면!
         {
             // 지속 데미지 및 이동속도 느리게 하는 부분
+        }
+    }
+    IEnumerator Skill1Attack()
+    {
+        GameObject temp = Instantiate(Skill1Range, this.gameObject.transform); // 스킬1 콜라이더 생성 
+
+        yield return new WaitForSeconds(5f);
+        cocheck = false;
+        Destroy(temp);
+        yield break;
+
+    }
+    private void OnTriggerEnter(Collider col) // 여기 계속 수정해야함 19.11.14;
+    {
+        if (col.gameObject.tag == "User_Weapon")
+        {
+
+            if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
+            {
+                Instantiate(HitParticle, this.gameObject.transform);
+                //anim.SetTrigger("Hurt");
+                Set_HP(Get_HP() - 10f);
+                Debug.Log(Get_HP());
+                GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
+                txtclone.GetComponent<FloatingText>().text.text = "-10";
+                txtclone.transform.SetParent(GameObject.Find("UI").transform);
+
+
+
+
+            }
         }
     }
 
