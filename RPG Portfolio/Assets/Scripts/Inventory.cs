@@ -10,14 +10,15 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] GameObject[] Block = new GameObject[6]; // 0 1 부터 맨위칸
     private List<Item> InvenItem = new List<Item>();
-    
+    private Sprite temp;
     private ManagerSingleton MGR;
     int count = 6; // 가방에 남은 공간
-  
+
     void Start()
     {
         MGR = new ManagerSingleton();
         GoldSet();
+        temp = Block[0].GetComponent<Image>().sprite;
     }
 
     public void GoldSet()
@@ -27,17 +28,17 @@ public class Inventory : MonoBehaviour
 
     public void Set_Block(Item input)
     {
-        
-           
 
-            if (InvenItem.Count < 6) 
+
+
+            if (InvenItem.Count < 6)
             {
                 InvenItem.Add(input);
                 count = count - InvenItem.Count;
 
              for(int i =0; i<6; i++)
              {
-                Block[i].transform.GetComponent<Image>().sprite = null; // 사라진거 있을수 있으니 먼저 모든 이미지 삭제
+                Block[i].transform.GetComponent<Image>().sprite = temp; // 사라진거 있을수 있으니 먼저 모든 이미지 비어있는 이미지로.
              }
 
              for(int i =0; i<InvenItem.Count; i++)
@@ -52,7 +53,7 @@ public class Inventory : MonoBehaviour
                 Debug.Log("Inventory is Full");
 
             }
-        
+
 
     }
 
@@ -61,8 +62,11 @@ public class Inventory : MonoBehaviour
         return InvenItem[num];
     }
 
-   
-   
+    public int InventoryCount()
+    {
+        return count;
+    }
+
 
 
 

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class InvenItemUse : MonoBehaviour
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    // Start is called before the first frame update
+
+    [SerializeField] GameObject tooltipUI;
     public void UseItem()
     {
         ManagerSingleton MGR = new ManagerSingleton();
@@ -44,4 +46,16 @@ public class InvenItemUse : MonoBehaviour
         }
 
     }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("마우스오버!");
+        tooltipUI.SetActive(true);
+        tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = "마우스오버!!";
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        tooltipUI.SetActive(false);
+    }
+
 }

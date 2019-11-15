@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class InventoryManagerScript : MonoBehaviour
 {
-  
-   
+
+
     [SerializeField]
     GameObject Inventory;
     [SerializeField]
@@ -20,11 +20,11 @@ public class InventoryManagerScript : MonoBehaviour
 
     private int Gold;
 
-    
+
     private void Start()
     {
         Tooltip.SetActive(false);
-        Gold = 0;
+        Gold = 10;
 
     }
     public void ExitInventory()
@@ -38,7 +38,7 @@ public class InventoryManagerScript : MonoBehaviour
         Inventory.gameObject.SetActive(true);
         Inventory.transform.GetComponent<Inventory>().GoldSet();
 
-      
+
     }
 
     public void SetTitleName(string _in)
@@ -59,7 +59,7 @@ public class InventoryManagerScript : MonoBehaviour
     public void SetGold(int _in)
     {
         this.Gold = _in;
-      
+
     }
 
     public int GetGold()
@@ -71,7 +71,7 @@ public class InventoryManagerScript : MonoBehaviour
     {
         return Inventory;
     }
-    
+
     public void OpenBank()
     {
         Bank.SetActive(true);

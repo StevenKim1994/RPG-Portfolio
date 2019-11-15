@@ -203,6 +203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f120dad3889c58842a8aa09da717bb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemicon:
+  - {fileID: 21300000, guid: 498ca973ebe301c4693a43026d68c152, type: 3}
+  - {fileID: 21300000, guid: 30208610c388a494996ad610f0edc1fc, type: 3}
+  - {fileID: 21300000, guid: ada06311387d0ee4782655c0088696bb, type: 3}
   itemblock_prefeb: {fileID: 2024691188615705346, guid: 2eb64ecc7cdd4634c953486d3ee60f92,
     type: 3}
   itemblock: {fileID: 0}

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-   
+
+    [SerializeField] GameObject tooltipUI;
        public Item(Sprite _image, bool _isempty, int _kind, string _name, int _value, float _damage, float _speed, float _armor, int _num)
         {
             image = _image;
@@ -28,5 +29,5 @@ public class Item : MonoBehaviour
         public float armor;
         public int num;
 
-    
+
 }
