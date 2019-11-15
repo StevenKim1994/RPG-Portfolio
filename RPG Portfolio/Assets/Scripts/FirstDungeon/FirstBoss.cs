@@ -27,7 +27,7 @@ public class FirstBoss : MonoBehaviour
     bool cocheck = false;
     Vector3 original_position;
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
-    private int state; // 보스의 현재 상태 0 이면 초기 페이지 1이면 화남 페이지 2면 광폭화 페이지... 
+    private int state; // 보스의 현재 상태 0 이면 초기 페이지 1이면 화남 페이지 2면 광폭화 페이지...
     private float timer = 0.0f;
     private int waitTime;
 
@@ -48,6 +48,7 @@ public class FirstBoss : MonoBehaviour
         state = 0;
 
         original_position = this.gameObject.transform.position;
+        if(this.gameObject.transform.name == "FirstBoss")
         InvokeRepeating("ShotFireball",2.5f,2.5f);
     }
 
@@ -67,7 +68,7 @@ public class FirstBoss : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-      
+
         if (hP <= hP / 2)
         {
             state = 1; // 화남페이지
@@ -77,7 +78,8 @@ public class FirstBoss : MonoBehaviour
 
         if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f)
         {
-            CancelInvoke("ShotFireball"); // 가까이 도달하면 보스는 더이상 원거리 공격을 하지 않음.
+            if (this.gameObject.transform.name == "FirstBoss")
+                CancelInvoke("ShotFireball"); // 가까이 도달하면 보스는 더이상 원거리 공격을 하지 않음.
 
             if (Time.time > nextTime) // 보스 가까이에 있는 시간 카운트...
             {
@@ -86,21 +88,23 @@ public class FirstBoss : MonoBehaviour
                 nextTime = Time.time + TimeLeft;
 
             }
-
-            if (count >= 10) //보스와 플레이어와 거리가 가까운채로 10초이상일때 보스의 특별한 스킬발동...
+            if (this.gameObject.transform.name == "FirstBoss")
             {
-                count = 0;
-                Debug.Log("발동!!!");
-                StartCoroutine(SpellCurseWall());//Instantiate(CurseWall, position.transform.localPosition, position.transform.rotation); //보스의 특정 광역스킬 발동
+                if (count >= 10) //보스와 플레이어와 거리가 가까운채로 10초이상일때 보스의 특별한 스킬발동...
+                {
+                    count = 0;
+                    Debug.Log("발동!!!");
+                    StartCoroutine(SpellCurseWall());//Instantiate(CurseWall, position.transform.localPosition, position.transform.rotation); //보스의 특정 광역스킬 발동
+                }
             }
-            
+
             nav.enabled = true;
             //Debug.Log("가까움");
             this.transform.LookAt(target);
-           
+
             anim.SetBool("Running", true);
             nav.SetDestination(target.transform.position); // 따라가기...
-            
+
             if(Vector3.Distance(this.gameObject.transform.position, target.transform.position) <6f)
             {
                 nav.enabled = false;
@@ -110,23 +114,23 @@ public class FirstBoss : MonoBehaviour
                     cocheck = true;
                     StartCoroutine(AttackCall());
                 }
-               
+
             }
         }
         else
         {
             count = 0; // 거리가 멀어지면 근접해 있는 시간 0으로 초기화함.
         }
-        
-        
-       
+
+
+
     }
     IEnumerator SpellCurseWall() // 근접해 있을때 특정시간마다 광역 스킬 사용 코루틴
     {
-        
+
         GameObject temp = Instantiate(CurseWall, position.transform.localPosition, position.transform.rotation); //보스의 특정 광역스킬 발동
         temp.transform.rotation = Quaternion.Euler(-90, 0, 0);
-        
+
         yield return new WaitForSeconds(5f);
         Destroy(temp);
         yield break;
@@ -171,7 +175,7 @@ public class FirstBoss : MonoBehaviour
     {
         if (col.gameObject.tag == "User_Weapon")
         {
-          
+
             if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
             {
                 Instantiate(HitParticle, temp);
@@ -182,9 +186,9 @@ public class FirstBoss : MonoBehaviour
                 txtclone.GetComponent<FloatingText>().text.text = "-10";
                 txtclone.transform.SetParent(GameObject.Find("UI").transform);
 
-           
-                
-                
+
+
+
             }
         }
     }
@@ -206,6 +210,6 @@ public class FirstBoss : MonoBehaviour
         cocheck = false;
         Destroy(temp);
         yield break;
-        
+
     }
 }

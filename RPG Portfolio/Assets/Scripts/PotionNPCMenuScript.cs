@@ -119,7 +119,7 @@ public class PotionNPCMenuScript : MonoBehaviour
     {
         WarnningGOLD.SetActive(true);
         // UI on
-        WarnningGOLD.layer = 0;
+
         yield return new WaitForSeconds(1f);
 
         //  UI off
