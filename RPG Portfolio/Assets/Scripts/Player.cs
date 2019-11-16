@@ -10,29 +10,10 @@ public class Player : MonoBehaviour
     delegate String ReturnOldScene();
 
     private ReturnOldPosition ReOldP;
-
+    [SerializeField] GameObject bb;
     [SerializeField] GameObject floatingtext; // 닉네임 직업 출력할 플로팅 텍스트
-    struct Skill // Pirate 스킬 정보 구조체
-    {
-        Sprite SkillSprite;
-        int Num;
-        string SkillName;
-        float Damage;
-        float Speed;
-        int Duration;
-
-        public Skill(Sprite _sprite,int _num, string _skillName, float _damage, float _speed, int _duration)
-        {
-            this.SkillSprite = _sprite;
-            this.Num = _num;
-            this.SkillName = _skillName;
-            this.Damage = _damage;
-            this.Speed = _speed;
-            this.Duration = _duration;
-        }
-
-    }
-
+    [SerializeField] GameObject Bullet;
+    [SerializeField] GameObject BulletPosition;
     [SerializeField] private Sprite[] SkillSprite = new Sprite[10];
     [SerializeField] GameObject Hitcanvas;
     delegate void RL();
@@ -41,8 +22,8 @@ public class Player : MonoBehaviour
     RL rl;
     RR rr;
     ManagerSingleton MGR = new ManagerSingleton();
+    UISingleton UI = new UISingleton();
     private GameObject GameMgr;
-    private List<Skill> Buff = new List<Skill>();
     private Animator Anim;
     private bool MoveFlag = false;
 
@@ -59,7 +40,9 @@ public class Player : MonoBehaviour
 
     float HP = 100f;
     float MP = 100f;
-
+    float timer;
+    float waittime;
+    GameObject temp;
     public int HPPo = 0;
     public int MPPo = 0;
     float Rotate = 0.0f;
@@ -173,7 +156,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        bb = UI.Get_Instance().transform.GetChild(3).gameObject;
         ReturnOldScene d_s = new GameManagerScript().Get_OldScene;
         ReturnOldPosition d_p = new PlayerManagerScripts().Get_OldPosition;
 
@@ -207,8 +190,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       /* timer += Time.deltaTime;
 
-        if(Target != null)
+        if (timer > waittime)
+        {
+            if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP()< 100)
+                MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() + 1);
+        }*/ //마나리젠
+
+
+        if (Target != null)
         {
             Target_Frame.SetActive(true);
         }
@@ -394,12 +385,63 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
 
+                if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() >= 20) // 플레이어의 마나가 20이상일때
+                {
+                    bb.transform.GetComponent<Buffbar>().BuffOn(1); // 버프창에 아이콘추가함.
+                    this.gameObject.transform.GetComponent<Animator>().SetTrigger("StrongBuffSkill");
+                    MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() - 20);
+                    StartCoroutine(Skill2());
+                    StartCoroutine(SpeedUP());
+                }
 
-                Buff.Add(new Skill(SkillSprite[1], 1, "StrongBuffSkill", 0, 0, 10));
-                this.gameObject.transform.GetComponent<Animator>().SetTrigger("StrongBuffSkill");
-
-                StartCoroutine(Skill2());
             }
+
+            if(Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() >= 10) // 플레이어의 마나가 10이상일때
+                {
+                    if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target() != null) // 타겟이 지정되어있을때만
+                    {
+
+                        this.gameObject.transform.GetComponent<Animator>().SetTrigger("GunFireSkill");
+                        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() - 10);
+                        Instantiate(Bullet, BulletPosition.transform);
+                    }
+                }
+            }
+
+            if(Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                Debug.Log("HP물약사용!");
+                if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_HPPo() > 0)
+                {
+
+                    MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP()+5f);
+                    if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() >= 100)
+                    {
+                        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(100);
+                    }
+                    MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Set_HPPo(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_HPPo() - 1);
+                    MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().HPPoSet();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                Debug.Log("MP물약사용!");
+                if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_MPPo() > 0)
+                {
+                    MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() + 5f);
+                    if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() >=100)
+                    {
+                        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(100);
+                    }
+                    MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Set_MPPo(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_MPPo() - 1);
+                    MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().MPPoSet();
+                }
+            }
+
+
         }
 
         void Attack()
@@ -440,6 +482,17 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         Destroy(temp);
+        yield break;
+    }
+
+    IEnumerator SpeedUP()
+    {
+        this.gameObject.transform.GetComponent<TrailRenderer>().enabled = true;
+        MoveSpeed += 3f;
+
+        yield return new WaitForSeconds(10f);
+        this.gameObject.transform.GetComponent<TrailRenderer>().enabled = false;
+        MoveSpeed -= 3f;
         yield break;
     }
 

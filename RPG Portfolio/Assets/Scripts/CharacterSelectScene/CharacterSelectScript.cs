@@ -38,7 +38,7 @@ public class CharacterSelectScript : MonoBehaviour
     [SerializeField]
     InputField nickname;
 
-    
+
 
     int count = 0;
     Vector3 initPosition;
@@ -52,7 +52,7 @@ public class CharacterSelectScript : MonoBehaviour
     void Start()
     {
 
-  
+
         PM = Managers[(int)Enum.Managerlist.Player].GetComponent<PlayerManagerScripts>();
         SM = Managers[(int) Enum.Managerlist.Scene].GetComponent<SceneManagerScript>();
 
@@ -65,12 +65,12 @@ public class CharacterSelectScript : MonoBehaviour
             skill[i].transform.GetComponent<Image>().sprite = PirateSKILL[i];
 
         skill_description.transform.GetComponent<Text>().text = "기본적인 해적의 근접공격 스킬, 연속으로 사용시 연타모션을 취한다.";
-        
+
         camera.transform.position = initPosition;
 
         previous.gameObject.SetActive(false);
 
-     
+
     }
 
     public void nextPosition()
@@ -84,13 +84,13 @@ public class CharacterSelectScript : MonoBehaviour
             case 0:
                 job.GetComponent<Text>().text = "해적";
                 skill_description.transform.GetComponent<Text>().text = "기본적인 해적의 근접공격 스킬, 연속으로 사용시 연타모션을 취한다.";
-        
+
                 break;
 
             case 1:
                 job.GetComponent<Text>().text = "바바리안";
                 skill_description.transform.GetComponent<Text>().text = "기본적인 해적의 근접공격 스킬, 연속으로 사용시 연타모션을 취한다.";
-        
+
                 break;
 
             case 2:
@@ -98,7 +98,7 @@ public class CharacterSelectScript : MonoBehaviour
                 break;
         }
 
-        
+
 
         if (count == 2)
         {
@@ -176,10 +176,10 @@ public class CharacterSelectScript : MonoBehaviour
         }
 
         Managers[3].transform.GetComponent<PlayerManagerScripts>().Save_Name(nickname.text);
-      
-       
+
+
         SM.EnterStartChurch();
-   
+
         // FadeIn 후 씬이동... 추가하기...
     }
 
@@ -198,7 +198,7 @@ public class CharacterSelectScript : MonoBehaviour
             case 2:
                 skill_description.transform.GetComponent<Text>().text = "마법사의 기본 공격 스킬";
                 break;
-                
+
         }
     }
 
@@ -207,7 +207,7 @@ public class CharacterSelectScript : MonoBehaviour
         switch (count)
         {
             case 0:
-                skill_description.transform.GetComponent<Text>().text = "해적의 버프스킬";
+                skill_description.transform.GetComponent<Text>().text = "해적의 버프스킬, 10초간 이동속도를 3만큼 증가시킨다. 마나 20 소모";
                 break;
 
             case 1:
@@ -223,6 +223,21 @@ public class CharacterSelectScript : MonoBehaviour
 
     public void SKILL3INFO()
     {
+        switch (count)
+        {
+            case 0:
+                skill_description.transform.GetComponent<Text>().text = "해적의 원거리 스킬, 지정한 대상에게 독폭탄을 던진다. 마나 10 소모";
+                break;
 
+            case 1:
+                skill_description.transform.GetComponent<Text>().text = "바바리안의 버프스킬";
+                break;
+
+            case 2:
+                skill_description.transform.GetComponent<Text>().text = "마법사의 버프스킬";
+                break;
+
+
+        }
     }
 }

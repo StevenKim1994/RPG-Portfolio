@@ -19,6 +19,7 @@ TagManager:
   - Enermy_Fireball
   - Monster_Weapon
   - Damage_Obstacle
+  - User_Bullet
   layers:
   - Default
   - TransparentFX

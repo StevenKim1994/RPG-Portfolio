@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class Buffbar : MonoBehaviour
 {
     [SerializeField]
+    Sprite[] BuffIcon = new Sprite[3];
+    [SerializeField]
     GameObject[] Buff = new GameObject[5];
     int count = 0;
 
@@ -17,9 +19,12 @@ public class Buffbar : MonoBehaviour
         }
     }
 
-    public void BuffOn()
+    public void BuffOn(int num)
     {
-
+        if(num == 1)
+        {
+            StartCoroutine(BuffStart(BuffIcon[0], 10f));
+        }
     }
 
 
@@ -31,6 +36,7 @@ public class Buffbar : MonoBehaviour
         count++;
         yield return new WaitForSeconds(_time);
         Buff[temp].SetActive(false);
+        count--;
         yield break;
     }
 }

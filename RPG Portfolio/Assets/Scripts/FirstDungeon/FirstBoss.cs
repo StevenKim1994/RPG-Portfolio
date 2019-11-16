@@ -24,6 +24,7 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] GameObject Attack;
     [SerializeField] GameObject floatingtext;
     [SerializeField] GameObject floatingcanvas;
+    GameObject skilltemp;
     bool cocheck = false;
     Vector3 original_position;
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
@@ -65,6 +66,7 @@ public class FirstBoss : MonoBehaviour
             if (timer > waitTime)
             {
                 MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().SetGold(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().GetGold() + 100); // 보스 킬시 유저의 인벤토리에 골드가 100+
+                Destroy(skilltemp);
                 Destroy(this.gameObject);
             }
         }
@@ -128,11 +130,11 @@ public class FirstBoss : MonoBehaviour
     IEnumerator SpellCurseWall() // 근접해 있을때 특정시간마다 광역 스킬 사용 코루틴
     {
 
-        GameObject temp = Instantiate(CurseWall, position.transform.localPosition, position.transform.rotation); //보스의 특정 광역스킬 발동
-        temp.transform.rotation = Quaternion.Euler(-90, 0, 0);
+       skilltemp = Instantiate(CurseWall, position.transform.localPosition, position.transform.rotation); //보스의 특정 광역스킬 발동
+        skilltemp.transform.rotation = Quaternion.Euler(-90, 0, 0);
 
         yield return new WaitForSeconds(5f);
-        Destroy(temp);
+        Destroy(skilltemp);
         yield break;
     }
 
@@ -178,7 +180,11 @@ public class FirstBoss : MonoBehaviour
 
             if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
             {
-                Instantiate(HitParticle, temp);
+                if(this.gameObject.name == "FirstBoss")
+                    Instantiate(HitParticle, temp);
+                else
+                 Instantiate(HitParticle, this.gameObject.transform);
+
                 anim.SetTrigger("Hurt");
                 Set_HP(Get_HP() - 10f);
                 Debug.Log(Get_HP());
@@ -190,6 +196,22 @@ public class FirstBoss : MonoBehaviour
 
 
             }
+        }
+
+        if(col.gameObject.tag == "User_Bullet")
+        {
+
+            if (this.gameObject.name == "FirstBoss")
+                Instantiate(HitParticle, temp);
+            else
+                Instantiate(HitParticle, this.gameObject.transform);
+
+            anim.SetTrigger("Hurt");
+            Set_HP(Get_HP() - 5f);
+            GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
+            txtclone.GetComponent<FloatingText>().text.text = "-5";
+            txtclone.transform.SetParent(GameObject.Find("UI").transform);
+            Destroy(col.gameObject);
         }
     }
 
@@ -216,7 +238,7 @@ public class FirstBoss : MonoBehaviour
     private void OnMouseDown()
     {
         MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Set_Target(this.gameObject);
-        
+
 
     }
 }
