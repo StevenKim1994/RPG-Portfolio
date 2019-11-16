@@ -6,6 +6,7 @@ public class Buffbar : MonoBehaviour
 {
     [SerializeField]
     GameObject[] Buff = new GameObject[5];
+    int count = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +17,20 @@ public class Buffbar : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BuffOn()
     {
-        
+
+    }
+
+
+    IEnumerator BuffStart(Sprite _image, float _time)
+    {
+        int temp = count;
+        Buff[count].SetActive(true);
+        Buff[count].gameObject.transform.GetComponent<Image>().sprite = _image;
+        count++;
+        yield return new WaitForSeconds(_time);
+        Buff[temp].SetActive(false);
+        yield break;
     }
 }

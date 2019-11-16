@@ -17,13 +17,13 @@ public class PotionNPCMenuScript : MonoBehaviour
     int value;
     int kind; // 0 이면 무기 1 이면 방어구 3 HP물약 4 MP물약
     float increase; // Item 클래스 생성자에는 물약의 회복량은 데미지로 들어감.
-
+    string desc;
     ManagerSingleton MGR = new ManagerSingleton();
     UISingleton UI = new UISingleton();
     void Start()
     {
 
-        WarnningGOLD = UI.Get_Instance().transform.GetChild(12).gameObject;
+
         List<Dictionary<string, object>> data = CSVReaderScript.Read("potion_table");
 
         for (var i = 0; i < data.Count; i++)
@@ -42,7 +42,8 @@ public class PotionNPCMenuScript : MonoBehaviour
                     kind = 3;
                     value = int.Parse(data[i]["Value"].ToString());
                     increase = float.Parse(data[i]["Increase"].ToString());
-                    Item temp = new Item(HPIMAGE, true, kind, "HP포션", value, increase, 0, 0, 1);
+                    desc = data[i]["Description"].ToString();
+                    Item temp = new Item(HPIMAGE, true, kind, "HP포션", value, increase, 0, 0, 1,desc);
                     ItemList.Add(temp);
                 }
                 else if (data[i]["Kind"].ToString() == "MP")
@@ -51,7 +52,8 @@ public class PotionNPCMenuScript : MonoBehaviour
                     kind = 4;
                     value = int.Parse(data[i]["Value"].ToString());
                     increase = float.Parse(data[i]["Increase"].ToString());
-                    Item temp = new Item(HPIMAGE, true, kind, "MP포션", value, increase, 0, 0, 1);
+                    desc = data[i]["Description"].ToString();
+                    Item temp = new Item(HPIMAGE, true, kind, "MP포션", value, increase, 0, 0, 1,desc);
                     ItemList.Add(temp);
                 }
             }
@@ -101,19 +103,7 @@ public class PotionNPCMenuScript : MonoBehaviour
                 StartCoroutine(NoGold());
             }
         }
-        else if (tmp == "1단계 방어구\n 가치 :5")
-        {
-            if (MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetGold() >= 5)
-            {
-                MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Set_Block(this.transform.GetComponent<Item>());
-                MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().SetGold(MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetGold() - 5);
-
-            }
-            else
-            {
-                StartCoroutine(NoGold());
-            }
-        }
+       
     }
     IEnumerator NoGold()
     {

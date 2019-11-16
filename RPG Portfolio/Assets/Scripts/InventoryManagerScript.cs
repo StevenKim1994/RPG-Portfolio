@@ -24,7 +24,7 @@ public class InventoryManagerScript : MonoBehaviour
     private void Start()
     {
         Tooltip.SetActive(false);
-        Gold = 10;
+        Gold = 10000;
 
     }
     public void ExitInventory()

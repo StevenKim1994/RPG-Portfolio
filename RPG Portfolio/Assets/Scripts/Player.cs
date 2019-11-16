@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     private ReturnOldPosition ReOldP;
 
-    [SerializeField] GameObject floatingtext; // 닉네임 직업 출력할 플로팅 텍스트 
+    [SerializeField] GameObject floatingtext; // 닉네임 직업 출력할 플로팅 텍스트
     struct Skill // Pirate 스킬 정보 구조체
     {
         Sprite SkillSprite;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     FollowCamera FC = new FollowCamera();
     RL rl;
     RR rr;
-
+    ManagerSingleton MGR = new ManagerSingleton();
     private GameObject GameMgr;
     private List<Skill> Buff = new List<Skill>();
     private Animator Anim;
@@ -57,8 +57,8 @@ public class Player : MonoBehaviour
     private bool isAttack = false;
     private int count = 0;
 
-    float HP = 1000000f;
-    float MP = 50000f;
+    float HP = 100f;
+    float MP = 100f;
 
     public int HPPo = 0;
     public int MPPo = 0;
@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
     {
         return Armor;
     }
-    
+
     public float Get_Damage()
     {
         return Damage;
@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
     {
         Damage = _in;
     }
-    
+
     public void Set_HP(float _in)
     {
         HP = _in;
@@ -173,10 +173,10 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
         ReturnOldScene d_s = new GameManagerScript().Get_OldScene;
         ReturnOldPosition d_p = new PlayerManagerScripts().Get_OldPosition;
-       
+
 
         if (d_s() != null)
         {
@@ -207,7 +207,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if(Target != null)
         {
             Target_Frame.SetActive(true);
@@ -217,17 +217,17 @@ public class Player : MonoBehaviour
         {
             Anim.SetBool("Walking", true);
             Anim.SetBool("Idle", false);
-       
+
         }
         else
         {
-            Anim.SetBool("Walking", false); 
+            Anim.SetBool("Walking", false);
             Anim.SetBool("Idle", true);
         }
 
         InputKey(); // 스킬처리
 
-       
+
 
     }
     void MoveCtrl()
@@ -242,10 +242,10 @@ public class Player : MonoBehaviour
                 this.transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime);
             }
 
-                
-            
+
+
         }
-     
+
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -259,15 +259,15 @@ public class Player : MonoBehaviour
             //MoveFlag = true;
             //this.transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime);
             rl();
-            
+
             Rotate += 0.5f;
             Rotate += CountLeft + RotateSpeed * 0.015f;
 
-            
+
 
             this.transform.rotation = Quaternion.Euler(0, -Rotate, 0);
 
-            
+
         }
         else if ((Input.GetKey(KeyCode.A)) && (Input.GetKey(KeyCode.W)))
         {
@@ -285,11 +285,11 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-           
+
             MoveFlag = true;
             this.transform.Translate(Vector3.back * MoveSpeed/2.0f * Time.deltaTime);
 
-     
+
         }
 
 
@@ -310,7 +310,7 @@ public class Player : MonoBehaviour
             this.transform.rotation = Quaternion.Euler(0, Rotate, 0);
 
 
-          
+
             // 일정 앵글 넘어서면 카메라도 움직이게 해야함
         }
         else if ((Input.GetKey(KeyCode.D)) && (Input.GetKey(KeyCode.W)))
@@ -347,7 +347,7 @@ public class Player : MonoBehaviour
         if (col.gameObject.tag == "Monster_Weapon")
         {
             Debug.Log("몬스터의 공격감지!");
-           
+
             //데미지연산해서 Player의 체력계산 추가하기
             Destroy(col.gameObject);
             Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
@@ -360,40 +360,41 @@ public class Player : MonoBehaviour
         {
             Debug.Log("보스의 파이어볼 충돌감지!");
             Anim.SetTrigger("Attacked");
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() - 5);
             StartCoroutine(FireBallHit());
             Destroy(col.gameObject);
             Instantiate(Hitcanvas);
-            
+
         }
 
-        
+
     }
 
-   
+
     void InputKey() // 스킬처리 부분
     {
         if (this.gameObject.transform.name == "Player(Pirate)(Clone)") // 캐릭터가 해적일 경우...
         {
-            
+
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-              
+
                 this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", false);
                 this.gameObject.transform.GetComponent<Animator>().SetTrigger("MeleeAttackStart");
                 Attack();
-                
+
             }
 
             else if (!(Input.GetKey(KeyCode.Alpha1)))
             {
-               
+
                 this.gameObject.transform.GetComponent<Animator>().SetBool("MeleeAttack", false);
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
 
-                
+
                 Buff.Add(new Skill(SkillSprite[1], 1, "StrongBuffSkill", 0, 0, 10));
                 this.gameObject.transform.GetComponent<Animator>().SetTrigger("StrongBuffSkill");
 

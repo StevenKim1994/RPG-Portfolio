@@ -9,11 +9,11 @@ public class ArmorNPCMenuScript : MonoBehaviour
     [SerializeField] private GameObject itemblock_prefeb;
     [SerializeField] private GameObject itemblock;
     [SerializeField] private GameObject itemblock_parents;
-
+    [SerializeField] GameObject NoGoldUI;
     private GameObject input_temp;
     private List<GameObject> itemlist = new List<GameObject>();
     private List<Item> itemdata = new List<Item>();
-
+    ManagerSingleton MGR = new ManagerSingleton();
 
 
     void Start()
@@ -51,6 +51,7 @@ public class ArmorNPCMenuScript : MonoBehaviour
                 input_temp.transform.GetComponent<Item>().num = 1;
                 input_temp.transform.GetComponent<Item>().armor = float.Parse(data[i]["Defense"].ToString());
                 input_temp.transform.GetComponent<Item>().value = int.Parse(data[i]["Value"].ToString());
+                input_temp.transform.GetComponent<Item>().description = data[i]["Description"].ToString();
 
                 itemlist.Add(input_temp);
             }
@@ -67,10 +68,51 @@ public class ArmorNPCMenuScript : MonoBehaviour
     public void BuyItem()
     {
         string tmp = this.gameObject.transform.GetChild(1).GetComponent<Text>().text;
+        if (tmp == "1단계 방어구\n 가치 :5")
+        {
+            if (MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetGold() >= 5)
+            {
+                MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Set_Block(this.transform.GetComponent<Item>());
+                MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().SetGold(MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetGold() - 5);
 
-        if (tmp == "1단계 방어구 가치: 5")
-            Debug.Log("구입");
+            }
+            else
+            {
+               // StartCoroutine(NoGold()); 인벤토리가 꽉찻거나 골드가 부족할떄 띄울 UI;
+            }
+        }
+        else if(tmp == "2단계 방어구\n 가치 :10")
+        {
+            if (MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetGold() >= 10)
+            {
+                MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Set_Block(this.transform.GetComponent<Item>());
+                MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().SetGold(MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetGold() - 10);
 
+            }
+            else
+            {
+                // StartCoroutine(NoGold()); 인벤토리가 꽉찻거나 골드가 부족할떄 띄울 UI;
+            }
+        }
+
+        else if(tmp == "3단계 방어구\n 가치 :15")
+        {
+            if (MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetGold() >= 15)
+            {
+                MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Set_Block(this.transform.GetComponent<Item>());
+                MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().SetGold(MGR.Get_instance().gameObject.transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetGold() - 15);
+
+            }
+            else
+            {
+                // StartCoroutine(NoGold()); 인벤토리가 꽉찻거나 골드가 부족할떄 띄울 UI;
+            }
+        }
+    }
+
+    IEnumerator NoGold()
+    {
+        yield break;
     }
 
 }
