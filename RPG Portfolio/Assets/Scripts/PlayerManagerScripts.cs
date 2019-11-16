@@ -65,7 +65,7 @@ public class PlayerManagerScripts : MonoBehaviour
     {
         HP = _in;
     }
-    
+
     public float Load_HP()
     {
         return HP;

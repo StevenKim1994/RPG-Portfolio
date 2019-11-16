@@ -212,4 +212,11 @@ public class FirstBoss : MonoBehaviour
         yield break;
 
     }
+
+    private void OnMouseDown()
+    {
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Set_Target(this.gameObject);
+        
+
+    }
 }

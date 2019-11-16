@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enum
-{ 
+{
     public enum Managerlist
     {
         Scene,
@@ -14,7 +14,8 @@ public class Enum
         Skill,
         Game,
         JSON,
-        Audio
+        Audio,
+        Target
     }
 
     public enum Playerlist

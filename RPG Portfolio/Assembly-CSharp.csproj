@@ -217,6 +217,7 @@
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\SecondDungeun\SecondBoss.cs" />
     <Compile Include="Assets\Scripts\SkillManagerScript.cs" />
+    <Compile Include="Assets\Scripts\TargetManagerScript.cs" />
     <Compile Include="Assets\Scripts\UILoad.cs" />
     <Compile Include="Assets\Scripts\UISingleton.cs" />
     <Compile Include="Assets\Scripts\WeaponNPCMenuScript.cs" />
