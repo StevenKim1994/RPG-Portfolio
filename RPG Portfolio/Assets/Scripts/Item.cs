@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
 
-    [SerializeField] GameObject tooltipUI; 
+    [SerializeField] GameObject tooltipUI;
        public Item(Sprite _image, bool _isempty, int _kind, string _name, int _value, float _damage, float _speed, float _armor, int _num , string _desc)
         {
             image = _image;
@@ -20,6 +20,8 @@ public class Item : MonoBehaviour
         description = _desc;
 
         }
+
+   public  Item data;
         public Sprite image;
         public bool isempty;
         public int kind;
@@ -31,5 +33,23 @@ public class Item : MonoBehaviour
         public int num;
     public string description;
 
+    public void set_data(Item _in)
+    {
+        image = _in.image;
+        isempty = _in.isempty;
+        kind = _in.kind; // 0 : 이면 소모품(물약) 1 : 이면 방어구 2 : 이면 무기임.
+        name = _in.name;
+        value = _in.value;
+        damage = _in.damage;
+        speed = _in.speed;
+        armor = _in.armor;
+        num = _in.num;
+        description = _in.description;
+        data = _in;
+    }
 
+    public Item get_data()
+    {
+        return data;
+    }
 }

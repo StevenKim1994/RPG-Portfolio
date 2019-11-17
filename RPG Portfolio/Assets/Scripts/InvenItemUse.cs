@@ -5,16 +5,18 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
+    [SerializeField] GameObject Characterinfo;
     [SerializeField] GameObject tooltipUI;
     public void UseItem()
     {
+
         ManagerSingleton MGR = new ManagerSingleton();
         int num = int.Parse(this.gameObject.name);
 
         switch (num)
         {
             case 0:
+
                 Debug.Log("1번 칸 아이템");
                 if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(0) == null)
                 {
@@ -25,11 +27,13 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     switch (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(0).kind)
                     {
                         case 1:
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickarmor(num);
                             Debug.Log("방어구");
                             Debug.Log(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(0).description.ToString());
                             break;
 
                         case 2:
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickwepaon(num);
                             Debug.Log("무기류");
                             break;
 
@@ -40,6 +44,7 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 break;
 
             case 1:
+
                 Debug.Log("2번 칸 아이템");
                 if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(1) == null)
                 {
@@ -50,11 +55,15 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     switch (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(1).kind)
                     {
                         case 1:
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickarmor(num);
+
                             Debug.Log("방어구");
                             Debug.Log(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(1).description.ToString());
                             break;
 
                         case 2:
+
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickwepaon(num);
                             Debug.Log("무기류");
                             break;
 
@@ -65,6 +74,7 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 break;
 
             case 2:
+
                 Debug.Log("3번 칸 아이템");
                 if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(2) == null)
                 {
@@ -75,11 +85,15 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     switch (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(2).kind)
                     {
                         case 1:
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickarmor(num);
+
                             Debug.Log("방어구");
                             Debug.Log(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(2).description.ToString());
                             break;
 
                         case 2:
+
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickwepaon(num);
                             Debug.Log("무기류");
                             break;
 
@@ -90,6 +104,7 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 break;
 
             case 3:
+
                 Debug.Log("4번 칸 아이템");
 
                 if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(3) == null)
@@ -101,11 +116,15 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     switch (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(3).kind)
                     {
                         case 1:
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickarmor(num);
+
                             Debug.Log("방어구");
                             Debug.Log(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(3).description.ToString());
                             break;
 
                         case 2:
+
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickwepaon(num);
                             Debug.Log("무기류");
                             break;
 
@@ -117,6 +136,8 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 break;
 
             case 4:
+                Characterinfo.transform.GetComponent<CharacterInfo>().clickarmor(num);
+                Characterinfo.transform.GetComponent<CharacterInfo>().clickwepaon(num);
                 Debug.Log("5번칸 아이템");
                 if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(4) == null)
                 {
@@ -127,11 +148,15 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     switch (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(4).kind)
                     {
                         case 1:
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickarmor(num);
+
                             Debug.Log("방어구");
                             Debug.Log(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(4).description.ToString());
                             break;
 
                         case 2:
+
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickwepaon(num);
                             Debug.Log("무기류");
                             break;
 
@@ -143,6 +168,7 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 break;
 
             case 5:
+
                 Debug.Log("6번칸 아이템");
                 if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(5) == null)
                 {
@@ -153,11 +179,13 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                     switch (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(5).kind)
                     {
                         case 1:
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickarmor(num);
                             Debug.Log("방어구");
                             Debug.Log(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(5).description.ToString());
                             break;
 
                         case 2:
+                            Characterinfo.transform.GetComponent<CharacterInfo>().clickwepaon(num);
                             Debug.Log("무기류");
                             break;
 

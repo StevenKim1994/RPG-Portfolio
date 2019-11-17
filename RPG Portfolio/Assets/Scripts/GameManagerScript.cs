@@ -7,12 +7,12 @@ public class GameManagerScript : MonoBehaviour
     string oldscene = null;
     private int state = 0;
     private Vector3 oldposition;
-    bool First;
-    bool Second;
-    bool Third;
+    bool First = false;
+    bool Second = false;
+    bool Third = false;
     // Start is called before the first frame update
 
-   
+
     public void set_state()
     {
         state++;
@@ -42,10 +42,10 @@ public class GameManagerScript : MonoBehaviour
         Second = false;
         Third = false;
     }
-    
+
     public void Set_ClearInfo(int _num)
     {
-        switch(_num) 
+        switch(_num)
         {
             case 1:
                 First = true;

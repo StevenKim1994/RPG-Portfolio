@@ -59,7 +59,10 @@ public class Inventory : MonoBehaviour
 
     public Item Get_Block(int num)
     {
-        return InvenItem[num];
+
+            return InvenItem[num];
+
+
     }
 
     public int InventoryCount()
@@ -67,6 +70,30 @@ public class Inventory : MonoBehaviour
         return count;
     }
 
+    public void Del_Block(int num)
+    {
+        InvenItem.RemoveAt(num);
+
+
+    }
+
+
+    public void Reflsh()
+    {
+        for (int i = 0; i < InvenItem.Count; i++)
+        {
+            Debug.Log(InvenItem[i].name);
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            Block[i].transform.GetComponent<Image>().sprite = temp; // 사라진거 있을수 있으니 먼저 모든 이미지 비어있는 이미지로.
+        }
+
+        for (int i = 0; i < InvenItem.Count; i++)
+        {
+            Block[i].transform.GetComponent<Image>().sprite = InvenItem[i].image; // 다시 불러오기
+        }
+    }
 
 
 

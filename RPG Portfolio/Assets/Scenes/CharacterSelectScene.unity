@@ -1159,6 +1159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdec7ac112a182f48ad59d0db55c3be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Characterinfo: {fileID: 647752522}
   tooltipUI: {fileID: 173591862}
 --- !u!114 &119193180
 MonoBehaviour:
@@ -2916,6 +2917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdec7ac112a182f48ad59d0db55c3be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Characterinfo: {fileID: 647752522}
   tooltipUI: {fileID: 173591862}
 --- !u!1 &304869004
 GameObject:
@@ -3891,6 +3893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdec7ac112a182f48ad59d0db55c3be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Characterinfo: {fileID: 647752522}
   tooltipUI: {fileID: 173591862}
 --- !u!1 &488805217
 GameObject:
@@ -4623,6 +4626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdec7ac112a182f48ad59d0db55c3be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Characterinfo: {fileID: 0}
   tooltipUI: {fileID: 0}
 --- !u!114 &537885222
 MonoBehaviour:
@@ -4637,6 +4641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipUI: {fileID: 0}
+  data: {fileID: 0}
   image: {fileID: 0}
   isempty: 0
   kind: 0
@@ -5151,6 +5156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdec7ac112a182f48ad59d0db55c3be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Characterinfo: {fileID: 647752522}
   tooltipUI: {fileID: 173591862}
 --- !u!1 &616631841
 GameObject:
@@ -5515,6 +5521,7 @@ GameObject:
   - component: {fileID: 647752525}
   - component: {fileID: 647752524}
   - component: {fileID: 647752526}
+  - component: {fileID: 647752527}
   m_Layer: 5
   m_Name: CharacterInfo
   m_TagString: Untagged
@@ -5601,6 +5608,30 @@ MonoBehaviour:
   weapon: {fileID: 537885216}
   armor: {fileID: 1221274696}
   statbox: {fileID: 876869939}
+--- !u!114 &647752527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647752522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e8daad1692985488006bde251372f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipUI: {fileID: 0}
+  data: {fileID: 0}
+  image: {fileID: 0}
+  isempty: 0
+  kind: 0
+  name: 
+  value: 0
+  damage: 0
+  speed: 0
+  armor: 0
+  num: 0
+  description: 
 --- !u!1 &654835741
 GameObject:
   m_ObjectHideFlags: 0
@@ -9696,6 +9727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdec7ac112a182f48ad59d0db55c3be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Characterinfo: {fileID: 0}
   tooltipUI: {fileID: 0}
 --- !u!114 &1221274702
 MonoBehaviour:
@@ -9710,6 +9742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipUI: {fileID: 0}
+  data: {fileID: 0}
   image: {fileID: 0}
   isempty: 0
   kind: 0
@@ -12002,6 +12035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdec7ac112a182f48ad59d0db55c3be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Characterinfo: {fileID: 647752522}
   tooltipUI: {fileID: 173591862}
 --- !u!1 &1484207681
 GameObject:
@@ -14334,6 +14368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdec7ac112a182f48ad59d0db55c3be9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Characterinfo: {fileID: 647752522}
   tooltipUI: {fileID: 173591862}
 --- !u!1 &1769862022
 GameObject:

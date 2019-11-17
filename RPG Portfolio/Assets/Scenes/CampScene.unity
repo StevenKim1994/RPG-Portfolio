@@ -13405,6 +13405,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneMgr: {fileID: 0}
   DungeonSelecter: {fileID: 594109376}
+  Dbt:
+  - {fileID: 1555765906}
+  - {fileID: 763903510}
+  - {fileID: 2075041272}
 --- !u!54 &1508221420
 Rigidbody:
   m_ObjectHideFlags: 0

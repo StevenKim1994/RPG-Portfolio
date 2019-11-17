@@ -186,6 +186,7 @@
     <Compile Include="Assets\Scripts\Fade.cs" />
     <Compile Include="Assets\Scripts\FirstDungeon\Fireball.cs" />
     <Compile Include="Assets\Scripts\FirstDungeon\FirstBoss.cs" />
+    <Compile Include="Assets\Scripts\FirstDungeon\FirstBossItemBoxScript.cs" />
     <Compile Include="Assets\Scripts\FirstDungeon\hit.cs" />
     <Compile Include="Assets\Scripts\FirstDungeon\hitcanvas.cs" />
     <Compile Include="Assets\Scripts\FirstDungeonLoadManager.cs" />

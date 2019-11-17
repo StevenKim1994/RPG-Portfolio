@@ -14,6 +14,7 @@ public class SecondBoss : MonoBehaviour
     [SerializeField] private Transform target; // 유저의 좌표 값이 타겟이 됨...
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject Skill1Range; // 스킬1 사용시 나올 BoxCollider
+    ManagerSingleton MGR = new ManagerSingleton();
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
     bool cocheck = false;
     Vector3 original_position;
@@ -36,16 +37,16 @@ public class SecondBoss : MonoBehaviour
     {
         this.gameObject.transform.LookAt(target.transform);
         nav.SetDestination(target.transform.position); // 플레이어의 위치로 nav의 목적지를 지정함.
-    
-       
+
+
         anim.SetBool("Running", true);
         nav.enabled = true;
 
         if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 9f) // 보스와 플레이어의 거리가 일정 거리이면
         {
             Debug.Log("가까움");
-          
-            
+
+
              nav.enabled = false;
              anim.SetTrigger("Skill1");
 
@@ -54,16 +55,16 @@ public class SecondBoss : MonoBehaviour
                 cocheck = true;
                 StartCoroutine(Skill1Attack()); // 공격 범위 생성 코루틴 .. ( 범위 콜라이더 생성 1초후 Destroy )
             }
-                 
-            
+
+
 
         }
-        
+
         else
         {
-            
+
         }
-      
+
     }
 
     public void Set_HP(float _in)
@@ -110,9 +111,9 @@ public class SecondBoss : MonoBehaviour
     }
     IEnumerator Skill1Attack()
     {
-        GameObject temp = Instantiate(Skill1Range, this.gameObject.transform); // 스킬1 콜라이더 생성 
+        GameObject temp = Instantiate(Skill1Range, this.gameObject.transform); // 스킬1 콜라이더 생성
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2.65f);
         cocheck = false;
         Destroy(temp);
         yield break;
@@ -139,5 +140,12 @@ public class SecondBoss : MonoBehaviour
             }
         }
     }
+    private void OnMouseDown()
+    {
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Set_Target(this.gameObject);
 
+
+    }
 }
+
+
