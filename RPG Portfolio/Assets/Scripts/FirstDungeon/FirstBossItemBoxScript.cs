@@ -7,7 +7,7 @@ public class FirstBossItemBoxScript : MonoBehaviour
     [SerializeField] GameObject ItemCanvas;
     void Start()
     {
-
+        ItemCanvas.SetActive(false);
     }
 
     private void OnMouseDown()

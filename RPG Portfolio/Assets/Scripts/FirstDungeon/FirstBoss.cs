@@ -24,6 +24,7 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] GameObject Attack;
     [SerializeField] GameObject floatingtext;
     [SerializeField] GameObject floatingcanvas;
+    [SerializeField] GameObject DropBox;
     GameObject skilltemp;
     bool cocheck = false;
     Vector3 original_position;
@@ -31,7 +32,7 @@ public class FirstBoss : MonoBehaviour
     private int state; // 보스의 현재 상태 0 이면 초기 페이지 1이면 화남 페이지 2면 광폭화 페이지...
     private float timer = 0.0f;
     private int waitTime;
-
+    bool death = false;
     private int ballcount = 0;
     ManagerSingleton MGR = new ManagerSingleton();
 
@@ -62,6 +63,13 @@ public class FirstBoss : MonoBehaviour
             timer += Time.deltaTime;
             Instantiate(DeadParticle, this.gameObject.transform);// 사망 이펙트
 
+            if (this.gameObject.transform.name == "FirstBoss")
+            {
+                if(death == false)
+                Instantiate(DropBox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y+10f, this.gameObject.transform.position.z), Quaternion.identity); // 아이템박드드랍
+
+                death = true;
+            }
 
             if (timer > waitTime)
             {
