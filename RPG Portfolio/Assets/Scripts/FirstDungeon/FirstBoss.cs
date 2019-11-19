@@ -69,6 +69,7 @@ public class FirstBoss : MonoBehaviour
                 Instantiate(DropBox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y+10f, this.gameObject.transform.position.z), Quaternion.identity); // 아이템박드드랍
 
                 death = true;
+                MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Game).transform.GetComponent<GameManagerScript>().Set_ClearInfo(1); // 게임매니저 클리어 정보 설정
             }
 
             if (timer > waitTime)
