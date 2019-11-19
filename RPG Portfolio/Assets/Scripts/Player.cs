@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject BulletPosition;
     [SerializeField] private Sprite[] SkillSprite = new Sprite[10];
     [SerializeField] GameObject Hitcanvas;
+    [SerializeField] GameObject Minimapcam;
     delegate void RL();
     delegate void RR();
     FollowCamera FC = new FollowCamera();
@@ -156,6 +157,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         bb = UI.Get_Instance().transform.GetChild(3).gameObject;
         ReturnOldScene d_s = new GameManagerScript().Get_OldScene;
         ReturnOldPosition d_p = new PlayerManagerScripts().Get_OldPosition;
