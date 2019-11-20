@@ -102,11 +102,13 @@ public class SecondBoss : MonoBehaviour
 
     }
 
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.tag == "Damage_Obstacle") // 만약 충돌한 대상이 장애물이라면!
         {
-            // 지속 데미지 및 이동속도 느리게 하는 부분
+            StartCoroutine(ObstacleEvent());// 지속 데미지 및 이동속도 느리게 하는 부분
         }
     }
     IEnumerator Skill1Attack()
@@ -133,11 +135,12 @@ public class SecondBoss : MonoBehaviour
                 GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
                 txtclone.GetComponent<FloatingText>().text.text = "-10";
                 txtclone.transform.SetParent(GameObject.Find("UI").transform);
-
-
-
-
             }
+        }
+
+        if(col.gameObject.tag == "Damage_Obstacle")
+        {
+            StartCoroutine(ObstacleEvent());
         }
     }
     private void OnMouseDown()
@@ -145,6 +148,21 @@ public class SecondBoss : MonoBehaviour
         MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Set_Target(this.gameObject);
 
 
+    }
+
+    IEnumerator ObstacleEvent()
+    {
+        Debug.Log("장애물 이벤트발생!!");
+        this.gameObject.transform.GetComponent<NavMeshAgent>().speed = 7f;
+        yield return new WaitForSeconds(3f);
+        this.gameObject.transform.GetComponent<NavMeshAgent>().speed = 10f;
+        Debug.Log("장애물 이벤트종료!!");
+        yield break;
+    }
+
+    IEnumerator ObstacleDamage()
+    {
+        yield break;
     }
 }
 
