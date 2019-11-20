@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
+
     string oldscene = null;
     private int state = 0;
     private Vector3 oldposition;
-    bool First = false;
-    bool Second = false;
-    bool Third = false;
+    bool First = true;
+    bool Second = true;
+    bool Third = true;
     // Start is called before the first frame update
 
 

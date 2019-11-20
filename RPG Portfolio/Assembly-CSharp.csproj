@@ -261,6 +261,7 @@
     <None Include="Assets\UsedAsset\DownloadAsset\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpecTransp.shader" />
     <None Include="Assets\JMO Assets\WarFX\_Effects\MuzzleFlashes\!MuzzleFlash Differences.txt" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
+    <None Include="Assets\Triangle Art\MMO Pack\Ancient Guard\readMe.txt" />
     <None Include="Assets\Particle Dissolve Shader by Moonflower Carnivore\Shaders\legacy\DissolveSoft_Alpha_Unlit.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ACES.cginc" />
     <None Include="Assets\Particle Dissolve Shader by Moonflower Carnivore\Shaders\softrim\Particle_softrim_alpha.shader" />

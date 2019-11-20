@@ -250,4 +250,14 @@ public class FirstBoss : MonoBehaviour
 
 
     }
+
+    private void OnMouseOver()
+    {
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().AttackCursor();
+    }
+
+    private void OnMouseExit()
+    {
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().DefaultCursor();
+    }
 }

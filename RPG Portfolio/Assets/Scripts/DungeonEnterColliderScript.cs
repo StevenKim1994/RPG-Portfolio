@@ -73,6 +73,12 @@ public class DungeonEnterColliderScript : MonoBehaviour
         if(Managers[(int)Enum.Managerlist.Game])
         SceneMgr.GetComponent<SceneManagerScript>().EnterDungeonSecond();
     }
+
+    public void EnterThirdDungeon()
+    {
+        if (Managers[(int)Enum.Managerlist.Game])
+            SceneMgr.GetComponent<SceneManagerScript>().EnterDungeonThird();
+    }
     public void ExitBtn()
     {
         DungeonSelecter.SetActive(false);

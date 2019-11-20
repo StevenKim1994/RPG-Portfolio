@@ -40,14 +40,14 @@ public class SecondBoss : MonoBehaviour
 
 
         anim.SetBool("Running", true);
-        nav.enabled = true;
+
 
         if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 9f) // 보스와 플레이어의 거리가 일정 거리이면
         {
             Debug.Log("가까움");
 
 
-             nav.enabled = false;
+            nav.enabled = true;
              anim.SetTrigger("Skill1");
 
             if (cocheck == false)
@@ -102,15 +102,6 @@ public class SecondBoss : MonoBehaviour
 
     }
 
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.transform.tag == "Damage_Obstacle") // 만약 충돌한 대상이 장애물이라면!
-        {
-            StartCoroutine(ObstacleEvent());// 지속 데미지 및 이동속도 느리게 하는 부분
-        }
-    }
     IEnumerator Skill1Attack()
     {
         GameObject temp = Instantiate(Skill1Range, this.gameObject.transform); // 스킬1 콜라이더 생성
@@ -141,6 +132,7 @@ public class SecondBoss : MonoBehaviour
         if(col.gameObject.tag == "Damage_Obstacle")
         {
             StartCoroutine(ObstacleEvent());
+            StartCoroutine(ObstacleDamage());
         }
     }
     private void OnMouseDown()
@@ -162,7 +154,28 @@ public class SecondBoss : MonoBehaviour
 
     IEnumerator ObstacleDamage()
     {
+        Debug.Log("지속피해!!");
+        for (int i = 0; i < 3; i++)
+        {
+            Debug.Log(i.ToString());
+            this.Set_HP(this.Get_HP() - 7f);
+            GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
+            txtclone.GetComponent<FloatingText>().text.text = "-7";
+            txtclone.transform.SetParent(GameObject.Find("UI").transform);
+            yield return new WaitForSeconds(1f);
+        }
+        Debug.Log("지속피해종료!");
         yield break;
+    }
+
+    private void OnMouseOver()
+    {
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().AttackCursor();
+    }
+
+    private void OnMouseExit()
+    {
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().DefaultCursor();
     }
 }
 
