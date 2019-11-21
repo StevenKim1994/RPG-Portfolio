@@ -28,7 +28,7 @@ public class FollowCamera : MonoBehaviour
     float yMinLimit = -20f;
     float yMaxLimit = 80f;
 
-   
+
     float ClampAngle(float angle, float min, float max)
     {
         if(angle < -360)
@@ -58,8 +58,8 @@ public class FollowCamera : MonoBehaviour
         x = angles.y;
         y = angles.x;
 
-  
-        
+
+
         angles = this.transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -72,7 +72,7 @@ public class FollowCamera : MonoBehaviour
             x -= 1.5f * xSpeed * 0.015f;
             target.rotation = Quaternion.Euler(0, x, 0);
         }
-        
+
         if(Input.GetKey(KeyCode.D))
         {
             x += 1.5f * xSpeed * 0.015f;
@@ -83,7 +83,7 @@ public class FollowCamera : MonoBehaviour
         Vector3 position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
 
         this.transform.rotation = rotation;
-       
+
         this.transform.position = position;
         if (Input.GetMouseButton(1))
         {
@@ -104,7 +104,7 @@ public class FollowCamera : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
-        
+
             dist++;
 
             if (dist > 9)
@@ -115,7 +115,7 @@ public class FollowCamera : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-          
+
             dist--;
             if (dist < 0)
             {

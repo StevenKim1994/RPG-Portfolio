@@ -20,21 +20,21 @@ public class LoadManagersScript : MonoBehaviour
     private GameObject Player;
     private string Job;
     private ManagerSingleton MGR = new ManagerSingleton();
-    private ReturnName r_n;    
- 
+    private ReturnName r_n;
+
 
     private void Awake()
     {
-    
+
        l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
         s_u = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Skill).GetComponent<SkillManagerScript>().Set_Player;
         s_p = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Set_OldPosition;
-     
+
     }
 
     private void Start()
     {
-        
+
             Job = l_j();
 
             if (Job == "Pirate")
@@ -49,7 +49,7 @@ public class LoadManagersScript : MonoBehaviour
 
             if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
             {
-                
+
                 Instantiate(Player);
                 GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
 
@@ -96,7 +96,12 @@ public class LoadManagersScript : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene().name == "ThirdDungeonScene")
             {
-
+            Instantiate(Player);
+            GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
+            User.gameObject.tag = "Player";
+            User.transform.position = new Vector3(140.91f, 10.67f, 72.15f);
+            User.transform.GetComponent<Rigidbody>().isKinematic = false;
+            User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
             else if (SceneManager.GetActiveScene().name == "CampScene")
             {
@@ -104,14 +109,14 @@ public class LoadManagersScript : MonoBehaviour
                 GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
 
                 User.gameObject.tag = "Player";
-                User.transform.position = new Vector3(14.04f, 0.5f, 10.15f);
+                User.transform.position = new Vector3(14.04f, 3f, 10.15f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         }
 
 
         MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().SetTitleName(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Name());
-        
+
     }
 
 }
