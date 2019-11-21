@@ -138,8 +138,8 @@ public class SecondBoss : MonoBehaviour
         if (col.gameObject.tag == "User_Weapon")
         {
 
-            if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
-            {
+            //if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
+            //{
                 Instantiate(HitParticle, this.gameObject.transform);
                 anim.SetTrigger("Hurt");
                 Set_HP(Get_HP() - 10f);
@@ -147,7 +147,7 @@ public class SecondBoss : MonoBehaviour
                 GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
                 txtclone.GetComponent<FloatingText>().text.text = "-10";
                 txtclone.transform.SetParent(GameObject.Find("UI").transform);
-            }
+            //}
         }
 
         if(col.gameObject.tag == "Damage_Obstacle")

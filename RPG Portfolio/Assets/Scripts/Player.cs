@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Sprite[] SkillSprite = new Sprite[10];
     [SerializeField] GameObject Hitcanvas;
     [SerializeField] GameObject Minimapcam;
+    [SerializeField] GameObject FinalSkillEffect;
     delegate void RL();
     delegate void RR();
     FollowCamera FC = new FollowCamera();
@@ -351,7 +352,7 @@ public class Player : MonoBehaviour
 
         if (col.gameObject.tag == "Enermy_Fireball")
         {
-            Debug.Log("보스의 파이어볼 충돌감지!");
+
             Anim.SetTrigger("Attacked");
             MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() - 5);
             StartCoroutine(FireBallHit());
@@ -408,6 +409,21 @@ public class Player : MonoBehaviour
                         this.gameObject.transform.GetComponent<Animator>().SetTrigger("GunFireSkill");
                         MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() - 10);
                         Instantiate(Bullet, BulletPosition.transform);
+                    }
+                }
+            }
+
+            if(Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() >= 50) // 플레이어의 마나가 50이상일때
+                {
+                    if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target() != null) // 타겟이 지정되어있을때만
+                    {
+
+                        this.gameObject.transform.GetComponent<Animator>().SetTrigger("GunFireSkill");
+                        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() - 50);
+
+                        StartCoroutine(FinalSkill());
                     }
                 }
             }
@@ -498,4 +514,26 @@ public class Player : MonoBehaviour
         yield break;
     }
 
+    IEnumerator FinalSkill()
+    {
+        GameObject temp = Instantiate(FinalSkillEffect, MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.position, MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.rotation);
+        if (SceneManager.GetActiveScene().name == "FirstDungeonScene")
+        {
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<FirstBoss>().Set_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<FirstBoss>().Get_HP() - 50f);
+        }
+
+        else if (SceneManager.GetActiveScene().name == "SecondDungeonScene")
+        {
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<SecondBoss>().Set_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<SecondBoss>().Get_HP() - 50f);
+        }
+
+        else if (SceneManager.GetActiveScene().name == "ThirdDungeonScene")
+        {
+           // MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<ThirdBoss>().Set_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<ThirdBoss>().Get_HP() - 50f);
+        }
+        yield return new WaitForSeconds(5f);
+
+        Destroy(temp);
+        yield break;
+    }
 }

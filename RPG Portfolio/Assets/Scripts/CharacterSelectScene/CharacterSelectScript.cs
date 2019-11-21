@@ -240,4 +240,24 @@ public class CharacterSelectScript : MonoBehaviour
 
         }
     }
+
+    public void FINALSKILLINFO()
+    {
+        switch (count)
+        {
+            case 0:
+                skill_description.transform.GetComponent<Text>().text = "해적의 궁극기 지정한 대상에게 폭격. 마나 50 소모";
+                break;
+
+            case 1:
+                skill_description.transform.GetComponent<Text>().text = "바바리안의 버프스킬";
+                break;
+
+            case 2:
+                skill_description.transform.GetComponent<Text>().text = "마법사의 버프스킬";
+                break;
+
+
+        }
+    }
 }

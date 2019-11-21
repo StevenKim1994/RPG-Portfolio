@@ -188,8 +188,8 @@ public class FirstBoss : MonoBehaviour
         if (col.gameObject.tag == "User_Weapon")
         {
 
-            if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
-            {
+           // if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
+           // {
                 if(this.gameObject.name == "FirstBoss")
                     Instantiate(HitParticle, temp);
                 else
@@ -205,7 +205,7 @@ public class FirstBoss : MonoBehaviour
 
 
 
-            }
+           // }
         }
 
         if(col.gameObject.tag == "User_Bullet")

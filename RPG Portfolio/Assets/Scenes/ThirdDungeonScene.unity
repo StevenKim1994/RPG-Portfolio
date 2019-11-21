@@ -2358,6 +2358,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThirdBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 1619229116225070, guid: 76c2580ac3eb3314b8345363466ff71d, type: 3}
+      propertyPath: m_TagString
+      value: Monster
+      objectReference: {fileID: 0}
     - target: {fileID: 4827761639207838, guid: 76c2580ac3eb3314b8345363466ff71d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 109.2

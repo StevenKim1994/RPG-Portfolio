@@ -1361,6 +1361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c0e289c0e36834a939dc11f4160ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bb: {fileID: 0}
   floatingtext: {fileID: 0}
   Bullet: {fileID: 1967372879927686, guid: 2492a38f2c3a20f4695d374ded8a8981, type: 3}
   BulletPosition: {fileID: 3885423218868292552}
@@ -1377,6 +1378,8 @@ MonoBehaviour:
   - {fileID: 0}
   Hitcanvas: {fileID: 339024576739363314, guid: 0696c7be2e7a5084da52ef7d2ea8a97c,
     type: 3}
+  Minimapcam: {fileID: 0}
+  FinalSkillEffect: {fileID: 120972, guid: 866a4ac022f2a8e46b9f482d65401a64, type: 3}
   HPPo: 0
   MPPo: 0
   state: 0
@@ -1536,7 +1539,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7545158528630461706}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.12128515, y: 0.14009058, z: 0.5814942}
