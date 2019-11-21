@@ -55,12 +55,17 @@ public class UIInitialize : MonoBehaviour
             {
                 continue;
             }
+            else if(UI.gameObject.transform.GetChild(i).gameObject.name.ToString() == "Retry")
+            {
+                continue;
+            }
             else
             {
                 UI.gameObject.transform.GetChild(i).gameObject.SetActive(true);
 
 
             }
+
         }
     }
 }

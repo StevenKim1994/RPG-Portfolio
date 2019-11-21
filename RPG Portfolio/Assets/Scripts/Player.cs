@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Hitcanvas;
     [SerializeField] GameObject Minimapcam;
     [SerializeField] GameObject FinalSkillEffect;
+    [SerializeField] GameObject Weapon;
     delegate void RL();
     delegate void RR();
     FollowCamera FC = new FollowCamera();
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
     float y_pos = 0.0f;
 
     bool DoubleKey = false;
-    public int state = 0; // 0 : idle 1 : attack 2 : hurt
+    public int state = 0; // 0 : idle 1 : attack 2 : hurt 3: dead
     float CountRight = 0.0f;
     float CountLeft = 0.0f;
 
@@ -193,36 +194,62 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       /* timer += Time.deltaTime;
-
-        if (timer > waittime)
+        if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() <=0) // 죽는다면
         {
-            if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP()< 100)
-                MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() + 1);
-        }*/ //마나리젠
-
-
-        if (Target != null)
-        {
-            Target_Frame.SetActive(true);
-        }
-        MoveCtrl(); // 이동처리
-        if(MoveFlag == true)
-        {
-            Anim.SetBool("Walking", true);
-            Anim.SetBool("Idle", false);
-
+            state = 4;
+            Anim.SetBool("Dead", true);
+            UI.Get_Instance().transform.GetChild(13).gameObject.SetActive(true);
         }
         else
         {
-            Anim.SetBool("Walking", false);
-            Anim.SetBool("Idle", true);
+            state = 0;
+            Anim.SetBool("Dead", false);
+            UI.Get_Instance().transform.GetChild(13).gameObject.SetActive(false);
+
         }
 
-        InputKey(); // 스킬처리
+        if (state != 4)
+        {
+            if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || Anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || Anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
+            {
+                Weapon.transform.GetComponent<TrailRenderer>().enabled = true;
+            }
+            // 무기 트레일 기능 온
+            else
+            {
+                Weapon.transform.GetComponent<TrailRenderer>().enabled = false;
+            }
+            // 무기 트레일 기능 오프
+            /* timer += Time.deltaTime;
+
+             if (timer > waittime)
+             {
+                 if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP()< 100)
+                     MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() + 1);
+             }*/ //마나리젠
 
 
+            if (Target != null)
+            {
+                Target_Frame.SetActive(true);
+            }
+            MoveCtrl(); // 이동처리
+            if (MoveFlag == true)
+            {
+                Anim.SetBool("Walking", true);
+                Anim.SetBool("Idle", false);
 
+            }
+            else
+            {
+                Anim.SetBool("Walking", false);
+                Anim.SetBool("Idle", true);
+            }
+
+            InputKey(); // 스킬처리
+
+
+        }
     }
     void MoveCtrl()
     {
@@ -373,6 +400,9 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
 
+
+                    Weapon.transform.GetComponent<TrailRenderer>().enabled = true;
+
                 this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", false);
                 this.gameObject.transform.GetComponent<Animator>().SetTrigger("MeleeAttackStart");
                 Attack();
@@ -381,6 +411,7 @@ public class Player : MonoBehaviour
 
             else if (!(Input.GetKey(KeyCode.Alpha1)))
             {
+
 
                 this.gameObject.transform.GetComponent<Animator>().SetBool("MeleeAttack", false);
             }

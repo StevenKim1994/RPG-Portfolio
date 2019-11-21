@@ -241,6 +241,26 @@ public class CharacterSelectScript : MonoBehaviour
         }
     }
 
+    public void POWERUPSKILL()
+    {
+        switch (count)
+        {
+            case 0:
+                skill_description.transform.GetComponent<Text>().text = "분노하여 데미지 상승. 마나 10 소모";
+                break;
+
+            case 1:
+                skill_description.transform.GetComponent<Text>().text = "바바리안의 버프스킬";
+                break;
+
+            case 2:
+                skill_description.transform.GetComponent<Text>().text = "마법사의 버프스킬";
+                break;
+
+
+        }
+    }
+
     public void FINALSKILLINFO()
     {
         switch (count)
