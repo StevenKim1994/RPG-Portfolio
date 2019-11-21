@@ -182,6 +182,7 @@ public class FirstBoss : MonoBehaviour
 
     }
 
+
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "User_Weapon")

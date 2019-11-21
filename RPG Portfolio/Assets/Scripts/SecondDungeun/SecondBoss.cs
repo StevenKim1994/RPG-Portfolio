@@ -14,18 +14,20 @@ public class SecondBoss : MonoBehaviour
     [SerializeField] private Transform target; // 유저의 좌표 값이 타겟이 됨...
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject Skill1Range; // 스킬1 사용시 나올 BoxCollider
+    [SerializeField] GameObject Dropbox;
     ManagerSingleton MGR = new ManagerSingleton();
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
     bool cocheck = false;
     Vector3 original_position;
     int state;
+    bool die = false;
     void Start()
     {
         anim = this.gameObject.transform.GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         nav = this.gameObject.transform.GetComponent<NavMeshAgent>();
         state = 0;
-        hP = 10000f;
+        hP = 100f;
         mP = 10000f;
 
         original_position = this.gameObject.transform.position;
@@ -35,36 +37,55 @@ public class SecondBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.LookAt(target.transform);
-        nav.SetDestination(target.transform.position); // 플레이어의 위치로 nav의 목적지를 지정함.
-
-
-        anim.SetBool("Running", true);
-
-
-        if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 9f) // 보스와 플레이어의 거리가 일정 거리이면
+        if (hP <= 0)
         {
-            Debug.Log("가까움");
-
-
-            nav.enabled = true;
-             anim.SetTrigger("Skill1");
-
-            if (cocheck == false)
+            anim.SetBool("Stand", false);
+            anim.SetBool("Runing", false);
+            if (die == false)
             {
-                cocheck = true;
-                StartCoroutine(Skill1Attack()); // 공격 범위 생성 코루틴 .. ( 범위 콜라이더 생성 1초후 Destroy )
+
+                StartCoroutine(Dead());
+                Instantiate(Dropbox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 10f, this.gameObject.transform.position.z), Quaternion.identity); // 아이템박드드랍
             }
-
-
-
         }
 
         else
         {
+            this.gameObject.transform.LookAt(target.transform);
+            nav.SetDestination(target.transform.position); // 플레이어의 위치로 nav의 목적지를 지정함.
 
+
+            anim.SetBool("Running", true);
+            anim.SetBool("Stand", false);
+
+            if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f) // 보스와 플레이어의 거리가 일정 거리이면
+            {
+                Debug.Log("가까움");
+
+
+                nav.enabled = false;
+                anim.SetBool("Stand", true);
+                anim.SetBool("Running", false);
+
+                if (cocheck == false)
+                {
+                    cocheck = true;
+                    anim.SetTrigger("Skill1");
+                    StartCoroutine(Skill1Attack()); // 공격 범위 생성 코루틴 .. ( 범위 콜라이더 생성 1초후 Destroy )
+                }
+
+
+
+            }
+
+            else
+            {
+                anim.SetBool("Stand", false);
+                anim.SetBool("Running", true);
+                nav.enabled = true;
+
+            }
         }
-
     }
 
     public void Set_HP(float _in)
@@ -120,7 +141,7 @@ public class SecondBoss : MonoBehaviour
             if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
             {
                 Instantiate(HitParticle, this.gameObject.transform);
-                //anim.SetTrigger("Hurt");
+                anim.SetTrigger("Hurt");
                 Set_HP(Get_HP() - 10f);
                 Debug.Log(Get_HP());
                 GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
@@ -134,6 +155,23 @@ public class SecondBoss : MonoBehaviour
             StartCoroutine(ObstacleEvent());
             StartCoroutine(ObstacleDamage());
         }
+
+        if(col.gameObject.tag == "User_Bullet")
+        {
+
+            Instantiate(HitParticle, this.gameObject.transform);
+
+            anim.SetTrigger("Hurt");
+            Set_HP(Get_HP() - 5f);
+            GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
+            txtclone.GetComponent<FloatingText>().text.text = "-5";
+            txtclone.transform.SetParent(GameObject.Find("UI").transform);
+            Destroy(col.gameObject);
+            Instantiate(HitParticle, this.gameObject.transform);
+
+
+        }
+
     }
     private void OnMouseDown()
     {
@@ -144,17 +182,17 @@ public class SecondBoss : MonoBehaviour
 
     IEnumerator ObstacleEvent()
     {
-        Debug.Log("장애물 이벤트발생!!");
+
         this.gameObject.transform.GetComponent<NavMeshAgent>().speed = 7f;
         yield return new WaitForSeconds(3f);
         this.gameObject.transform.GetComponent<NavMeshAgent>().speed = 10f;
-        Debug.Log("장애물 이벤트종료!!");
+
         yield break;
     }
 
     IEnumerator ObstacleDamage()
     {
-        Debug.Log("지속피해!!");
+
         for (int i = 0; i < 3; i++)
         {
             Debug.Log(i.ToString());
@@ -165,7 +203,7 @@ public class SecondBoss : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         Debug.Log("지속피해종료!");
-        yield break;
+
     }
 
     private void OnMouseOver()
@@ -176,6 +214,18 @@ public class SecondBoss : MonoBehaviour
     private void OnMouseExit()
     {
         MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().DefaultCursor();
+    }
+
+    IEnumerator Dead()
+    {
+        die = true;
+        anim.SetTrigger("Dead");
+
+        yield return new WaitForSeconds(7f);
+
+        Destroy(this.gameObject);
+
+        yield break;
     }
 }
 

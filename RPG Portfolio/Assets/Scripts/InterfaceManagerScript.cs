@@ -11,6 +11,8 @@ public class InterfaceManagerScript : MonoBehaviour
     Texture2D cursor_attack;
     [SerializeField]
     Texture2D cursor_use;
+    [SerializeField]
+    Texture2D cursor_rooting;
 
     CursorMode cursormode = CursorMode.ForceSoftware;
     Vector2 hotspot = Vector2.zero;
@@ -48,6 +50,11 @@ public class InterfaceManagerScript : MonoBehaviour
     public void UseCursor()
     {
         Cursor.SetCursor(cursor_use, hotspot, cursormode);
+    }
+
+    public void RootCursor()
+    {
+        Cursor.SetCursor(cursor_rooting, hotspot, cursormode);
     }
 
     public void DefaultCursor()
