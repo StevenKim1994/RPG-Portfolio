@@ -224,6 +224,7 @@
     <Compile Include="Assets\Scripts\PlayerManagerScripts.cs" />
     <Compile Include="Assets\Scripts\PotionNPCMenuScript.cs" />
     <Compile Include="Assets\Scripts\Retry.cs" />
+    <Compile Include="Assets\Scripts\RootingScript.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
     <Compile Include="Assets\Scripts\SecondDungeun\SecondBoss.cs" />
     <Compile Include="Assets\Scripts\SkillManagerScript.cs" />

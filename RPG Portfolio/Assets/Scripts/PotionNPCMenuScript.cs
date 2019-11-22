@@ -103,7 +103,7 @@ public class PotionNPCMenuScript : MonoBehaviour
                 StartCoroutine(NoGold());
             }
         }
-       
+
     }
     IEnumerator NoGold()
     {

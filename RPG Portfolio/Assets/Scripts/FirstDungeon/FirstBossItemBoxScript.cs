@@ -6,21 +6,19 @@ using UnityEngine.UI;
 public class FirstBossItemBoxScript : MonoBehaviour
 {
     ManagerSingleton MGR = new ManagerSingleton();
-    [SerializeField] GameObject ItemCanvas;
+    UISingleton UI = new UISingleton();
+    GameObject Canvas;
     void Start()
     {
-        ItemCanvas.SetActive(false);
+        Canvas = UI.Get_Instance().transform.GetChild(7).gameObject;
     }
 
     private void OnMouseDown()
     {
-        ItemCanvas.SetActive(true);
+        Canvas.SetActive(true);
+        Canvas.transform.GetComponent<RootingScript>().SetItem();
     }
 
-    public void Exitbtn()
-    {
-        ItemCanvas.SetActive(false);
-    }
 
     private void OnMouseEnter()
     {

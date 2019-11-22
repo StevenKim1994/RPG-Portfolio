@@ -57,32 +57,34 @@ public class SecondBoss : MonoBehaviour
 
             anim.SetBool("Running", true);
             anim.SetBool("Stand", false);
-
-            if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f) // 보스와 플레이어의 거리가 일정 거리이면
+            if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 30f)
             {
-                Debug.Log("가까움");
-
-
-                nav.enabled = false;
-                anim.SetBool("Stand", true);
-                anim.SetBool("Running", false);
-
-                if (cocheck == false)
+                nav.enabled = true;
+                if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f) // 보스와 플레이어의 거리가 일정 거리이면
                 {
-                    cocheck = true;
-                    anim.SetTrigger("Skill1");
-                    StartCoroutine(Skill1Attack()); // 공격 범위 생성 코루틴 .. ( 범위 콜라이더 생성 1초후 Destroy )
+                    Debug.Log("가까움");
+
+
+                    nav.enabled = false;
+                    anim.SetBool("Stand", true);
+                    anim.SetBool("Running", false);
+
+                    if (cocheck == false)
+                    {
+                        cocheck = true;
+                        anim.SetTrigger("Skill1");
+                        StartCoroutine(Skill1Attack()); // 공격 범위 생성 코루틴 .. ( 범위 콜라이더 생성 1초후 Destroy )
+                    }
+
+
+
                 }
-
-
-
             }
-
             else
             {
                 anim.SetBool("Stand", false);
                 anim.SetBool("Running", true);
-                nav.enabled = true;
+                //nav.enabled = true;
 
             }
         }
