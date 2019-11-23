@@ -94,6 +94,7 @@
     <Compile Include="Assets\JMO Assets\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Scripts\WFX_LightFlicker.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
+    <Compile Include="Assets\L_FG_Assets_Pack_Lite\Demo\cameraMove.cs" />
     <Compile Include="Assets\LevelDesignSet1_WoodenWalls\Scripts\WallSelector.cs" />
     <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorLinear.cs" />
     <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorMove.cs" />
@@ -301,6 +302,7 @@
     <None Include="Assets\UsedAsset\DownloadAsset\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpec.shader" />
     <None Include="Assets\Particle Dissolve Shader by Moonflower Carnivore\Shaders\legacy\Dissolve_Alpha_Additive_softrim.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
+    <None Include="Assets\L_FG_Assets_Pack_Lite\Demo\Read me01.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA3.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />

@@ -59,7 +59,7 @@ public class LoadManagersScript : MonoBehaviour
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 GameObject weaponnpc = GameObject.FindWithTag("WeaponNPC");
                 //weaponnpc.GetComponent<NPC>().Set_Player(User);
-                s_u(User);
+                //s_u(User);
             }
 
             else if (SceneManager.GetActiveScene().name == "FirstDungeonScene")
@@ -99,7 +99,7 @@ public class LoadManagersScript : MonoBehaviour
             Instantiate(Player);
             GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
             User.gameObject.tag = "Player";
-            User.transform.position = new Vector3(140.91f, 10.67f, 72.15f);
+            User.transform.position = new Vector3(1.5f, 1.83f, 15.28f);
             User.transform.GetComponent<Rigidbody>().isKinematic = false;
             User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }

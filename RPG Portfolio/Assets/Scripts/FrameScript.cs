@@ -11,6 +11,7 @@ public class FrameScript : MonoBehaviour
     [SerializeField] GameObject portrait;
     [SerializeField] Sprite[] JobPortrait = new Sprite[5];
     ManagerSingleton MGR = new ManagerSingleton();
+    bool set = false;
     void Start()
     {
 

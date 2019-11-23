@@ -7,10 +7,11 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     [SerializeField] GameObject Characterinfo;
     [SerializeField] GameObject tooltipUI;
+    ManagerSingleton MGR = new ManagerSingleton();
     public void UseItem()
     {
 
-        ManagerSingleton MGR = new ManagerSingleton();
+
         int num = int.Parse(this.gameObject.name);
 
         switch (num)
@@ -204,7 +205,17 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         Debug.Log("마우스오버!");
         tooltipUI.SetActive(true);
-        tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = "마우스오버!!";
+
+        if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).name != "")
+        {
+            tooltipUI.SetActive(true);
+            tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).description;
+        }
+
+        else
+        {
+            tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = "비었음";
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

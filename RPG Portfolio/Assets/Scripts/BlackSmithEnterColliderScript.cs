@@ -42,7 +42,7 @@ public class BlackSmithEnterColliderScript : MonoBehaviour
         {
             Debug.Log("대장간 입장");
            PlayerMgr.GetComponent<PlayerManagerScripts>().Set_OldPosition(new Vector3(-19.839f,0.57050f,-18.615f));
-           
+
             PlayerMgr.GetComponent<PlayerManagerScripts>().Save_DEX(collision.gameObject.GetComponent<Player>().Get_DEX());
             PlayerMgr.GetComponent<PlayerManagerScripts>().Save_INT(collision.gameObject.GetComponent<Player>().Get_INT());
             PlayerMgr.GetComponent<PlayerManagerScripts>().Save_STR(collision.gameObject.GetComponent<Player>().Get_STR());
@@ -52,8 +52,8 @@ public class BlackSmithEnterColliderScript : MonoBehaviour
             PlayerMgr.GetComponent<PlayerManagerScripts>().Save_HP(collision.gameObject.GetComponent<Player>().Get_HP());
             PlayerMgr.GetComponent<PlayerManagerScripts>().Save_MP(collision.gameObject.GetComponent<Player>().Get_MP());
 
-            PlayerMgr.GetComponent<PlayerManagerScripts>().Save_Name(collision.gameObject.GetComponent<Player>().Get_Name());
-            
+           // PlayerMgr.GetComponent<PlayerManagerScripts>().Save_Name(collision.gameObject.GetComponent<Player>().Get_Name());
+
 
             SceneMgr.GetComponent<SceneManagerScript>().EnterBlackSmith();
         }

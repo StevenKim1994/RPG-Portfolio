@@ -15,6 +15,7 @@ public class SecondBoss : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject Skill1Range; // 스킬1 사용시 나올 BoxCollider
     [SerializeField] GameObject Dropbox;
+
     ManagerSingleton MGR = new ManagerSingleton();
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
     bool cocheck = false;
@@ -32,6 +33,9 @@ public class SecondBoss : MonoBehaviour
 
         original_position = this.gameObject.transform.position;
 
+        if (this.gameObject.transform.name != "SecondBoss")
+            hP = 20f;
+
     }
 
     // Update is called once per frame
@@ -43,23 +47,24 @@ public class SecondBoss : MonoBehaviour
             anim.SetBool("Runing", false);
             if (die == false)
             {
-
+                die = true;
                 StartCoroutine(Dead());
-                Instantiate(Dropbox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 10f, this.gameObject.transform.position.z), Quaternion.identity); // 아이템박드드랍
+                if(this.gameObject.transform.name == "SecondBoss")
+                    Instantiate(Dropbox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 10f, this.gameObject.transform.position.z), Quaternion.identity); // 아이템박드드랍
             }
         }
 
-        else
+        if (die == false) // 살아있으면
         {
-            this.gameObject.transform.LookAt(target.transform);
-            nav.SetDestination(target.transform.position); // 플레이어의 위치로 nav의 목적지를 지정함.
-
-
-            anim.SetBool("Running", true);
-            anim.SetBool("Stand", false);
             if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 30f)
             {
+                this.gameObject.transform.LookAt(target.transform);
+                nav.SetDestination(target.transform.position); // 플레이어의 위치로 nav의 목적지를 지정함.
                 nav.enabled = true;
+
+                anim.SetBool("Running", true);
+                anim.SetBool("Stand", false);
+
                 if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f) // 보스와 플레이어의 거리가 일정 거리이면
                 {
                     Debug.Log("가까움");
@@ -75,17 +80,15 @@ public class SecondBoss : MonoBehaviour
                         anim.SetTrigger("Skill1");
                         StartCoroutine(Skill1Attack()); // 공격 범위 생성 코루틴 .. ( 범위 콜라이더 생성 1초후 Destroy )
                     }
+                }
 
-
+                else
+                {
+                    anim.SetBool("Stand", false);
+                    anim.SetBool("Running", true);
+                    //nav.enabled = true;
 
                 }
-            }
-            else
-            {
-                anim.SetBool("Stand", false);
-                anim.SetBool("Running", true);
-                //nav.enabled = true;
-
             }
         }
     }

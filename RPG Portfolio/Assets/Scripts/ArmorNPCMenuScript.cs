@@ -78,7 +78,7 @@ public class ArmorNPCMenuScript : MonoBehaviour
             }
             else
             {
-               // StartCoroutine(NoGold()); 인벤토리가 꽉찻거나 골드가 부족할떄 띄울 UI;
+                StartCoroutine(NoGold()); //인벤토리가 꽉찻거나 골드가 부족할떄 띄울 UI;
             }
         }
         else if(tmp == "2단계 방어구\n 가치 :10")
@@ -91,7 +91,7 @@ public class ArmorNPCMenuScript : MonoBehaviour
             }
             else
             {
-                // StartCoroutine(NoGold()); 인벤토리가 꽉찻거나 골드가 부족할떄 띄울 UI;
+                StartCoroutine(NoGold());// 인벤토리가 꽉찻거나 골드가 부족할떄 띄울 UI;
             }
         }
 
@@ -105,7 +105,7 @@ public class ArmorNPCMenuScript : MonoBehaviour
             }
             else
             {
-                // StartCoroutine(NoGold()); 인벤토리가 꽉찻거나 골드가 부족할떄 띄울 UI;
+                StartCoroutine(NoGold()); //인벤토리가 꽉찻거나 골드가 부족할떄 띄울 UI;
             }
         }
     }

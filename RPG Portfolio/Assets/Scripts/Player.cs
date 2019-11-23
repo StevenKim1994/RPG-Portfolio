@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Hitcanvas;
     [SerializeField] GameObject Minimapcam;
     [SerializeField] GameObject FinalSkillEffect;
+
     [SerializeField] GameObject Weapon;
     delegate void RL();
     delegate void RR();
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject HitEffect;
     [SerializeField] private GameObject PowerUpSkillEffect;
-
+    [SerializeField] private GameObject PowerUpSkillEfeect2;
     [SerializeField] private GameObject FireballHitEffect;
 
     public float MoveSpeed;
@@ -459,6 +460,16 @@ public class Player : MonoBehaviour
                 }
             }
 
+            if(Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() >= 10)
+                {
+                    MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() - 10);
+                    StartCoroutine(PowerUPSkill2());
+                    bb.transform.GetComponent<Buffbar>().BuffOn(2);
+                }
+            }
+
             if(Input.GetKeyDown(KeyCode.Alpha9))
             {
                 Debug.Log("HP물약사용!");
@@ -566,5 +577,15 @@ public class Player : MonoBehaviour
 
         Destroy(temp);
         yield break;
+    }
+
+    IEnumerator PowerUPSkill2()
+    {
+        GameObject temp = Instantiate(PowerUpSkillEfeect2, this.gameObject.transform.localPosition, this.gameObject.transform.localRotation);
+        yield return new WaitForSeconds(3f);
+
+        Destroy(temp);
+        yield break;
+
     }
 }

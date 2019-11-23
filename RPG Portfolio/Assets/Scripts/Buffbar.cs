@@ -25,6 +25,10 @@ public class Buffbar : MonoBehaviour
         {
             StartCoroutine(BuffStart(BuffIcon[0], 10f));
         }
+        else if(num ==2)
+        {
+            StartCoroutine(BuffStart(BuffIcon[1], 10f));
+        }
     }
 
 

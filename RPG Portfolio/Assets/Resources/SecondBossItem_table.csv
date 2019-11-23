@@ -1,2 +1,2 @@
-﻿Name,Value,Defense,Weight,Description
-용거인의 목,200,0,1,용거인을 처지하여 얻은 전리품이다.
+﻿Name,Kind,Value,Defense,Weight,Description
+바실리스크의 비늘,3,100,0,1,바실리스크를 처치하고 얻은 아이템이다.

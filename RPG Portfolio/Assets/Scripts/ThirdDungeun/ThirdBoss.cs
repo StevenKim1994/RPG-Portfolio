@@ -5,16 +5,36 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 public class ThirdBoss : MonoBehaviour
 {
+    [SerializeField] GameObject DropBox;
+    [SerializeField] GameObject HitPartcle;
+
+    NavMeshAgent nav;
+    Transform Target;
+    ManagerSingleton MGR = new ManagerSingleton();
+    UISingleton UI = new UISingleton();
+    float hP = 0f;
+    float mP = 100f;
+    int state = 0;
     // Start is called before the first frame update
     void Start()
     {
+        nav = GetComponent<NavMeshAgent>();
+        Target = GameObject.FindGameObjectWithTag("Player").transform;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(hP <= 0f)
+        {
+            state = 1; // 죽음
+            Instantiate(DropBox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 10f, this.gameObject.transform.position.z), Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+        else if(state == 0) // 살아있을떄만
+        nav.destination = Target.position;
+        nav.enabled = true;
     }
     private void OnTriggerEnter(Collider col) // 여기 계속 수정해야함 19.11.14;
     {
@@ -39,6 +59,18 @@ public class ThirdBoss : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log(this.gameObject.transform.name);
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Set_Target(this.gameObject);
+
+
+    }
+
+    private void OnMouseOver()
+    {
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().AttackCursor();
+    }
+
+    private void OnMouseExit()
+    {
+        MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().DefaultCursor();
     }
 }
