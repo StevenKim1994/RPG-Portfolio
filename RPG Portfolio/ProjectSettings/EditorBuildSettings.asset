@@ -32,9 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SecondDungeonScene.unity
     guid: aa10d7c1fad4b864c9af325cf959e1c5
-  - enabled: 1
-    path: Assets/Scenes/ThirdDungeonScene_Old.unity
-    guid: 520b0e7f7330b4444bd4e0463fd4fdb8
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/ThirdDungeonScene.unity
     guid: b475c139dd123534a9c2b7cda5de4d6f

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Author : Steven Kim (Kim Siyon 김시윤)
+// E-mail : dev@donga.ac.kr
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
     private Animator Anim;
     private bool MoveFlag = false;
 
+    public bool cck = false;
     private int STR =0;
     private int DEX = 0;
     private int INT =0;
@@ -386,12 +389,27 @@ public class Player : MonoBehaviour
             StartCoroutine(FireBallHit());
             Destroy(col.gameObject);
             Instantiate(Hitcanvas);
-
+           
         }
 
 
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Monster_Weapon")
+        {
+            Destroy(other.gameObject);
+            Instantiate(
+                HitEffect,
+                new Vector3(transform.position.x, transform.position.y + 1, transform.position.z),
+                transform.rotation); // 타격 피이펙트 생성...
+            Anim.SetTrigger("Attacked"); //Player의 타격 애니메이션 재생
+            Instantiate(Hitcanvas);
+        }
+
+
+    }
 
     void InputKey() // 스킬처리 부분
     {
@@ -571,7 +589,7 @@ public class Player : MonoBehaviour
 
         else if (SceneManager.GetActiveScene().name == "ThirdDungeonScene")
         {
-           // MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<ThirdBoss>().Set_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<ThirdBoss>().Get_HP() - 50f);
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<ThirdBoss>().Set_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.GetComponent<ThirdBoss>().Get_HP() - 50f);
         }
         yield return new WaitForSeconds(5f);
 
@@ -587,5 +605,21 @@ public class Player : MonoBehaviour
         Destroy(temp);
         yield break;
 
+    }
+
+    public void Attacked()
+    {
+        if(this.cck==false)
+        StartCoroutine(Atk1());
+    }
+
+    IEnumerator Atk1()
+    {
+        cck = true;
+        Instantiate(Hitcanvas);
+        Anim.SetTrigger("Attacked");
+        yield return new WaitForSeconds(3.5f);
+        cck = false;
+        yield break;
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Author : Steven Kim (Kim Siyon 김시윤)
+// E-mail : dev@donga.ac.kr
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,15 +51,15 @@ public class GameManagerScript : MonoBehaviour
         switch(_num)
         {
             case 1:
-                First = true;
+                First = false;
                 break;
 
             case 2:
-                Second = true;
+                Second = false;
                 break;
 
             case 3:
-                Third = true;
+                Third = false;
                 break;
         }
     }

@@ -1068,6 +1068,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2576068582844952414}
+  - component: {fileID: 1027126880769513160}
   m_Layer: 0
   m_Name: Bip001 Spine1
   m_TagString: Untagged
@@ -1090,6 +1091,22 @@ Transform:
   m_Father: {fileID: 5490230843507210677}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1027126880769513160
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6180117493297343991}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6262424047602153912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,10 +1305,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5718466908470685682}
   - component: {fileID: 1313029460171354796}
-  - component: {fileID: 8560203903621825036}
   - component: {fileID: 7254251382718693017}
   - component: {fileID: 7544395167979352657}
   - component: {fileID: 5384839048673557356}
+  - component: {fileID: -7348155289067597505}
   m_Layer: 0
   m_Name: Player(Pirate)
   m_TagString: User
@@ -1333,22 +1350,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &8560203903621825036
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7544395167979352622}
-  serializedVersion: 2
-  m_Mass: 70
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!114 &7254251382718693017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1502,6 +1503,22 @@ TrailRenderer:
   m_MinVertexDistance: 0.3
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!54 &-7348155289067597505
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544395167979352622}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 3
 --- !u!1 &7545158528630461706
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// Author : Steven Kim (Kim Siyon 김시윤)
+// E-mail : dev@donga.ac.kr
+
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +18,6 @@ public class ArmorNPCMenuScript : MonoBehaviour
     private List<GameObject> itemlist = new List<GameObject>();
     private List<Item> itemdata = new List<Item>();
     ManagerSingleton MGR = new ManagerSingleton();
-
 
     void Start()
     {

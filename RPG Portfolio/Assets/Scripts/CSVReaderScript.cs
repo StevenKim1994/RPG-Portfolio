@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Author : Steven Kim (Kim Siyon 김시윤)
+// E-mail : dev@donga.ac.kr
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
