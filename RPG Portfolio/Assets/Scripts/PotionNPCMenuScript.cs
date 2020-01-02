@@ -30,38 +30,42 @@ public class PotionNPCMenuScript : MonoBehaviour
 
         List<Dictionary<string, object>> data = CSVReaderScript.Read("potion_table");
 
-        for (var i = 0; i < data.Count; i++)
+        if (itemblock_parents != null)
         {
-            if(data[i]["Name"] != null)
+            for (var i = 0; i < data.Count; i++)
             {
-
-                input_temp = Instantiate(itemblock_prefeb,itemblock_parents.transform);
-                input_temp.transform.GetChild(1).GetComponent<Text>().text = data[i]["Name"].ToString() + "\n 가치 :" + data[i]["Value"].ToString();
-                input_temp.transform.GetChild(2).GetComponent<Text>().text = "종류: " + data[i]["Kind"].ToString() + "\n" + "회복량: " + data[i]["Increase"].ToString();
-
-                if (data[i]["Kind"].ToString() == "HP")
+                if (data[i]["Name"] != null)
                 {
-                    input_temp.transform.GetChild(0).GetComponent<Image>().sprite = HPIMAGE;
-                    kind = 3;
-                    value = int.Parse(data[i]["Value"].ToString());
-                    increase = float.Parse(data[i]["Increase"].ToString());
-                    desc = data[i]["Description"].ToString();
-                    Item temp = new Item(HPIMAGE, true, kind, "HP포션", value, increase, 0, 0, 1,desc);
-                    ItemList.Add(temp);
-                }
-                else if (data[i]["Kind"].ToString() == "MP")
-                {
-                    input_temp.transform.GetChild(0).GetComponent<Image>().sprite = MPIMAGE;
-                    kind = 4;
-                    value = int.Parse(data[i]["Value"].ToString());
-                    increase = float.Parse(data[i]["Increase"].ToString());
-                    desc = data[i]["Description"].ToString();
-                    Item temp = new Item(HPIMAGE, true, kind, "MP포션", value, increase, 0, 0, 1,desc);
-                    ItemList.Add(temp);
+
+                    input_temp = Instantiate(itemblock_prefeb, itemblock_parents.transform);
+                    input_temp.transform.GetChild(1).GetComponent<Text>().text =
+                        data[i]["Name"].ToString() + "\n 가치 :" + data[i]["Value"].ToString();
+                    input_temp.transform.GetChild(2).GetComponent<Text>().text =
+                        "종류: " + data[i]["Kind"].ToString() + "\n" + "회복량: " + data[i]["Increase"].ToString();
+
+                    if (data[i]["Kind"].ToString() == "HP")
+                    {
+                        input_temp.transform.GetChild(0).GetComponent<Image>().sprite = HPIMAGE;
+                        kind = 3;
+                        value = int.Parse(data[i]["Value"].ToString());
+                        increase = float.Parse(data[i]["Increase"].ToString());
+                        desc = data[i]["Description"].ToString();
+                        Item temp = new Item(HPIMAGE, true, kind, "HP포션", value, increase, 0, 0, 1, desc);
+                        ItemList.Add(temp);
+                    }
+                    else if (data[i]["Kind"].ToString() == "MP")
+                    {
+                        input_temp.transform.GetChild(0).GetComponent<Image>().sprite = MPIMAGE;
+                        kind = 4;
+                        value = int.Parse(data[i]["Value"].ToString());
+                        increase = float.Parse(data[i]["Increase"].ToString());
+                        desc = data[i]["Description"].ToString();
+                        Item temp = new Item(HPIMAGE, true, kind, "MP포션", value, increase, 0, 0, 1, desc);
+                        ItemList.Add(temp);
+                    }
                 }
             }
         }
-
 
     }
 

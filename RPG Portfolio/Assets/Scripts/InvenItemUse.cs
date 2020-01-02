@@ -210,6 +210,7 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).name != "")
         {
+            // 만약 해당 위치가 null 일때 처리 해줘야함 2020.01.03...
             tooltipUI.SetActive(true);
             tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).description;
         }

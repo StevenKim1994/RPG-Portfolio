@@ -61,10 +61,10 @@ public class Inventory : MonoBehaviour
 
     public Item Get_Block(int num)
     {
-
+        if(InvenItem[num] != null)
             return InvenItem[num];
 
-
+        return null;
     }
 
     public int InventoryCount()
