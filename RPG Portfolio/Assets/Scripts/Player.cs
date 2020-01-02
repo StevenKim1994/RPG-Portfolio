@@ -22,13 +22,13 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject FinalSkillEffect;
 
     [SerializeField] GameObject Weapon;
-    delegate void RL();
-    delegate void RR();
-    FollowCamera FC = new FollowCamera();
-    RL rl;
-    RR rr;
-    ManagerSingleton MGR = new ManagerSingleton();
-    UISingleton UI = new UISingleton();
+    //delegate void RL();
+    //delegate void RR();
+    FollowCamera FC;
+    //RL rl;
+    //RR rr;
+    ManagerSingleton MGR;
+    UISingleton UI;
     private GameObject GameMgr;
     private Animator Anim;
     private bool MoveFlag = false;
@@ -163,10 +163,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        MGR = new ManagerSingleton();
+        FC = new FollowCamera();
+        UI = new UISingleton();
         bb = UI.Get_Instance().transform.GetChild(3).gameObject;
         ReturnOldScene d_s = new GameManagerScript().Get_OldScene;
         ReturnOldPosition d_p = new PlayerManagerScripts().Get_OldPosition;
+        
 
 
         if (d_s() != null)
@@ -198,66 +201,63 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() <=0) // 죽는다면
+        if (SceneManager.GetActiveScene().name != "CharacterSelectScene")
         {
-            state = 4;
-            Anim.SetBool("Dead", true);
-            UI.Get_Instance().transform.GetChild(13).gameObject.SetActive(true);
-        }
-        else
-        {
-            state = 0;
-            Anim.SetBool("Dead", false);
-            UI.Get_Instance().transform.GetChild(13).gameObject.SetActive(false);
-
-        }
-
-        if (state != 4)
-        {
-            if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || Anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || Anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
+            if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() <= 0) // 죽는다면
             {
-                Weapon.transform.GetComponent<TrailRenderer>().enabled = true;
-            }
-            // 무기 트레일 기능 온
-            else
-            {
-                Weapon.transform.GetComponent<TrailRenderer>().enabled = false;
-            }
-            // 무기 트레일 기능 오프
-            /* timer += Time.deltaTime;
-
-             if (timer > waittime)
-             {
-                 if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP()< 100)
-                     MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_MP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_MP() + 1);
-             }*/ //마나리젠
-
-
-            if (Target != null)
-            {
-                Target_Frame.SetActive(true);
-            }
-            MoveCtrl(); // 이동처리
-            if (MoveFlag == true)
-            {
-                Anim.SetBool("Walking", true);
-                Anim.SetBool("Idle", false);
-
+                state = 4;
+                Anim.SetBool("Dead", true);
+                UI.Get_Instance().transform.GetChild(13).gameObject.SetActive(true);
             }
             else
             {
-                Anim.SetBool("Walking", false);
-                Anim.SetBool("Idle", true);
+                state = 0;
+                Anim.SetBool("Dead", false);
+                UI.Get_Instance().transform.GetChild(13).gameObject.SetActive(false);
+
             }
 
-            InputKey(); // 스킬처리
+            if (state != 4)
+            {
+                if (Anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || Anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || Anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
+                {
+                    Weapon.transform.GetComponent<TrailRenderer>().enabled = true;
+                }
+                // 무기 트레일 기능 온
+                else
+                {
+                    Weapon.transform.GetComponent<TrailRenderer>().enabled = false;
+                }
+                
 
 
+                if (Target != null)
+                {
+                    Target_Frame.SetActive(true);
+                }
+                MoveCtrl(); // 이동처리
+                if (MoveFlag == true)
+                {
+                    Anim.SetBool("Walking", true);
+                    Anim.SetBool("Idle", false);
+
+                }
+                else
+                {
+                    Anim.SetBool("Walking", false);
+                    Anim.SetBool("Idle", true);
+                }
+
+                InputKey(); // 스킬처리
+
+
+            }
         }
     }
     void MoveCtrl()
     {
         MoveFlag = false;
+        
         if(Input.GetKey(KeyCode.W))
         {
 
@@ -280,19 +280,8 @@ public class Player : MonoBehaviour
             if (CountLeft >= 10f)
             {
                 CountLeft = 0.0f;
-            }
-            //MoveFlag = true;
-            //this.transform.Translate(Vector3.left * MoveSpeed * Time.deltaTime);
-            rl();
-
-            Rotate += 0.5f;
-            Rotate += CountLeft + RotateSpeed * 0.015f;
-
-
-
-            this.transform.rotation = Quaternion.Euler(0, -Rotate, 0);
-
-
+            } // 캐릭터가 바라보는 방향으로 카메라의 시점을 바꾸기 위함.
+          
         }
         else if ((Input.GetKey(KeyCode.A)) && (Input.GetKey(KeyCode.W)))
         {
@@ -320,7 +309,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-            rr();
+            
             CountLeft = 0.0f;
             CountRight += 1.0f;
             if(CountRight >= 10f)
@@ -328,15 +317,6 @@ public class Player : MonoBehaviour
                 CountRight = 0.0f;
             }
 
-            Rotate += 0.5f;
-            Rotate += CountRight + RotateSpeed * 0.015f;
-
-
-            this.transform.rotation = Quaternion.Euler(0, Rotate, 0);
-
-
-
-            // 일정 앵글 넘어서면 카메라도 움직이게 해야함
         }
         else if ((Input.GetKey(KeyCode.D)) && (Input.GetKey(KeyCode.W)))
         {
@@ -407,13 +387,11 @@ public class Player : MonoBehaviour
             Anim.SetTrigger("Attacked"); //Player의 타격 애니메이션 재생
             Instantiate(Hitcanvas);
         }
-
-
     }
 
     void InputKey() // 스킬처리 부분
     {
-        if (this.gameObject.transform.name == "Player(Pirate)(Clone)") // 캐릭터가 해적일 경우...
+        if (this.gameObject.transform.name == "Player(Pirate)") // 캐릭터가 해적일 경우...
         {
 
             if (Input.GetKeyDown(KeyCode.Alpha1))

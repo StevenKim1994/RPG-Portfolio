@@ -36,13 +36,14 @@ public class FirstBoss : MonoBehaviour
     private int waitTime;
     bool death = false;
     private int ballcount = 0;
-    ManagerSingleton MGR = new ManagerSingleton();
+    ManagerSingleton MGR;
 
     private float TimeLeft = 1.0f;
     private float nextTime = 0.0f;
     Transform temp;
     void Start()
     {
+        MGR = new ManagerSingleton();
         temp = Hiteffect_initPosition.transform;
         temp.transform.Translate(0, -10, 0);
         waitTime = 1;

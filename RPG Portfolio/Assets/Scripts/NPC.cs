@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour
         l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
 
         if (Player == null)
-            Player = GameObject.Find("Player("+l_j()+")(Clone)");
+            Player = GameObject.FindGameObjectWithTag("Player");
 
         Anim = this.GetComponent<Animator>();
 

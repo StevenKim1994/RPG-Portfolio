@@ -29,7 +29,8 @@ public class FollowCamera : MonoBehaviour
 
     float yMinLimit = -20f;
     float yMaxLimit = 80f;
-
+    Quaternion rotation;
+    Vector3 position;
 
     float ClampAngle(float angle, float min, float max)
     {
@@ -50,10 +51,14 @@ public class FollowCamera : MonoBehaviour
     {
         l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
 
-        if(Player == null)
-            Player = GameObject.Find("Player("+ l_j() + ")(Clone)");
+        if (Player == null && SceneManager.GetActiveScene().name != "CharacterSelectScene") 
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            target = Player.GetComponent<Transform>();
 
-        target = Player.GetComponent<Transform>();
+        }
+
+       
 
         Cursor.lockState = CursorLockMode.None;
         Vector3 angles = this.transform.eulerAngles;
@@ -81,8 +86,8 @@ public class FollowCamera : MonoBehaviour
             target.rotation = Quaternion.Euler(0, x, 0);
         }
 
-        Quaternion rotation = Quaternion.Euler(y, x, 0);
-        Vector3 position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
+        rotation = Quaternion.Euler(y, x, 0);
+        position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
 
         this.transform.rotation = rotation;
 
@@ -124,6 +129,18 @@ public class FollowCamera : MonoBehaviour
                 dist = 0;
             }
         }
+    }
+
+    public void SetView()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        target = Player.GetComponent<Transform>();
+
+        rotation = Quaternion.Euler(y, x, 0);
+        position = rotation * new Vector3(0, 0.9f, -dist) + target.position + new Vector3(0.0f, 0, 0.0f);
+
+        this.transform.rotation = rotation;
+        this.transform.position = position;
     }
 
 }

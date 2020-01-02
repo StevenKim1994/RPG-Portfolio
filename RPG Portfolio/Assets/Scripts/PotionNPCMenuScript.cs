@@ -20,11 +20,13 @@ public class PotionNPCMenuScript : MonoBehaviour
     int kind; // 0 이면 무기 1 이면 방어구 3 HP물약 4 MP물약
     float increase; // Item 클래스 생성자에는 물약의 회복량은 데미지로 들어감.
     string desc;
-    ManagerSingleton MGR = new ManagerSingleton();
-    UISingleton UI = new UISingleton();
+    ManagerSingleton MGR;
+    UISingleton UI;
+
     void Start()
     {
-
+        MGR = new ManagerSingleton();
+        UI = new UISingleton();
 
         List<Dictionary<string, object>> data = CSVReaderScript.Read("potion_table");
 
@@ -32,7 +34,6 @@ public class PotionNPCMenuScript : MonoBehaviour
         {
             if(data[i]["Name"] != null)
             {
-
 
                 input_temp = Instantiate(itemblock_prefeb,itemblock_parents.transform);
                 input_temp.transform.GetChild(1).GetComponent<Text>().text = data[i]["Name"].ToString() + "\n 가치 :" + data[i]["Value"].ToString();

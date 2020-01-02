@@ -28,7 +28,7 @@ public class LoadManagersScript : MonoBehaviour
     private void Awake()
     {
 
-       l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
+        l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
         s_u = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Skill).GetComponent<SkillManagerScript>().Set_Player;
         s_p = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Set_OldPosition;
 
@@ -52,70 +52,71 @@ public class LoadManagersScript : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "InBlackSmithScene")
             {
 
-                Instantiate(Player);
-                GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
-
+                GameObject User = Instantiate(Player);
+                User.gameObject.name = "Player";
                 User.gameObject.tag = "Player";
+                User.gameObject.name += "(" + Job.ToString() + ")";
                 User.transform.position = new Vector3(8.35f, 3.858f, 1.76f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 GameObject weaponnpc = GameObject.FindWithTag("WeaponNPC");
-                //weaponnpc.GetComponent<NPC>().Set_Player(User);
-                //s_u(User);
+               
             }
 
             else if (SceneManager.GetActiveScene().name == "FirstDungeonScene")
             {
-                Instantiate(Player);
-                 GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
-
+                GameObject User = Instantiate(Player);
+                User.gameObject.name = "Player";
                 User.gameObject.tag = "Player";
+                User.gameObject.name += "(" + Job.ToString() + ")";
                 User.transform.position = new Vector3(41.8f,1.0f,-10.3f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
+
             else if (SceneManager.GetActiveScene().name == "SecondDungeonScene")
             {
-                Instantiate(Player);
-                GameObject User = GameObject.Find("Player(" + Job+")(Clone)");
-
+                GameObject User = Instantiate(Player);
+                User.gameObject.name = "Player";
                 User.gameObject.tag = "Player";
+                User.gameObject.name += "(" + Job.ToString() + ")";
                 User.transform.position = new Vector3(6.1f, 1f, 152.7f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-
             }
 
             else if (SceneManager.GetActiveScene().name == "InChurchScene")
             {
-                Instantiate(Player);
-                GameObject User = GameObject.Find("Player("+Job + ")(Clone)");
-
+                GameObject User = Instantiate(Player);
+                User.gameObject.name = "Player";
                 User.gameObject.tag = "Player";
-                User.transform.position = new Vector3(0.6f, 1.68f, 7.88f);
+            User.gameObject.name += "(" + Job.ToString() + ")";
+            User.transform.position = new Vector3(0.6f, 1.68f, 7.88f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
+
             else if (SceneManager.GetActiveScene().name == "ThirdDungeonScene")
             {
-            Instantiate(Player);
-            GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
+            GameObject User = Instantiate(Player);
+            User.gameObject.name = "Player";
             User.gameObject.tag = "Player";
+            User.gameObject.name += "(" + Job.ToString() + ")";
             User.transform.position = new Vector3(1.5f, 1.83f, 15.28f);
             User.transform.GetComponent<Rigidbody>().isKinematic = false;
             User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             }
+
             else if (SceneManager.GetActiveScene().name == "CampScene")
             {
-                Instantiate(Player);
-                GameObject User = GameObject.Find("Player(" + Job + ")(Clone)");
-
+                GameObject User = Instantiate(Player);
+                User.gameObject.name = "Player";
                 User.gameObject.tag = "Player";
+                User.gameObject.name += "(" + Job.ToString() + ")";
                 User.transform.position = new Vector3(14.04f, 3f, 10.15f);
                 User.transform.GetComponent<Rigidbody>().isKinematic = false;
                 User.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-        }
-
+            }
 
         MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).GetComponent<InventoryManagerScript>().SetTitleName(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Name());
 
