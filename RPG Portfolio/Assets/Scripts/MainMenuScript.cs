@@ -8,7 +8,7 @@ public class MainMenuScript : MonoBehaviour
 {
     [SerializeField]
     GameObject[] Btn = new GameObject[3];
-    // 0:System 1:Skill 2:Inventory(이건 예외적으로 InventoryManager에서 관리)
+    // 0:System 1:ChacracterInfo 2:Inventory
 
     public void OnSystemMenu()
     {
@@ -17,5 +17,23 @@ public class MainMenuScript : MonoBehaviour
 
         else
             Btn[0].SetActive(false);
+    }
+
+    public void OnCharacterInfoMenu()
+    {
+        if(Btn[1].activeSelf == false)
+            Btn[1].SetActive(true);
+
+        else
+            Btn[1].SetActive(false);
+    }
+
+    public void OnInventoryMenu()
+    {
+        if(Btn[2].activeSelf == false)
+            Btn[2].SetActive(true);
+
+        else
+            Btn[2].SetActive(false);
     }
 }
