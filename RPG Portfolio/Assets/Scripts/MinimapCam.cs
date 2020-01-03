@@ -7,24 +7,20 @@ using UnityEngine;
 
 public class MinimapCam : MonoBehaviour
 {
-    Vector3 temp;
+    private GameObject PlayerPosition;
+    private Vector3 distance;
     private void Start()
     {
-      
-     
+        PlayerPosition = GameObject.FindGameObjectWithTag("Player").gameObject;
+        distance.y = 10f;
     }
     void Update()
     {
-        
-        this.gameObject.transform.position = temp;
+
+        this.gameObject.transform.position = PlayerPosition.gameObject.transform.position;
+        this.gameObject.transform.position += distance;
+
     }
 
-    void SetMinimapPosition() // 이거 딜리게이트로 Player 생성할때 호출하는거 추가하기!
-    {
-        if (SceneManager.GetActiveScene().name != "CharacterSelectScene")
-        {
-            temp = GameObject.FindGameObjectWithTag("Player").transform.position;
-
-        }
-    }
+    
 }

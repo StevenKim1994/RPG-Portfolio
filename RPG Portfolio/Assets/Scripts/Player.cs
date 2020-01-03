@@ -164,9 +164,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         MGR = new ManagerSingleton();
-        FC = new FollowCamera();
         UI = new UISingleton();
-        bb = UI.Get_Instance().transform.GetChild(3).gameObject;
+        
+
         ReturnOldScene d_s = new GameManagerScript().Get_OldScene;
         ReturnOldPosition d_p = new PlayerManagerScripts().Get_OldPosition;
         
@@ -207,13 +207,13 @@ public class Player : MonoBehaviour
             {
                 state = 4;
                 Anim.SetBool("Dead", true);
-                UI.Get_Instance().transform.GetChild(13).gameObject.SetActive(true);
+                UI.Get_Instance().transform.GetChild(9).gameObject.SetActive(true);
             }
             else
             {
                 state = 0;
                 Anim.SetBool("Dead", false);
-                UI.Get_Instance().transform.GetChild(13).gameObject.SetActive(false);
+                UI.Get_Instance().transform.GetChild(9).gameObject.SetActive(false);
 
             }
 

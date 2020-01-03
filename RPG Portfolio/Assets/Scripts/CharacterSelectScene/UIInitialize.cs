@@ -15,7 +15,8 @@ public class UIInitialize : MonoBehaviour
     void Start()
     {
         UIcount = UI.gameObject.transform.childCount;
-        UISetOff();
+        UISetOff(); 
+        UISetOn();
      }
 
 
@@ -58,6 +59,10 @@ public class UIInitialize : MonoBehaviour
                 continue;
             }
             else if(UI.gameObject.transform.GetChild(i).gameObject.name.ToString() == "Retry")
+            {
+                continue;
+            }
+            else if (UI.gameObject.transform.GetChild(i).gameObject.name.ToString() == "NPC")
             {
                 continue;
             }

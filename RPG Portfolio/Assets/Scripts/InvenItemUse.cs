@@ -9,14 +9,25 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     [SerializeField] GameObject Characterinfo;
     [SerializeField] GameObject tooltipUI;
-    ManagerSingleton MGR = new ManagerSingleton();
+    ManagerSingleton MGR;
+    UISingleton UI;
+
+    void Start()
+    {
+        MGR = new ManagerSingleton();
+        UI = new UISingleton();
+        
+    }
+
     public void UseItem()
     {
 
 
         int num = int.Parse(this.gameObject.name);
 
-        switch (num)
+        if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_InventorySpace() > num)
+        {
+            switch (num)
         {
             case 0:
 
@@ -202,28 +213,38 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         }
 
+        }
+        
+
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("마우스오버!");
-        tooltipUI.SetActive(true);
-
-        if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).name != "")
-        {
-            // 만약 해당 위치가 null 일때 처리 해줘야함 2020.01.03...
-            tooltipUI.SetActive(true);
-            tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).description;
-        }
-
-        else
-        {
-            tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = "비었음";
+        Debug.Log("MouserOver!!");
+     
+        if ( (eventData.pointerCurrentRaycast.gameObject.transform.name != "weapon") &&
+                (eventData.pointerCurrentRaycast.gameObject.transform.name != "armor")){
+            if (MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Inventory).transform
+                    .GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>()
+                    .Get_InventorySpace() > int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name))
+            {
+                if (MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Inventory).transform
+                        .GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>()
+                        .Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).name != "")
+                {
+                    tooltipUI.SetActive(true);
+                    tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = MGR.Get_instance().transform
+                        .GetChild((int) Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>()
+                        .GetInven().transform.GetComponent<Inventory>()
+                        .Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).description;
+                }
+            }
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        tooltipUI.SetActive(false);
+        if(tooltipUI != null)
+            tooltipUI.SetActive(false);
     }
 
 }

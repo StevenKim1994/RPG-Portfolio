@@ -150,7 +150,7 @@ public class CharacterSelectScript : MonoBehaviour
     public void selectbtn()
     {
 
-        UIinitiliazer.GetComponent<UIInitialize>().UISetOn();
+      
         switch (count)
         {
             case 0 :

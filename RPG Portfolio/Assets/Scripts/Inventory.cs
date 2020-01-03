@@ -59,12 +59,15 @@ public class Inventory : MonoBehaviour
 
     }
 
+    public int Get_InventorySpace()
+    {
+        return InvenItem.Count;
+    }
     public Item Get_Block(int num)
     {
-        if(InvenItem[num] != null)
+    
             return InvenItem[num];
 
-        return null;
     }
 
     public int InventoryCount()
