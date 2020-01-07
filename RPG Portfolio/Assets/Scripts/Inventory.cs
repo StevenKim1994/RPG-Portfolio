@@ -100,6 +100,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
+    public void Close()
+    {
+        if (this.gameObject)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
 
 }

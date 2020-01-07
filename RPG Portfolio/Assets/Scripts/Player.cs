@@ -165,7 +165,10 @@ public class Player : MonoBehaviour
     {
         MGR = new ManagerSingleton();
         UI = new UISingleton();
-        
+
+        if(SceneManager.GetActiveScene().name != "CharacterSelectScene")
+            bb = UI.Get_Instance().transform.GetChild(5).gameObject;
+
 
         ReturnOldScene d_s = new GameManagerScript().Get_OldScene;
         ReturnOldPosition d_p = new PlayerManagerScripts().Get_OldPosition;

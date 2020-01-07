@@ -16,7 +16,7 @@ public class MinimapCam : MonoBehaviour
     }
     void Update()
     {
-
+        // 이전 Player위치 Scene 바꿀때 마다 Delegate로 설정하는 거 추가하기.
         this.gameObject.transform.position = PlayerPosition.gameObject.transform.position;
         this.gameObject.transform.position += distance;
 
