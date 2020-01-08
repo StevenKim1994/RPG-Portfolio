@@ -21,7 +21,6 @@ public class SecondBoss : MonoBehaviour
     ManagerSingleton MGR = new ManagerSingleton();
     int count = 0; // 근처에 플레이어가 머물러 있는 시간...
     bool cocheck = false;
-    private bool setTarget;
     Vector3 original_position;
     int state;
     bool die = false;
@@ -62,15 +61,15 @@ public class SecondBoss : MonoBehaviour
             if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 30f)
             {
                 this.gameObject.transform.LookAt(target.transform);
-                if (setTarget == false) // Target이 Null일 경우를 방지하기 위함.
-                {
-                    nav.SetDestination(target.transform.position); // 플레이어의 위치로 nav의 목적지를 지정함
-                    nav.enabled = true;
-                    setTarget = true;
-                }
 
-                anim.SetBool("Running", true);
-                anim.SetBool("Stand", false);
+                
+                    nav.enabled = true;
+                    nav.SetDestination(target.transform.position); // 플레이어의 위치로 nav의 목적지를 지정함.
+                   
+
+                    anim.SetBool("Running", true);
+                    anim.SetBool("Stand", false);
+                
 
                 if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f) // 보스와 플레이어의 거리가 일정 거리이면
                 {

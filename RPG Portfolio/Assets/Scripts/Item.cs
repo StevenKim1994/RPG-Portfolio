@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
             speed = _speed;
             armor = _armor;
             num = _num;
-            description = _desc;
+        description = _desc;
 
         }
 

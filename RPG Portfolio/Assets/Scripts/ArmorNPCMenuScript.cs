@@ -19,11 +19,16 @@ public class ArmorNPCMenuScript : MonoBehaviour
     private List<Item> itemdata = new List<Item>();
     ManagerSingleton MGR = new ManagerSingleton();
 
+    void Awake()
+    {
+
+    }
+
     void Start()
     {
         List<Dictionary<string, object>> data = CSVReaderScript.Read("armor_table");
 
-        if (itemblock_parents != null)
+        if (itemblock_parents)
         {
             for (var i = 0; i < data.Count; i++)
             {
@@ -50,7 +55,6 @@ public class ArmorNPCMenuScript : MonoBehaviour
                         input_temp.transform.GetChild(0).GetComponent<Image>().sprite = itemicon[2];
                         input_temp.transform.GetComponent<Item>().image = itemicon[2];
                     }
-
 
                     input_temp.transform.GetComponent<Item>().name = data[i]["Name"].ToString();
                     input_temp.transform.GetComponent<Item>().kind = 1;

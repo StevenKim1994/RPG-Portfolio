@@ -15,7 +15,9 @@ public class ThirdBoss : MonoBehaviour
     [SerializeField] GameObject HitParticle;
     [SerializeField] GameObject flotingtext;
 
+    private IEnumerator PlayCoroutine;
     private Animator anim;
+
     NavMeshAgent nav;
     Transform Target;
     ManagerSingleton MGR = new ManagerSingleton();
@@ -40,10 +42,13 @@ public class ThirdBoss : MonoBehaviour
         this.anim.SetTrigger("Attack");
         if(hP <= 0f )
         {
-            if(this.state == 0)
+            if(PlayCoroutine != null)
+                StopCoroutine(PlayCoroutine);
+
+            if(this.state == 0) // 여기 왜 여러번 호출되는지 수정하기...
             { 
             state = 1; // 죽음
-            Instantiate(DropBox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 10f, this.gameObject.transform.position.z), Quaternion.identity);
+            //Instantiate(DropBox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 10f, this.gameObject.transform.position.z), Quaternion.identity);
             StartCoroutine(Die());
 
             }
@@ -89,7 +94,8 @@ public class ThirdBoss : MonoBehaviour
             Debug.Log(random);
             if (random == 1) //일정확률로 스턴걸리는 기능 추가하기...
             {
-                StartCoroutine(Stun());
+                PlayCoroutine = Stun();
+                StartCoroutine(PlayCoroutine);
             }
         }
         if (col.gameObject.tag == "User_Bullet")
@@ -151,7 +157,7 @@ public class ThirdBoss : MonoBehaviour
     IEnumerator Die()
     {
         this.anim.SetBool("Dead", true);
-
+        Instantiate(DropBox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 10f, this.gameObject.transform.position.z), Quaternion.identity);
         yield return new WaitForSeconds(3f);
 
         Destroy(this.gameObject);

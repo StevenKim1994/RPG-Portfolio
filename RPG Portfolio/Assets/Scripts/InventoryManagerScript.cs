@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class InventoryManagerScript : MonoBehaviour
 {
 
@@ -26,7 +25,7 @@ public class InventoryManagerScript : MonoBehaviour
 
     private void Start()
     {
-       
+        Tooltip.SetActive(false);
         Gold = 10000;
 
     }

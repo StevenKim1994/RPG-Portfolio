@@ -51,11 +51,12 @@ public class FollowCamera : MonoBehaviour
     {
         l_j = MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).GetComponent<PlayerManagerScripts>().Load_Job;
 
-        
-        Player = GameObject.FindGameObjectWithTag("Player").gameObject;
-        target = Player.GetComponent<Transform>();
+        if (Player == null && SceneManager.GetActiveScene().name != "CharacterSelectScene") 
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            target = Player.GetComponent<Transform>();
 
-        
+        }
 
        
 

@@ -30,7 +30,7 @@ public class PotionNPCMenuScript : MonoBehaviour
 
         List<Dictionary<string, object>> data = CSVReaderScript.Read("potion_table");
 
-        if (itemblock_parents != null)
+        if (itemblock_parents)
         {
             for (var i = 0; i < data.Count; i++)
             {
@@ -65,8 +65,8 @@ public class PotionNPCMenuScript : MonoBehaviour
                     }
                 }
             }
-        }
 
+        }
     }
 
     public void ExtBtn()

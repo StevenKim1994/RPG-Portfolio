@@ -59,15 +59,14 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public int Get_InventorySpace()
-    {
-        return InvenItem.Count;
-    }
     public Item Get_Block(int num)
     {
-    
-            return InvenItem[num];
+        return InvenItem[num];
+    }
 
+    public int Get_Block_Size()
+    {
+        return InvenItem.Count;
     }
 
     public int InventoryCount()
@@ -100,12 +99,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void Close()
-    {
-        if (this.gameObject)
-        {
-            this.gameObject.SetActive(false);
-        }
-    }
+
 
 }
