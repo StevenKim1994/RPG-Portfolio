@@ -4,9 +4,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityScript.Steps;
 
 
 public class ThirdBoss : MonoBehaviour
@@ -14,8 +16,9 @@ public class ThirdBoss : MonoBehaviour
     [SerializeField] GameObject DropBox;
     [SerializeField] GameObject HitParticle;
     [SerializeField] GameObject flotingtext;
+    [SerializeField] GameObject PlayerHitEffect;
+    [SerializeField] GameObject PlayerHitCanvas;
 
-    private IEnumerator PlayCoroutine;
     private Animator anim;
 
     NavMeshAgent nav;
@@ -25,62 +28,53 @@ public class ThirdBoss : MonoBehaviour
     private float hP = 100f;
     private float mP = 100f;
     private int state = 0;
+    private bool coroutine_is_running = false;
+    private float anim_exittime = 0.8f;
     // Start is called before the first frame update
     void Start()
     {
-
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         nav.speed = 1f;
         Target = GameObject.FindGameObjectWithTag("Player").transform;
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.anim.SetTrigger("Attack");
-        if(hP <= 0f )
+      // Debug.Log(Vector3.Distance(this.gameObject.transform.position, this.Target.gameObject.transform.position));
+        
+        if ( hP > 0)
         {
-            if(PlayCoroutine != null)
-                StopCoroutine(PlayCoroutine);
+            nav.speed = 1;
+            this.anim.SetBool("Walk",true);
 
-            if(this.state == 0) // 여기 왜 여러번 호출되는지 수정하기...
-            { 
-            state = 1; // 죽음
-            //Instantiate(DropBox, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 10f, this.gameObject.transform.position.z), Quaternion.identity);
-            StartCoroutine(Die());
-
-            }
-        }
-        else if (state == 0) // 살아있을떄만
-        {
-          
-                this.anim.SetBool("Walk", true);
-                transform.LookAt(Target);
-                nav.destination = Target.position;
-                nav.enabled = true;
-            if(Vector3.Distance(this.gameObject.transform.position, this.Target.gameObject.transform.position) <=3f)
+            if (Vector3.Distance(this.gameObject.transform.position, this.Target.gameObject.transform.position) <= 3f) 
             {
-                nav.enabled = false;
-                this.anim.SetBool("Walk",false);
+             
+                nav.speed = 0f;
+                this.anim.SetBool("Walk", false);
                 this.anim.SetTrigger("Attack");
-                if(this.Target.transform.GetComponent<Player>().cck == false)
-                { 
-                    MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP()-10f);
-                this.Target.transform.GetComponent<Player>().Attacked();
-                }
+                // 데미지 처리는 애니메이션 이벤트에서 Attack함수 호출
             }
-            else
+
+            else 
             {
-                this.anim.SetBool("Walk", true);
+                
+                nav.speed = 1;
+                nav.destination = Target.transform.position;
                 nav.enabled = true;
+                transform.LookAt(Target);
+                this.anim.SetBool("Walk", true);
             }
 
         }
+
     }
-    private void OnTriggerEnter(Collider col) // 여기 계속 수정해야함 19.11.14;
+    private void OnTriggerEnter(Collider col)
     {
+        /*
         if (col.gameObject.tag == "User_Weapon")
         {
             Instantiate(HitParticle, this.gameObject.transform.localPosition, this.gameObject.transform.localRotation);
@@ -92,18 +86,16 @@ public class ThirdBoss : MonoBehaviour
             txtclone.transform.SetParent(GameObject.Find("UI").transform);
             int random = UnityEngine.Random.Range(0, 2) + 1;
             Debug.Log(random);
-            if (random == 1) //일정확률로 스턴걸리는 기능 추가하기...
+            if (random == 1) //일정확률로 스턴
             {
                 PlayCoroutine = Stun();
                 StartCoroutine(PlayCoroutine);
             }
         }
+        */
         if (col.gameObject.tag == "User_Bullet")
         {
-
-            
-                Instantiate(HitParticle, this.gameObject.transform);
-
+            Instantiate(HitParticle, this.gameObject.transform);
             anim.SetTrigger("Hurt");
             Set_HP(Get_HP() - 5f);
             GameObject txtclone = Instantiate(flotingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
@@ -163,5 +155,21 @@ public class ThirdBoss : MonoBehaviour
         Destroy(this.gameObject);
         yield break;
     }
+
+    public void MeleeAttack()
+    {
+        float Target_HP = MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP();
+        
+        if (Target != null)
+        {
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(Target_HP - 5f);
+            Instantiate(PlayerHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
+            Target.GetComponent<Animator>().SetTrigger("Attacked");
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() - 5);
+          
+        }
+    }
+
+
 }
 

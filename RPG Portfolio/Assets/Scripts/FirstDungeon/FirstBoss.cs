@@ -83,7 +83,7 @@ public class FirstBoss : MonoBehaviour
             }
         }
 
-        if (hP <= hP / 2)
+        else if (hP <= hP / 2)
         {
             state = 1; // 화남페이지
             damage += 20f; // 화가 나면 데미지 20상승

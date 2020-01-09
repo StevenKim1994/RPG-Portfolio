@@ -10,11 +10,7 @@ public class MinimapCam : MonoBehaviour
     private GameObject Player;
     Vector3 temp;
     Vector3 position;
-    private void Start()
-    {
-      
-     
-    }
+ 
     void Update()
     {
         if (SceneManager.GetActiveScene().name != "CharacterSelectScene" && SceneManager.GetActiveScene().name != "LoadingScene")
@@ -32,14 +28,13 @@ public class MinimapCam : MonoBehaviour
         }
     }
 
-    void SetMinimapPosition() // 이거 딜리게이트로 Player 생성할때 호출하는거 추가하기!
+    void SetMinimapPosition() 
     {
         if (SceneManager.GetActiveScene().name != "CharacterSelectScene" && SceneManager.GetActiveScene().name != "LoadingScene")
         {
             temp = GameObject.FindGameObjectWithTag("Player").transform.position;
             Player = GameObject.FindGameObjectWithTag("Player");
             temp.y = temp.y + 10f;
-            Debug.Log("찾음");
         }
     }
 
