@@ -14,7 +14,7 @@ public class SecondBoss : MonoBehaviour
     [SerializeField] private GameObject floatingcanvas;
     [SerializeField] private NavMeshAgent nav;
     [SerializeField] private Transform target; // 유저의 좌표 값이 타겟이 됨...
-    [SerializeField] private Animator anim;
+    [SerializeField] public Animator anim;
     [SerializeField] private GameObject Skill1Range; // 스킬1 사용시 나올 BoxCollider
     [SerializeField] GameObject Dropbox;
 
@@ -73,26 +73,19 @@ public class SecondBoss : MonoBehaviour
 
                 if (Vector3.Distance(this.gameObject.transform.position, target.transform.position) <= 10f) // 보스와 플레이어의 거리가 일정 거리이면
                 {
-                    Debug.Log("가까움");
-
 
                     nav.enabled = false;
+                    anim.SetBool("Running",false);
                     anim.SetBool("Stand", true);
-                    anim.SetBool("Running", false);
+                    anim.SetTrigger("Skill1");
 
-                    if (cocheck == false)
-                    {
-                        cocheck = true;
-                        anim.SetTrigger("Skill1");
-                        StartCoroutine(Skill1Attack()); // 공격 범위 생성 코루틴 .. ( 범위 콜라이더 생성 1초후 Destroy )
-                    }
                 }
 
                 else
                 {
                     anim.SetBool("Stand", false);
                     anim.SetBool("Running", true);
-                    //nav.enabled = true;
+                    nav.enabled = true;
 
                 }
             }
@@ -146,20 +139,6 @@ public class SecondBoss : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col) // 여기 계속 수정해야함 19.11.14;
     {
-        if (col.gameObject.tag == "User_Weapon")
-        {
-
-            //if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
-            //{
-                Instantiate(HitParticle, this.gameObject.transform);
-                anim.SetTrigger("Hurt");
-                Set_HP(Get_HP() - 10f);
-                Debug.Log(Get_HP());
-                GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
-                txtclone.GetComponent<FloatingText>().text.text = "-10";
-                txtclone.transform.SetParent(GameObject.Find("UI").transform);
-            //}
-        }
 
         if(col.gameObject.tag == "Damage_Obstacle")
         {
@@ -237,6 +216,21 @@ public class SecondBoss : MonoBehaviour
         Destroy(this.gameObject);
 
         yield break;
+    }
+
+    public void MeleeAttack()
+    {
+        Debug.Log("공격공격");
+        float Target_HP = MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP();
+
+        if (target != null)
+        {
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(Target_HP - 5f);
+            //Instantiate(PlayerHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
+            target.GetComponent<Animator>().SetTrigger("Attacked");
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() - 5);
+
+        }
     }
 }
 

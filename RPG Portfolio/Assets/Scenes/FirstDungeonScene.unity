@@ -12619,11 +12619,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
-        type: 3}
-      propertyPath: m_Name
-      value: Hatchling (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 2298966801879430590, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12693,6 +12688,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
+        type: 3}
+      propertyPath: m_Name
+      value: Hatchling (3)
       objectReference: {fileID: 0}
     - target: {fileID: 2298966802085842320, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
@@ -17666,11 +17666,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
-        type: 3}
-      propertyPath: m_Name
-      value: Hatchling (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 2298966801879430590, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17740,6 +17735,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
+        type: 3}
+      propertyPath: m_Name
+      value: Hatchling (2)
       objectReference: {fileID: 0}
     - target: {fileID: 2298966802085842320, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
@@ -22714,11 +22714,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
-        type: 3}
-      propertyPath: m_Name
-      value: Hatchling
-      objectReference: {fileID: 0}
     - target: {fileID: 2298966801879430590, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22788,6 +22783,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
+        type: 3}
+      propertyPath: m_Name
+      value: Hatchling
       objectReference: {fileID: 0}
     - target: {fileID: 2298966802085842320, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
@@ -34819,11 +34819,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
-        type: 3}
-      propertyPath: m_Name
-      value: Hatchling (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 2298966801879430590, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34894,6 +34889,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
+        type: 3}
+      propertyPath: m_Name
+      value: Hatchling (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 2298966802085842320, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
       propertyPath: m_IsKinematic
@@ -34913,11 +34913,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
-        type: 3}
-      propertyPath: m_Name
-      value: FirstBoss
-      objectReference: {fileID: 0}
     - target: {fileID: 2298966801879430590, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34973,22 +34968,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2298966801879668250, guid: 271a10a29da1ced449972a4ce11b8fbe,
+        type: 3}
+      propertyPath: m_Name
+      value: FirstBoss
+      objectReference: {fileID: 0}
     - target: {fileID: 2298966802085842320, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2298966802085842326, guid: 271a10a29da1ced449972a4ce11b8fbe,
-        type: 3}
-      propertyPath: floatingcanvas
-      value: 
-      objectReference: {fileID: 1142508416}
-    - target: {fileID: 2298966802085842326, guid: 271a10a29da1ced449972a4ce11b8fbe,
-        type: 3}
-      propertyPath: DropBox
-      value: 
-      objectReference: {fileID: 6606105855459945459, guid: ef89d0d0dcc35664e9bbef14be2dbe4b,
-        type: 3}
     - target: {fileID: 2298966802085842321, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
       propertyPath: m_Radius
@@ -35012,7 +35001,18 @@ PrefabInstance:
     - target: {fileID: 2298966802085842321, guid: 271a10a29da1ced449972a4ce11b8fbe,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2298966802085842326, guid: 271a10a29da1ced449972a4ce11b8fbe,
+        type: 3}
+      propertyPath: floatingcanvas
+      value: 
+      objectReference: {fileID: 1142508416}
+    - target: {fileID: 2298966802085842326, guid: 271a10a29da1ced449972a4ce11b8fbe,
+        type: 3}
+      propertyPath: DropBox
+      value: 
+      objectReference: {fileID: 6606105855459945459, guid: ef89d0d0dcc35664e9bbef14be2dbe4b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 271a10a29da1ced449972a4ce11b8fbe, type: 3}

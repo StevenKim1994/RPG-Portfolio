@@ -19,7 +19,7 @@ public class ThirdBoss : MonoBehaviour
     [SerializeField] GameObject PlayerHitEffect;
     [SerializeField] GameObject PlayerHitCanvas;
 
-    private Animator anim;
+    public Animator anim;
 
     NavMeshAgent nav;
     Transform Target;
@@ -74,25 +74,7 @@ public class ThirdBoss : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col)
     {
-        /*
-        if (col.gameObject.tag == "User_Weapon")
-        {
-            Instantiate(HitParticle, this.gameObject.transform.localPosition, this.gameObject.transform.localRotation);
-            anim.SetTrigger("Hurt");
-            Set_HP(Get_HP() - 10f);
-            Debug.Log(Get_HP());
-            GameObject txtclone = Instantiate(flotingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
-            txtclone.GetComponent<FloatingText>().text.text = "-10";
-            txtclone.transform.SetParent(GameObject.Find("UI").transform);
-            int random = UnityEngine.Random.Range(0, 2) + 1;
-            Debug.Log(random);
-            if (random == 1) //일정확률로 스턴
-            {
-                PlayCoroutine = Stun();
-                StartCoroutine(PlayCoroutine);
-            }
-        }
-        */
+  
         if (col.gameObject.tag == "User_Bullet")
         {
             Instantiate(HitParticle, this.gameObject.transform);
@@ -106,8 +88,8 @@ public class ThirdBoss : MonoBehaviour
 
     }
 
-    IEnumerator Stun()
-    {
+    public IEnumerator Stun()
+    { 
         Debug.Log("스턴!");
         anim.SetBool("Stun", true);
         GameObject txtclone = Instantiate(flotingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));

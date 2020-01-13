@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
 using UnityEngine;
 using UnityEngine.Experimental.XR;
 using UnityEngine.SceneManagement;
@@ -201,6 +202,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target()!= null)
+            Debug.Log(Vector3.Distance(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.position, this.gameObject.transform.position));
+
         if (SceneManager.GetActiveScene().name != "CharacterSelectScene")
         {
             if (MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() <= 0) // 죽는다면
@@ -349,18 +353,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Monster_Weapon")
-        {
-            Debug.Log("몬스터의 공격감지!");
-
-            //데미지연산해서 Player의 체력계산 추가하기
-            Destroy(col.gameObject);
-            Instantiate(HitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
-            Anim.SetTrigger("Attacked");//Player의 타격 애니메이션 재생
-            Instantiate(Hitcanvas);
-
-        }
-
+        
         if (col.gameObject.tag == "Enermy_Fireball")
         {
 
@@ -371,7 +364,6 @@ public class Player : MonoBehaviour
             Instantiate(Hitcanvas);
            
         }
-
 
     }
 
@@ -396,14 +388,24 @@ public class Player : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-
-
-                    Weapon.transform.GetComponent<TrailRenderer>().enabled = true;
-
-                this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", false);
-                this.gameObject.transform.GetComponent<Animator>().SetTrigger("MeleeAttackStart");
-                Attack();
-
+                if (MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target() != null)
+                {
+                    Vector3 direction =
+                        MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player).transform
+                            .GetComponent<PlayerManagerScripts>().Get_Target().transform.position - this.transform.position;
+                    float angle = Vector3.Angle(direction, this.transform.forward);
+                    float dist = Vector3.Distance(MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Player)
+                            .transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.position,
+                        this.gameObject.transform.position);
+                    if (angle < 30 && dist <= 2.0f)
+                    {
+                        Weapon.transform.GetComponent<TrailRenderer>().enabled = true;
+                        this.gameObject.transform.GetComponent<Animator>().SetBool("Idle", false);
+                        this.gameObject.transform.GetComponent<Animator>().SetTrigger("MeleeAttackStart");
+                        Attack();
+                        
+                    }
+                }
             }
 
             else if (!(Input.GetKey(KeyCode.Alpha1)))
@@ -600,4 +602,45 @@ public class Player : MonoBehaviour
         cck = false;
         yield break;
     }
+
+
+    void MeleeAttack()
+    {
+        if (SceneManager.GetActiveScene().name == "FirstDungeonScene")
+        {
+            GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
+            txtclone.GetComponent<FloatingText>().text.text = "-10";
+            txtclone.transform.SetParent(GameObject.Find("UI").transform);
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<FirstBoss>().Set_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<FirstBoss>().Get_HP() - 5f);
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<FirstBoss>().anim.SetTrigger("Hurt");
+        }
+
+        else if (SceneManager.GetActiveScene().name == "SecondDungeonScene")
+        {
+            GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
+            txtclone.GetComponent<FloatingText>().text.text = "-10";
+            txtclone.transform.SetParent(GameObject.Find("UI").transform);
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<SecondBoss>().Set_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<SecondBoss>().Get_HP() - 5f);
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<SecondBoss>().anim.SetTrigger("Hurt");
+        }
+
+        else if (SceneManager.GetActiveScene().name == "ThirdDungeonScene")
+        {
+            GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().transform.position), Quaternion.Euler(Vector3.zero));
+            txtclone.GetComponent<FloatingText>().text.text = "-5";
+            txtclone.transform.SetParent(GameObject.Find("UI").transform);
+            int random = UnityEngine.Random.Range(0, 2) + 1;
+            Debug.Log(random);
+            if (random == 1) //일정확률로 스턴
+            {
+                StartCoroutine(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<ThirdBoss>().Stun());
+            }
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<ThirdBoss>().Set_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<ThirdBoss>().Get_HP() - 5f);
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Get_Target().GetComponent<ThirdBoss>().anim.SetTrigger("Hurt");
+        }
+    }
+
+    
+   
+
 }

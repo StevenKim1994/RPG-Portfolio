@@ -21,7 +21,7 @@ public class FirstBoss : MonoBehaviour
     [SerializeField] Transform position;
     [SerializeField] private NavMeshAgent nav;
     [SerializeField] private Transform target; // 유저의 좌표 값이 타겟이 됨...
-    [SerializeField] private Animator anim;
+    [SerializeField] public Animator anim;
     [SerializeField] GameObject Range;
     [SerializeField] GameObject Attack;
     [SerializeField] GameObject floatingtext;
@@ -188,29 +188,7 @@ public class FirstBoss : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "User_Weapon")
-        {
-
-           // if (col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk01") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk02") || col.gameObject.transform.root.GetComponent<Player>().get_state().GetCurrentAnimatorStateInfo(0).IsName("Base Layer.atk03"))
-           // {
-                if(this.gameObject.name == "FirstBoss")
-                    Instantiate(HitParticle, temp);
-                else
-                 Instantiate(HitParticle, this.gameObject.transform);
-
-                anim.SetTrigger("Hurt");
-                Set_HP(Get_HP() - 10f);
-                Debug.Log(Get_HP());
-                GameObject txtclone = Instantiate(floatingtext, Camera.main.WorldToScreenPoint(this.gameObject.transform.position), Quaternion.Euler(Vector3.zero));
-                txtclone.GetComponent<FloatingText>().text.text = "-10";
-                txtclone.transform.SetParent(GameObject.Find("UI").transform);
-
-
-
-
-           // }
-        }
-
+      
         if(col.gameObject.tag == "User_Bullet")
         {
 
@@ -263,5 +241,19 @@ public class FirstBoss : MonoBehaviour
     private void OnMouseExit()
     {
         MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Interface).transform.GetComponent<InterfaceManagerScript>().DefaultCursor();
+    }
+
+    public void MeleeAttack()
+    {
+        float Target_HP = MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP();
+
+        if (target != null)
+        {
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(Target_HP - 0.5f);
+            //Instantiate(PlayerHitEffect, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation); // 타격 피이펙트 생성...
+            target.GetComponent<Animator>().SetTrigger("Attacked");
+            MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Save_HP(MGR.Get_instance().transform.GetChild((int)Enum.Managerlist.Player).transform.GetComponent<PlayerManagerScripts>().Load_HP() - 5);
+
+        }
     }
 }
