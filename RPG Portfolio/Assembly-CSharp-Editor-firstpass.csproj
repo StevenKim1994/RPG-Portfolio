@@ -68,44 +68,38 @@
     <Compile Include="Assets\Plugins\Effect\Editor\RenderEffectInspector.cs" />
     <Compile Include="Assets\Plugins\Effect\Editor\ShaderCustomEditor\ShaderMaterialsEditor.cs" />
     <Compile Include="Assets\Plugins\Effect\Editor\XUIUtils.cs" />
-    <Compile Include="Assets\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
-    <Compile Include="Assets\Standard Assets\Editor\Water\Water4\GerstnerDisplaceEditor.cs" />
-    <Compile Include="Assets\Standard Assets\Editor\Water\Water4\PlanarReflectionEditor.cs" />
-    <Compile Include="Assets\Standard Assets\Editor\Water\Water4\SpecularLightingEditor.cs" />
-    <Compile Include="Assets\Standard Assets\Editor\Water\Water4\WaterBaseEditor.cs" />
-    <Compile Include="Assets\Standard Assets\Editor\Water\Water4\WaterEditorUtility.cs" />
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -300,13 +294,13 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="LitJson">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Assets/Plugins/LitJson.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Assets/Plugins/LitJson.dll</HintPath>
     </Reference>
     <Reference Include="ConsoleE">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Assets/Plugins/ConsoleE/Editor/ConsoleE.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Assets/Plugins/ConsoleE/Editor/ConsoleE.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/Users/XPS/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/Users/dev/Documents/GitHub/RPG-Portfolio/RPG Portfolio/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

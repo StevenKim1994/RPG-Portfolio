@@ -283,28 +283,35 @@ public class InvenItemUse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("마우스오버!");
-        tooltipUI.SetActive(true);
 
-        if((MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>().Get_Block_Size() > int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)))  // 해당칸에 아이템이 존재할떄
+        if (tooltipUI != null)
         {
+            tooltipUI.SetActive(true);
 
-
-            if (MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Inventory).transform
-                    .GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>()
-                    .Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).name != "")
+            if ((MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Inventory).transform
+                     .GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>()
+                     .Get_Block_Size() >
+                 int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name))) // 해당칸에 아이템이 존재할떄
             {
-                tooltipUI.SetActive(true);
-                tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = MGR.Get_instance().transform
-                    .GetChild((int) Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>()
-                    .GetInven()
-                    .transform.GetComponent<Inventory>()
-                    .Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).description;
-            }
 
-        }
-        else // 인벤토리의 해당칸이 비었을때 예외처리
-        {
-            tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = "비었음";
+
+                if (MGR.Get_instance().transform.GetChild((int) Enum.Managerlist.Inventory).transform
+                        .GetComponent<InventoryManagerScript>().GetInven().transform.GetComponent<Inventory>()
+                        .Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).name != "")
+                {
+                    tooltipUI.SetActive(true);
+                    tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = MGR.Get_instance().transform
+                        .GetChild((int) Enum.Managerlist.Inventory).transform.GetComponent<InventoryManagerScript>()
+                        .GetInven()
+                        .transform.GetComponent<Inventory>()
+                        .Get_Block(int.Parse(eventData.pointerCurrentRaycast.gameObject.transform.name)).description;
+                }
+
+            }
+            else // 인벤토리의 해당칸이 비었을때 예외처리
+            {
+                tooltipUI.transform.GetChild(0).transform.GetComponent<Text>().text = "비었음";
+            }
         }
     }
 

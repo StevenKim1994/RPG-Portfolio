@@ -3,7 +3,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Item : MonoBehaviour
 {
 
@@ -19,11 +18,10 @@ public class Item : MonoBehaviour
             speed = _speed;
             armor = _armor;
             num = _num;
-        description = _desc;
-
+            description = _desc;
         }
 
-   public  Item data;
+        public  Item data;
         public Sprite image;
         public bool isempty;
         public int kind;
@@ -33,7 +31,7 @@ public class Item : MonoBehaviour
         public float speed;
         public float armor;
         public int num;
-    public string description;
+        public string description;
 
     public void set_data(Item _in)
     {
